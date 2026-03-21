@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Lookup API
+  description: >-
+    The MessageBird Lookup API enables developers to validate and look up
+    mobile phone numbers. It performs HLR lookups on the mobile network to
+    identify number format, country, operator, and availability in
+    real-time. The API is useful for cleaning contact lists, validating
+    user-provided phone numbers, and determining the correct format before
+    sending messages.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+externalDocs:
+  description: Lookup API Documentation
+  url: https://developers.messagebird.com/api/lookup/
+servers:
+  - url: https://rest.messagebird.com
+    description: Production Server
+tags:
+  - name: Lookup
+    description: >-
+      Operations for looking up and validating phone numbers.
+  - name: HLR
+    description: >-
+      Operations for performing HLR network queries on phone numbers.
+security:
+  - accessKey: []
+paths:
+  /lookup/{phoneNumber}:
+    get:
+      operationId: lookupPhoneNumber
+      summary: Look up a phone number
+      description: >-
+        Performs a phone number validation and returns formatting
+        information, country details, and operator data for the
+        specified number.
+      tags:
+        - Lookup
+      parameters:
+        - $ref: '#/components/parameters/phoneNumberParam'
+        - name: countryCode
+          in: query
+          required: false
+          description: >-
+            The country code to use for parsing the phone number if it
+            is provided in a local format.
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+      responses:
+        '200':
+          description: Lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lookup'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Phone number not found
+  /lookup/{phoneNumber}/hlr:
+    post:
+      operationId: createHlrLookup
+      summary: Request an HLR lookup
+      description: >-
+        Creates a new HLR lookup for the specified phone number. The
+        lookup is performed asynchronously on the mobile network.
+      tags:
+        - HLR
+      parameters:
+        - $ref: '#/components/parameters/phoneNumberParam'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  description: >-
+                    A client reference for tracking purposes.
+                countryCode:
+                  type: string
+                  description: >-
+                    The country code for parsing the phone number.
+                  minLength: 2
+                  maxLength: 2
+      responses:
+        '201':
+          description: HLR lookup created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HlrLookup'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: viewHlrLookup
+      summary: View an HLR lookup
+      description: >-
+        Retrieves the result of an HLR lookup for the specified phone
+        number.
+      tags:
+        - HLR
+      parameters:
+        - $ref: '#/components/parameters/phoneNumberParam'
+      responses:
+        '200':
+          description: HLR lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HlrLookup'
+        '401':
+          description: Unauthorized
+        '404':
+          description: HLR lookup not found
+components:
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Access key authentication in the form of 'AccessKey {accessKey}'.
+  parameters:
+    phoneNumberParam:
+      name: phoneNumber
+      in: path
+      required: true
+      description: >-
+        The phone number to look up in international format.
+      schema:
+        type: string
+  schemas:
+    Lookup:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+          description: >-
+            The URL of the lookup resource.
+        countryCode:
+          type: string
+          description: >-
+            The two-letter ISO 3166-1 country code.
+        countryPrefix:
+          type: integer
+          description: >-
+            The international dialing prefix for the country.
+        phoneNumber:
+          type: integer
+          format: int64
+          description: >-
+            The phone number in E.164 format.
+        type:
+          type: string
+          description: >-
+            The type of phone number.
+          enum:
+            - fixed line
+            - mobile
+            - fixed line or mobile
+            - toll free
+            - premium rate
+            - shared cost
+            - voip
+            - personal number
+            - pager
+            - universal access number
+            - unknown
+        formats:
+          type: object
+          description: >-
+            Alternative formats for the phone number.
+          properties:
+            e164:
+              type: string
+              description: >-
+                The phone number in E.164 format.
+            international:
+              type: string
+              description: >-
+                The phone number in international format.
+            national:
+              type: string
+              description: >-
+                The phone number in national format.
+            rfc3966:
+              type: string
+              description: >-
+                The phone number in RFC 3966 format.
+        hlr:
+          $ref: '#/components/schemas/HlrLookup'
+    HlrLookup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The unique identifier of the HLR lookup.
+        network:
+          type: integer
+          description: >-
+            The MCC-MNC code of the mobile network operator.
+        reference:
+          type: string
+          description: >-
+            The client reference.
+        status:
+          type: string
+          description: >-
+            The status of the HLR lookup.
+          enum:
+            - sent
+            - absent
+            - active
+            - unknown
+            - failed
+        createdDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the HLR lookup was created.
+        statusDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time of the last status update.

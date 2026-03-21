@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/messagebird/contact.json",
+  "title": "MessageBird Contact",
+  "description": "Represents a contact in the MessageBird address book that can be associated with multiple communication channels.",
+  "type": "object",
+  "required": ["id", "msisdn"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the contact."
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the contact resource."
+    },
+    "msisdn": {
+      "type": "string",
+      "description": "The phone number of the contact in international format.",
+      "pattern": "^\\+?[1-9]\\d{1,14}$"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "The first name of the contact.",
+      "maxLength": 256
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The last name of the contact.",
+      "maxLength": 256
+    },
+    "custom1": {
+      "type": "string",
+      "description": "Custom field 1 for arbitrary contact data."
+    },
+    "custom2": {
+      "type": "string",
+      "description": "Custom field 2 for arbitrary contact data."
+    },
+    "custom3": {
+      "type": "string",
+      "description": "Custom field 3 for arbitrary contact data."
+    },
+    "custom4": {
+      "type": "string",
+      "description": "Custom field 4 for arbitrary contact data."
+    },
+    "groups": {
+      "type": "object",
+      "description": "Links to the groups the contact belongs to.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL to retrieve the groups."
+        },
+        "totalCount": {
+          "type": "integer",
+          "description": "The total number of groups.",
+          "minimum": 0
+        }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "description": "Links to messages associated with the contact.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL to retrieve messages."
+        },
+        "totalCount": {
+          "type": "integer",
+          "description": "The total number of messages.",
+          "minimum": 0
+        }
+      }
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the contact was created."
+    },
+    "updatedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the contact was last updated."
+    }
+  }
+}

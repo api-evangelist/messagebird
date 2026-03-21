@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/messagebird/conversation.json",
+  "title": "MessageBird Conversation",
+  "description": "Represents an omnichannel conversation thread in the MessageBird Conversations API, consolidating messages from multiple channels into a single contact interaction.",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the conversation."
+    },
+    "contactId": {
+      "type": "string",
+      "description": "The unique identifier of the contact associated with this conversation."
+    },
+    "contact": {
+      "$ref": "#/$defs/Contact"
+    },
+    "channels": {
+      "type": "array",
+      "description": "The messaging channels used in this conversation.",
+      "items": {
+        "$ref": "#/$defs/Channel"
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the conversation.",
+      "enum": ["active", "archived"]
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the conversation was created."
+    },
+    "updatedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the conversation was last updated."
+    },
+    "lastReceivedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time of the last received message."
+    },
+    "lastUsedChannelId": {
+      "type": "string",
+      "description": "The identifier of the last channel used in the conversation."
+    }
+  },
+  "$defs": {
+    "Contact": {
+      "type": "object",
+      "description": "A contact associated with one or more conversations.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the contact."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the contact resource."
+        },
+        "msisdn": {
+          "type": "string",
+          "description": "The phone number of the contact in international format."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the contact."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of the contact."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of the contact."
+        },
+        "customDetails": {
+          "type": "object",
+          "description": "Custom details associated with the contact.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "createdDatetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the contact was created."
+        },
+        "updatedDatetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the contact was last updated."
+        }
+      }
+    },
+    "Channel": {
+      "type": "object",
+      "description": "A messaging channel through which conversations take place.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the channel."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the channel."
+        },
+        "platformId": {
+          "type": "string",
+          "description": "The messaging platform.",
+          "enum": ["sms", "whatsapp", "facebook", "telegram", "line", "wechat", "email"]
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the channel.",
+          "enum": ["active", "inactive", "pending"]
+        },
+        "createdDatetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the channel was created."
+        },
+        "updatedDatetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the channel was last updated."
+        }
+      }
+    },
+    "ConversationMessage": {
+      "type": "object",
+      "description": "A message within a conversation.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the message."
+        },
+        "conversationId": {
+          "type": "string",
+          "description": "The conversation this message belongs to."
+        },
+        "channelId": {
+          "type": "string",
+          "description": "The channel through which the message was sent."
+        },
+        "platform": {
+          "type": "string",
+          "description": "The messaging platform."
+        },
+        "to": {
+          "type": "string",
+          "description": "The recipient identifier."
+        },
+        "from": {
+          "type": "string",
+          "description": "The sender identifier."
+        },
+        "direction": {
+          "type": "string",
+          "description": "The direction of the message.",
+          "enum": ["sent", "received"]
+        },
+        "status": {
+          "type": "string",
+          "description": "The delivery status.",
+          "enum": ["accepted", "pending", "sent", "delivered", "read", "failed", "deleted"]
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of content.",
+          "enum": ["text", "image", "video", "audio", "file", "location", "hsm"]
+        },
+        "content": {
+          "type": "object",
+          "description": "The message content, structure depends on type."
+        },
+        "createdDatetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the message was created."
+        },
+        "updatedDatetime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the message was last updated."
+        }
+      }
+    }
+  }
+}

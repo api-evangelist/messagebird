@@ -1,0 +1,403 @@
+asyncapi: 2.6.0
+info:
+  title: MessageBird Conversations Events
+  description: >-
+    The MessageBird Conversations webhook system delivers real-time
+    notifications for conversation events across all messaging channels
+    including SMS, WhatsApp, Facebook Messenger, Telegram, and more.
+    Webhooks are triggered when messages are created or updated, and when
+    conversations are created or updated. The platform supports up to 10
+    channel-specific webhooks and 5 generic webhooks per account.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+servers:
+  webhook:
+    url: '{webhookUrl}'
+    protocol: https
+    description: >-
+      Your server endpoint that receives webhook payloads from
+      MessageBird when conversation events occur.
+    variables:
+      webhookUrl:
+        description: >-
+          The URL configured in the webhook settings to receive event
+          notifications.
+    security:
+      - signatureAuth: []
+channels:
+  /webhook:
+    description: >-
+      Endpoint on your server that receives conversation event
+      notifications from MessageBird.
+    publish:
+      operationId: receiveConversationEvent
+      summary: Receive a conversation event
+      description: >-
+        MessageBird sends a JSON payload to your webhook URL when a
+        subscribed event occurs. Events include message creation and
+        updates, as well as conversation creation and updates.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/MessageCreated'
+          - $ref: '#/components/messages/MessageUpdated'
+          - $ref: '#/components/messages/ConversationCreated'
+          - $ref: '#/components/messages/ConversationUpdated'
+  /voice-webhook:
+    description: >-
+      Endpoint on your server that receives voice call event
+      notifications from MessageBird.
+    publish:
+      operationId: receiveVoiceEvent
+      summary: Receive a voice call event
+      description: >-
+        MessageBird sends call event data to your webhook URL when
+        voice call status changes occur, such as call creation,
+        ringing, answering, and hangup.
+      message:
+        $ref: '#/components/messages/VoiceCallEvent'
+  /sms-status-webhook:
+    description: >-
+      Endpoint on your server that receives SMS delivery status
+      reports from MessageBird.
+    publish:
+      operationId: receiveSmsStatusReport
+      summary: Receive an SMS status report
+      description: >-
+        MessageBird sends delivery status updates to the reportUrl
+        specified when sending an SMS message. Status reports indicate
+        whether the message was delivered, expired, or failed.
+      message:
+        $ref: '#/components/messages/SmsStatusReport'
+components:
+  securitySchemes:
+    signatureAuth:
+      type: httpApiKey
+      name: MessageBird-Signature
+      in: header
+      description: >-
+        Webhook payloads include a signature header for verifying the
+        authenticity of the request. The signature is computed using
+        the webhook signing key.
+  messages:
+    MessageCreated:
+      name: message.created
+      title: Message Created
+      summary: >-
+        Triggered when a new message is created in a conversation, either
+        sent by the business or received from a customer.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/MessageEvent'
+    MessageUpdated:
+      name: message.updated
+      title: Message Updated
+      summary: >-
+        Triggered when a message status changes, such as transitioning
+        from sent to delivered or read.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/MessageEvent'
+    ConversationCreated:
+      name: conversation.created
+      title: Conversation Created
+      summary: >-
+        Triggered when a new conversation is created, typically when a
+        new contact sends their first message.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConversationEvent'
+    ConversationUpdated:
+      name: conversation.updated
+      title: Conversation Updated
+      summary: >-
+        Triggered when a conversation is updated, such as a status
+        change from active to archived.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConversationEvent'
+    VoiceCallEvent:
+      name: voice.call.event
+      title: Voice Call Event
+      summary: >-
+        Triggered when a voice call event occurs, including call
+        creation, ringing, answering, and hangup events.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/VoiceCallEventPayload'
+    SmsStatusReport:
+      name: sms.status.report
+      title: SMS Status Report
+      summary: >-
+        Triggered when the delivery status of an SMS message changes.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SmsStatusReportPayload'
+  schemas:
+    MessageEvent:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The event type.
+          enum:
+            - message.created
+            - message.updated
+        conversation:
+          type: object
+          description: >-
+            The conversation associated with the event.
+          properties:
+            id:
+              type: string
+              description: >-
+                The conversation identifier.
+            contactId:
+              type: string
+              description: >-
+                The contact identifier.
+            status:
+              type: string
+              description: >-
+                The conversation status.
+              enum:
+                - active
+                - archived
+            createdDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the conversation was created.
+            updatedDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the conversation was last updated.
+            lastReceivedDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the last message was received.
+        message:
+          type: object
+          description: >-
+            The message associated with the event.
+          properties:
+            id:
+              type: string
+              description: >-
+                The message identifier.
+            conversationId:
+              type: string
+              description: >-
+                The conversation identifier.
+            channelId:
+              type: string
+              description: >-
+                The channel identifier.
+            platform:
+              type: string
+              description: >-
+                The messaging platform.
+            to:
+              type: string
+              description: >-
+                The recipient identifier.
+            from:
+              type: string
+              description: >-
+                The sender identifier.
+            direction:
+              type: string
+              description: >-
+                The direction of the message.
+              enum:
+                - sent
+                - received
+            status:
+              type: string
+              description: >-
+                The delivery status.
+              enum:
+                - accepted
+                - pending
+                - sent
+                - delivered
+                - read
+                - failed
+                - deleted
+            type:
+              type: string
+              description: >-
+                The content type.
+              enum:
+                - text
+                - image
+                - video
+                - audio
+                - file
+                - location
+                - hsm
+            content:
+              type: object
+              description: >-
+                The message content.
+            createdDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the message was created.
+            updatedDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the message was last updated.
+    ConversationEvent:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The event type.
+          enum:
+            - conversation.created
+            - conversation.updated
+        conversation:
+          type: object
+          description: >-
+            The conversation associated with the event.
+          properties:
+            id:
+              type: string
+              description: >-
+                The conversation identifier.
+            contactId:
+              type: string
+              description: >-
+                The contact identifier.
+            status:
+              type: string
+              description: >-
+                The conversation status.
+              enum:
+                - active
+                - archived
+            createdDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the conversation was created.
+            updatedDatetime:
+              type: string
+              format: date-time
+              description: >-
+                When the conversation was last updated.
+    VoiceCallEventPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The call identifier.
+        status:
+          type: string
+          description: >-
+            The call status.
+          enum:
+            - queued
+            - starting
+            - ringing
+            - ongoing
+            - busy
+            - no_answer
+            - failed
+            - ended
+        source:
+          type: string
+          description: >-
+            The source number.
+        destination:
+          type: string
+          description: >-
+            The destination number.
+        direction:
+          type: string
+          description: >-
+            The call direction.
+          enum:
+            - incoming
+            - outgoing
+        legs:
+          type: array
+          description: >-
+            The call legs.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >-
+                  The leg identifier.
+              status:
+                type: string
+                description: >-
+                  The leg status.
+              source:
+                type: string
+                description: >-
+                  The leg source.
+              destination:
+                type: string
+                description: >-
+                  The leg destination.
+              direction:
+                type: string
+                description: >-
+                  The leg direction.
+        createdAt:
+          type: string
+          format: date-time
+          description: >-
+            When the call was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: >-
+            When the call was last updated.
+    SmsStatusReportPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The message identifier.
+        reference:
+          type: string
+          description: >-
+            The client reference.
+        recipient:
+          type: string
+          description: >-
+            The recipient phone number.
+        status:
+          type: string
+          description: >-
+            The delivery status.
+          enum:
+            - scheduled
+            - sent
+            - buffered
+            - delivered
+            - expired
+            - delivery_failed
+        statusReason:
+          type: string
+          description: >-
+            The reason for the status, particularly for failures.
+        statusDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time of the status update.

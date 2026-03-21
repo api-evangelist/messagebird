@@ -1,0 +1,409 @@
+openapi: 3.1.0
+info:
+  title: MessageBird SMS Messaging API
+  description: >-
+    The MessageBird SMS Messaging API allows developers to send and receive
+    SMS messages to and from any country in the world through a REST
+    interface. It supports features such as message scheduling, delivery
+    reports, Unicode messages, and concatenated messages for longer content.
+    The API provides both HTTP and SMPP connectivity options for high-volume
+    messaging use cases.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+externalDocs:
+  description: SMS Messaging API Documentation
+  url: https://developers.messagebird.com/api/sms-messaging/
+servers:
+  - url: https://rest.messagebird.com
+    description: Production Server
+tags:
+  - name: Messages
+    description: >-
+      Operations for sending, listing, and viewing SMS messages.
+security:
+  - accessKey: []
+paths:
+  /messages:
+    get:
+      operationId: listMessages
+      summary: List messages
+      description: >-
+        Retrieves a list of SMS messages that have been sent or received.
+        Messages are returned in reverse chronological order.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: A list of messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createMessage
+      summary: Send a new message
+      description: >-
+        Creates a new SMS message and sends it to the specified recipients.
+        A single message can be sent to up to 50 recipients at a time.
+        Messages longer than 160 characters are automatically split into
+        multiple parts.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MessageCreate'
+      responses:
+        '201':
+          description: Message created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /messages/{id}:
+    get:
+      operationId: viewMessage
+      summary: View a message
+      description: >-
+        Retrieves the information of an existing inbound or outbound SMS
+        message. You only need to supply the unique message ID that was
+        returned upon creation or receiving.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/messageIdParam'
+      responses:
+        '200':
+          description: Message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Message not found
+    delete:
+      operationId: deleteMessage
+      summary: Delete a message
+      description: >-
+        Deletes an existing message. You only need to supply the unique
+        message ID that was returned upon creation.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/messageIdParam'
+      responses:
+        '204':
+          description: Message deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Message not found
+components:
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Access key authentication in the form of 'AccessKey {accessKey}'.
+  parameters:
+    messageIdParam:
+      name: id
+      in: path
+      required: true
+      description: >-
+        The unique identifier of the message.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: >-
+        The number of items to skip before starting to collect the result set.
+      schema:
+        type: integer
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: >-
+        The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
+        maximum: 250
+  schemas:
+    MessageCreate:
+      type: object
+      required:
+        - recipients
+        - originator
+        - body
+      properties:
+        recipients:
+          type: array
+          description: >-
+            The phone numbers that will receive the message in international
+            format. A maximum of 50 recipients can be specified per request.
+          items:
+            type: string
+          minItems: 1
+          maxItems: 50
+        originator:
+          type: string
+          description: >-
+            The sender of the message. Can be a telephone number including
+            country code or an alphanumeric string with a maximum length of
+            11 characters.
+          maxLength: 17
+        body:
+          type: string
+          description: >-
+            The body of the SMS message. Messages longer than 160 characters
+            will be split into multiple parts.
+          maxLength: 1377
+        type:
+          type: string
+          description: >-
+            The type of message. Can be sms, binary, or flash.
+          enum:
+            - sms
+            - binary
+            - flash
+          default: sms
+        reference:
+          type: string
+          description: >-
+            A client reference for tracking purposes.
+        reportUrl:
+          type: string
+          format: uri
+          description: >-
+            The URL for delivery report callbacks for this message.
+        validity:
+          type: integer
+          description: >-
+            The validity period of the message in seconds.
+        gateway:
+          type: integer
+          description: >-
+            The SMS route used to send the message.
+        typeDetails:
+          type: object
+          description: >-
+            Additional type-specific details for the message.
+        datacoding:
+          type: string
+          description: >-
+            The encoding used for the message body. Use auto for automatic
+            detection, unicode for Unicode, or plain for GSM encoding.
+          enum:
+            - plain
+            - unicode
+            - auto
+          default: plain
+        mclass:
+          type: integer
+          description: >-
+            The message class. Set to 1 for flash messages.
+          enum:
+            - 0
+            - 1
+        scheduledDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The scheduled date and time of the message in RFC 3339 format.
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            A unique random ID for the message, generated by the MessageBird
+            platform.
+        href:
+          type: string
+          format: uri
+          description: >-
+            The URL of the message resource.
+        direction:
+          type: string
+          description: >-
+            The direction of the message. Can be mt (mobile terminated) for
+            outbound or mo (mobile originated) for inbound.
+          enum:
+            - mt
+            - mo
+        type:
+          type: string
+          description: >-
+            The type of message.
+          enum:
+            - sms
+            - binary
+            - flash
+        originator:
+          type: string
+          description: >-
+            The sender of the message.
+        body:
+          type: string
+          description: >-
+            The body of the SMS message.
+        reference:
+          type: string
+          description: >-
+            The client reference for the message.
+        validity:
+          type: integer
+          description: >-
+            The validity period of the message in seconds.
+        gateway:
+          type: integer
+          description: >-
+            The SMS route used to send the message.
+        typeDetails:
+          type: object
+          description: >-
+            Additional type-specific details.
+        datacoding:
+          type: string
+          description: >-
+            The encoding used for the message body.
+        mclass:
+          type: integer
+          description: >-
+            The message class.
+        scheduledDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The scheduled date and time of the message.
+        createdDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the message was created.
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+    Recipients:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: >-
+            The total number of recipients.
+        totalSentCount:
+          type: integer
+          description: >-
+            The number of messages sent.
+        totalDeliveredCount:
+          type: integer
+          description: >-
+            The number of messages delivered.
+        totalDeliveryFailedCount:
+          type: integer
+          description: >-
+            The number of messages that failed to deliver.
+        items:
+          type: array
+          description: >-
+            The list of recipient details.
+          items:
+            $ref: '#/components/schemas/Recipient'
+    Recipient:
+      type: object
+      properties:
+        recipient:
+          type: integer
+          format: int64
+          description: >-
+            The recipient phone number.
+        status:
+          type: string
+          description: >-
+            The delivery status of the message.
+          enum:
+            - scheduled
+            - sent
+            - buffered
+            - delivered
+            - expired
+            - delivery_failed
+        statusDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the status was last updated.
+    MessageList:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: >-
+            The offset of the result set.
+        limit:
+          type: integer
+          description: >-
+            The limit applied to the result set.
+        count:
+          type: integer
+          description: >-
+            The number of items in the current result set.
+        totalCount:
+          type: integer
+          description: >-
+            The total number of items available.
+        links:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              description: >-
+                Link to the first page of results.
+            previous:
+              type: string
+              format: uri
+              description: >-
+                Link to the previous page of results.
+            next:
+              type: string
+              format: uri
+              description: >-
+                Link to the next page of results.
+            last:
+              type: string
+              format: uri
+              description: >-
+                Link to the last page of results.
+        items:
+          type: array
+          description: >-
+            The list of messages.
+          items:
+            $ref: '#/components/schemas/Message'

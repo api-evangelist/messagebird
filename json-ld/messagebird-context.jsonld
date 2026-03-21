@@ -1,0 +1,184 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "mb": "https://developers.messagebird.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Message": {
+      "@id": "mb:Message",
+      "@context": {
+        "id": "mb:messageId",
+        "href": {
+          "@id": "mb:href",
+          "@type": "@id"
+        },
+        "direction": "mb:direction",
+        "type": "mb:messageType",
+        "originator": "mb:originator",
+        "body": "schema:text",
+        "reference": "mb:reference",
+        "reportUrl": {
+          "@id": "mb:reportUrl",
+          "@type": "@id"
+        },
+        "validity": "mb:validity",
+        "gateway": "mb:gateway",
+        "datacoding": "mb:datacoding",
+        "scheduledDatetime": {
+          "@id": "mb:scheduledDatetime",
+          "@type": "xsd:dateTime"
+        },
+        "createdDatetime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "recipients": {
+          "@id": "mb:recipients",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Conversation": {
+      "@id": "mb:Conversation",
+      "@context": {
+        "id": "mb:conversationId",
+        "contactId": "mb:contactId",
+        "status": "mb:status",
+        "lastUsedChannelId": "mb:lastUsedChannelId",
+        "createdDatetime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedDatetime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "lastReceivedDatetime": {
+          "@id": "mb:lastReceivedDatetime",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Contact": {
+      "@id": "mb:Contact",
+      "@context": {
+        "id": "mb:contactId",
+        "href": {
+          "@id": "mb:href",
+          "@type": "@id"
+        },
+        "msisdn": "schema:telephone",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "displayName": "schema:name",
+        "createdDatetime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedDatetime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Channel": {
+      "@id": "mb:Channel",
+      "@context": {
+        "id": "mb:channelId",
+        "name": "schema:name",
+        "platformId": "mb:platformId",
+        "status": "mb:status",
+        "createdDatetime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedDatetime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "VoiceCall": {
+      "@id": "mb:VoiceCall",
+      "@context": {
+        "id": "mb:callId",
+        "status": "mb:status",
+        "source": "mb:source",
+        "destination": "mb:destination",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "endedAt": {
+          "@id": "mb:endedAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "PhoneNumber": {
+      "@id": "mb:PhoneNumber",
+      "@context": {
+        "number": "schema:telephone",
+        "country": "schema:addressCountry",
+        "region": "schema:addressRegion",
+        "locality": "schema:addressLocality",
+        "type": "mb:numberType",
+        "features": {
+          "@id": "mb:features",
+          "@container": "@set"
+        },
+        "status": "mb:status",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Verification": {
+      "@id": "mb:Verification",
+      "@context": {
+        "id": "mb:verificationId",
+        "recipient": "schema:telephone",
+        "status": "mb:status",
+        "createdDatetime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "validUntilDatetime": {
+          "@id": "mb:validUntilDatetime",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Template": {
+      "@id": "mb:Template",
+      "@context": {
+        "name": "schema:name",
+        "language": "schema:inLanguage",
+        "category": "mb:category",
+        "status": "mb:status",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
