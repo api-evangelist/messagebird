@@ -20,12 +20,12 @@ servers:
   - url: https://rest.messagebird.com
     description: Production Server
 tags:
-  - name: Lookup
-    description: >-
-      Operations for looking up and validating phone numbers.
   - name: HLR
     description: >-
       Operations for performing HLR network queries on phone numbers.
+  - name: Lookup
+    description: >-
+      Operations for looking up and validating phone numbers.
 security:
   - accessKey: []
 paths:

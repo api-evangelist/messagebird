@@ -24,10 +24,6 @@ tags:
     description: >-
       Operations for sending and receiving WhatsApp messages through
       the Conversations API interface.
-  - name: WhatsApp Sandbox
-    description: >-
-      Operations for testing WhatsApp messaging in the sandbox
-      environment.
 security:
   - accessKey: []
 paths:

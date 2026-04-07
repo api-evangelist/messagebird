@@ -20,6 +20,10 @@ servers:
   - url: https://voice.messagebird.com
     description: Production Server
 tags:
+  - name: Call Flows
+    description: >-
+      Operations for managing call flows that define interactive voice
+      response sequences.
   - name: Calls
     description: >-
       Operations for creating, listing, and managing voice calls.
@@ -33,10 +37,6 @@ tags:
   - name: Transcriptions
     description: >-
       Operations for creating and viewing transcriptions of call recordings.
-  - name: Call Flows
-    description: >-
-      Operations for managing call flows that define interactive voice
-      response sequences.
   - name: Webhooks
     description: >-
       Operations for managing account-wide voice webhooks.

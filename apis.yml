@@ -1,17 +1,15 @@
 aid: messagebird
-url: 
-  https://raw.githubusercontent.com/api-evangelist/messagebird/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/messagebird/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: messagebird:sms-messaging-api
     name: MessageBird SMS Messaging API
     tags:
-      - SMS
-      - Messaging
-      - Text Messages
       - Communications
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Messaging
+      - SMS
+      - Text Messages
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/sms-messaging/
     properties:
@@ -29,12 +27,11 @@ apis:
   - aid: messagebird:voice-calling-api
     name: MessageBird Voice Calling API
     tags:
-      - Voice
       - Calling
-      - Telephony
       - Communications
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Telephony
+      - Voice
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://voice.messagebird.com
     humanURL: https://developers.messagebird.com/api/voice-calling/
     properties:
@@ -52,12 +49,11 @@ apis:
   - aid: messagebird:voice-messaging-api
     name: MessageBird Voice Messaging API
     tags:
-      - Voice
-      - Text-to-Speech
-      - Messaging
       - Communications
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Messaging
+      - Text-To-Speech
+      - Voice
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/voice-messaging/
     properties:
@@ -75,13 +71,12 @@ apis:
   - aid: messagebird:conversations-api
     name: MessageBird Conversations API
     tags:
-      - Omnichannel
-      - Messaging
-      - WhatsApp
       - Chat
       - Communications
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Messaging
+      - Omnichannel
+      - WhatsApp
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://conversations.messagebird.com
     humanURL: https://developers.messagebird.com/api/conversations/
     properties:
@@ -102,12 +97,11 @@ apis:
   - aid: messagebird:whatsapp-api
     name: MessageBird WhatsApp API
     tags:
-      - WhatsApp
+      - Communications
       - Messaging
       - Notifications
-      - Communications
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - WhatsApp
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://conversations.messagebird.com
     humanURL: https://developers.messagebird.com/api/whatsapp
     properties:
@@ -125,12 +119,11 @@ apis:
   - aid: messagebird:verify-api
     name: MessageBird Verify API
     tags:
-      - Verification
-      - Two-Factor Authentication
-      - Security
       - OTP
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Security
+      - Two-Factor Authentication
+      - Verification
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/verify/
     properties:
@@ -148,12 +141,11 @@ apis:
   - aid: messagebird:lookup-api
     name: MessageBird Lookup API
     tags:
-      - Phone Numbers
-      - Validation
       - HLR
       - Number Intelligence
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Phone Numbers
+      - Validation
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/lookup/
     properties:
@@ -172,11 +164,10 @@ apis:
     name: MessageBird HLR API
     tags:
       - HLR
+      - Mobile Network
       - Network Query
       - Phone Numbers
-      - Mobile Network
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/hlr/
     properties:
@@ -194,12 +185,11 @@ apis:
   - aid: messagebird:contacts-api
     name: MessageBird Contacts API
     tags:
-      - Contacts
       - Address Book
+      - Contacts
       - Customer Data
       - Groups
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/contacts/
     properties:
@@ -217,12 +207,11 @@ apis:
   - aid: messagebird:numbers-api
     name: MessageBird Numbers API
     tags:
-      - Phone Numbers
       - Number Management
+      - Phone Numbers
       - Provisioning
       - Telecommunications
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://numbers.messagebird.com
     humanURL: https://developers.messagebird.com/api/numbers/
     properties:
@@ -240,12 +229,11 @@ apis:
   - aid: messagebird:balance-api
     name: MessageBird Balance API
     tags:
-      - Balance
       - Account
+      - Balance
       - Billing
       - Credits
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/balance/
     properties:
@@ -264,11 +252,10 @@ apis:
     name: MessageBird Integrations API
     tags:
       - Integrations
+      - Message Templates
       - Templates
       - WhatsApp
-      - Message Templates
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://integrations.messagebird.com
     humanURL: https://developers.messagebird.com/api/integrations/
     properties:

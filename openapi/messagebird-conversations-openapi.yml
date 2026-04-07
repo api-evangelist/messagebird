@@ -31,9 +31,6 @@ tags:
     description: >-
       Operations for managing conversation webhooks that receive real-time
       event notifications.
-  - name: Contacts
-    description: >-
-      Operations for managing contacts within the conversations platform.
 security:
   - accessKey: []
 paths:
