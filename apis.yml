@@ -1,5 +1,6 @@
 aid: messagebird
-url: https://raw.githubusercontent.com/api-evangelist/messagebird/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/messagebird/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: messagebird:sms-messaging-api
@@ -9,7 +10,8 @@ apis:
       - Messaging
       - Text Messages
       - Communications
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/sms-messaging/
     properties:
@@ -31,7 +33,8 @@ apis:
       - Calling
       - Telephony
       - Communications
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://voice.messagebird.com
     humanURL: https://developers.messagebird.com/api/voice-calling/
     properties:
@@ -53,7 +56,8 @@ apis:
       - Text-to-Speech
       - Messaging
       - Communications
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/voice-messaging/
     properties:
@@ -76,7 +80,8 @@ apis:
       - WhatsApp
       - Chat
       - Communications
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://conversations.messagebird.com
     humanURL: https://developers.messagebird.com/api/conversations/
     properties:
@@ -101,7 +106,8 @@ apis:
       - Messaging
       - Notifications
       - Communications
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://conversations.messagebird.com
     humanURL: https://developers.messagebird.com/api/whatsapp
     properties:
@@ -123,7 +129,8 @@ apis:
       - Two-Factor Authentication
       - Security
       - OTP
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/verify/
     properties:
@@ -145,7 +152,8 @@ apis:
       - Validation
       - HLR
       - Number Intelligence
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/lookup/
     properties:
@@ -167,7 +175,8 @@ apis:
       - Network Query
       - Phone Numbers
       - Mobile Network
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/hlr/
     properties:
@@ -189,7 +198,8 @@ apis:
       - Address Book
       - Customer Data
       - Groups
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/contacts/
     properties:
@@ -211,7 +221,8 @@ apis:
       - Number Management
       - Provisioning
       - Telecommunications
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://numbers.messagebird.com
     humanURL: https://developers.messagebird.com/api/numbers/
     properties:
@@ -233,7 +244,8 @@ apis:
       - Account
       - Billing
       - Credits
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://rest.messagebird.com
     humanURL: https://developers.messagebird.com/api/balance/
     properties:
@@ -255,7 +267,8 @@ apis:
       - Templates
       - WhatsApp
       - Message Templates
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://integrations.messagebird.com
     humanURL: https://developers.messagebird.com/api/integrations/
     properties:
@@ -279,3 +292,5 @@ common:
     url: json-schema/messagebird-conversation-schema.json
   - type: JSONSchema
     url: json-schema/messagebird-contact-schema.json
+description: >-
+  Build powerful apps using the fastest and most reliable cloud communications APIs.
