@@ -1,0 +1,33 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bird (MessageBird)
+providerId: messagebird
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Communications
+description: Bird API rate limits per workspace.
+sources:
+  - https://bird.com/en/pricing
+  - https://docs.bird.com/api/rate-limits
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Default REST API
+    scope: workspace
+    metric: requests_per_second
+    limit: 50
+    timeFrame: second
+  - name: Messaging API
+    scope: channel
+    metric: messages_per_second
+    limit: varies by channel
+  - name: Webhook deliveries
+    scope: endpoint
+    metric: concurrent
+    limit: high

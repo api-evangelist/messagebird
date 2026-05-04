@@ -1,0 +1,147 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bird (formerly MessageBird)
+providerId: messagebird
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Communications
+  - Email
+  - SMS
+  - WhatsApp
+description: Bird per-channel usage pricing across Email, SMS, WhatsApp, Push, RCS, Voice.
+sources:
+  - https://bird.com/en/pricing
+plans:
+  - id: messagebird-email
+    name: Email
+    type: usage-based
+    description: Starts at $1.50 per 1,000 messages.
+    entries:
+      - label: Per 1,000 emails
+        name: email
+        type: metered
+        metric: email
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000
+        price: '1.50'
+        userMultiplied: false
+    elements:
+      - name: Transactional + marketing
+      - name: Volume discounts
+  - id: messagebird-sms
+    name: SMS
+    type: usage-based
+    description: Per-country pricing; lower rates with Bundle plan.
+    entries:
+      - label: Per message (varies)
+        name: sms
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: varies
+        userMultiplied: false
+    elements:
+      - name: Country-based rates
+      - name: Bundle plan discounts
+      - name: 200+ countries
+  - id: messagebird-whatsapp
+    name: WhatsApp
+    type: usage-based
+    description: Starts at $0.005 per message + Meta passthrough.
+    entries:
+      - label: Per message base
+        name: whatsapp
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.005'
+        userMultiplied: false
+      - label: Meta vendor passthrough
+        name: meta
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: varies
+        userMultiplied: false
+    elements:
+      - name: Authenticated, marketing, utility, service templates
+      - name: Meta vendor passthrough fees
+  - id: messagebird-push
+    name: Push Notifications
+    type: usage-based
+    description: $0.0005 per notification.
+    entries:
+      - label: Per notification
+        name: push
+        type: metered
+        metric: notification
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.0005'
+        userMultiplied: false
+    elements:
+      - name: Mobile push
+      - name: Web push
+  - id: messagebird-rcs
+    name: RCS
+    type: usage-based
+    description: Starts at $0.005 per message + carrier passthrough.
+    entries:
+      - label: Per message base
+        name: rcs
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.005'
+        userMultiplied: false
+      - label: Carrier passthrough
+        name: carrier
+        type: metered
+        metric: message
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: varies
+        userMultiplied: false
+    elements:
+      - name: Rich Communication Services
+      - name: Carrier passthrough fees
+  - id: messagebird-voice
+    name: Voice API
+    type: enterprise
+    description: Custom pricing.
+    entries:
+      - label: Per minute (custom)
+        name: voice
+        type: metered
+        metric: minute
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Programmable Voice
+      - name: Conferencing
+      - name: IVR
