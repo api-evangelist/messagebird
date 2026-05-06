@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Balance API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns
+    the current payment type, available amount, and currency for the account associated with the API key. This API is useful
+    for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below
+    a threshold.
+  tags:
+  - Messagebird
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: messagebird
+    baseUri: https://rest.messagebird.com
+    description: MessageBird Balance API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: Authorization
+      value: '{{MESSAGEBIRD_TOKEN}}'
+    resources:
+    - name: balance
+      path: /balance
+      operations:
+      - name: getbalance
+        method: GET
+        description: Get account balance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: messagebird-rest
+    description: REST adapter for MessageBird Balance API.
+    resources:
+    - path: /balance
+      name: getbalance
+      operations:
+      - method: GET
+        name: getbalance
+        description: Get account balance
+        call: messagebird.getbalance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: messagebird-mcp
+    transport: http
+    description: MCP adapter for MessageBird Balance API for AI agent use.
+    tools:
+    - name: getbalance
+      description: Get account balance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: messagebird.getbalance
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_TOKEN: MESSAGEBIRD_TOKEN
