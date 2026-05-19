@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Voice Calling API — Webhooks
+  description: 'MessageBird Voice Calling API — Webhooks. 5 operations. Lead operation: List all voice webhooks. Self-contained
+    Naftiko capability covering one Messagebird business surface.'
+  tags:
+  - Messagebird
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_API_KEY: MESSAGEBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: voice-calling-webhooks
+    baseUri: https://voice.messagebird.com
+    description: MessageBird Voice Calling API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listvoicewebhooks
+        method: GET
+        description: List all voice webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createvoicewebhook
+        method: POST
+        description: Create a voice webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-webhookId
+      path: /webhooks/{webhookId}
+      operations:
+      - name: viewvoicewebhook
+        method: GET
+        description: View a voice webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatevoicewebhook
+        method: PUT
+        description: Update a voice webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletevoicewebhook
+        method: DELETE
+        description: Delete a voice webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MESSAGEBIRD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: voice-calling-webhooks-rest
+    port: 8080
+    description: REST adapter for MessageBird Voice Calling API — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/webhooks
+      name: webhooks
+      description: REST surface for webhooks.
+      operations:
+      - method: GET
+        name: listvoicewebhooks
+        description: List all voice webhooks
+        call: voice-calling-webhooks.listvoicewebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createvoicewebhook
+        description: Create a voice webhook
+        call: voice-calling-webhooks.createvoicewebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{webhookid}
+      name: webhooks-webhookid
+      description: REST surface for webhooks-webhookId.
+      operations:
+      - method: GET
+        name: viewvoicewebhook
+        description: View a voice webhook
+        call: voice-calling-webhooks.viewvoicewebhook
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatevoicewebhook
+        description: Update a voice webhook
+        call: voice-calling-webhooks.updatevoicewebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevoicewebhook
+        description: Delete a voice webhook
+        call: voice-calling-webhooks.deletevoicewebhook
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: voice-calling-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MessageBird Voice Calling API — Webhooks. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-voice-webhooks
+      description: List all voice webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-calling-webhooks.listvoicewebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-voice-webhook
+      description: Create a voice webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: voice-calling-webhooks.createvoicewebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-voice-webhook
+      description: View a voice webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: voice-calling-webhooks.viewvoicewebhook
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-voice-webhook
+      description: Update a voice webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: voice-calling-webhooks.updatevoicewebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-voice-webhook
+      description: Delete a voice webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: voice-calling-webhooks.deletevoicewebhook
+      outputParameters:
+      - type: object
+        mapping: $.

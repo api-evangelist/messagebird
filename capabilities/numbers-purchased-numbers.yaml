@@ -1,0 +1,214 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Numbers API — Purchased Numbers
+  description: 'MessageBird Numbers API — Purchased Numbers. 5 operations. Lead operation: List purchased phone numbers. Self-contained
+    Naftiko capability covering one Messagebird business surface.'
+  tags:
+  - Messagebird
+  - Purchased Numbers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_API_KEY: MESSAGEBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: numbers-purchased-numbers
+    baseUri: https://numbers.messagebird.com/v1
+    description: MessageBird Numbers API — Purchased Numbers business capability. Self-contained, no shared references.
+    resources:
+    - name: phone-numbers
+      path: /phone-numbers
+      operations:
+      - name: listpurchasednumbers
+        method: GET
+        description: List purchased phone numbers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: The maximum number of items to return.
+        - name: offset
+          in: query
+          type: integer
+          description: The number of items to skip.
+      - name: purchasenumber
+        method: POST
+        description: Purchase a phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: phone-numbers-number
+      path: /phone-numbers/{number}
+      operations:
+      - name: viewpurchasednumber
+        method: GET
+        description: View a purchased phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepurchasednumber
+        method: PATCH
+        description: Update a purchased phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: cancelpurchasednumber
+        method: DELETE
+        description: Cancel a purchased phone number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MESSAGEBIRD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: numbers-purchased-numbers-rest
+    port: 8080
+    description: REST adapter for MessageBird Numbers API — Purchased Numbers. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/phone-numbers
+      name: phone-numbers
+      description: REST surface for phone-numbers.
+      operations:
+      - method: GET
+        name: listpurchasednumbers
+        description: List purchased phone numbers
+        call: numbers-purchased-numbers.listpurchasednumbers
+        with:
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: purchasenumber
+        description: Purchase a phone number
+        call: numbers-purchased-numbers.purchasenumber
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/phone-numbers/{number}
+      name: phone-numbers-number
+      description: REST surface for phone-numbers-number.
+      operations:
+      - method: GET
+        name: viewpurchasednumber
+        description: View a purchased phone number
+        call: numbers-purchased-numbers.viewpurchasednumber
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatepurchasednumber
+        description: Update a purchased phone number
+        call: numbers-purchased-numbers.updatepurchasednumber
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelpurchasednumber
+        description: Cancel a purchased phone number
+        call: numbers-purchased-numbers.cancelpurchasednumber
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: numbers-purchased-numbers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MessageBird Numbers API — Purchased Numbers. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-purchased-phone-numbers
+      description: List purchased phone numbers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: numbers-purchased-numbers.listpurchasednumbers
+      with:
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: purchase-phone-number
+      description: Purchase a phone number
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: numbers-purchased-numbers.purchasenumber
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-purchased-phone-number
+      description: View a purchased phone number
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: numbers-purchased-numbers.viewpurchasednumber
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-purchased-phone-number
+      description: Update a purchased phone number
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: numbers-purchased-numbers.updatepurchasednumber
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-purchased-phone-number
+      description: Cancel a purchased phone number
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: numbers-purchased-numbers.cancelpurchasednumber
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,190 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Conversations API — Conversations
+  description: 'MessageBird Conversations API — Conversations. 4 operations. Lead operation: List conversations. Self-contained
+    Naftiko capability covering one Messagebird business surface.'
+  tags:
+  - Messagebird
+  - Conversations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_API_KEY: MESSAGEBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: conversations-conversations
+    baseUri: https://conversations.messagebird.com/v1
+    description: MessageBird Conversations API — Conversations business capability. Self-contained, no shared references.
+    resources:
+    - name: conversations
+      path: /conversations
+      operations:
+      - name: listconversations
+        method: GET
+        description: List conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter conversations by status.
+    - name: conversations-start
+      path: /conversations/start
+      operations:
+      - name: startconversation
+        method: POST
+        description: Start a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: conversations-conversationId
+      path: /conversations/{conversationId}
+      operations:
+      - name: viewconversation
+        method: GET
+        description: View a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateconversation
+        method: PATCH
+        description: Update a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MESSAGEBIRD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: conversations-conversations-rest
+    port: 8080
+    description: REST adapter for MessageBird Conversations API — Conversations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/conversations
+      name: conversations
+      description: REST surface for conversations.
+      operations:
+      - method: GET
+        name: listconversations
+        description: List conversations
+        call: conversations-conversations.listconversations
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/conversations/start
+      name: conversations-start
+      description: REST surface for conversations-start.
+      operations:
+      - method: POST
+        name: startconversation
+        description: Start a conversation
+        call: conversations-conversations.startconversation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/conversations/{conversationid}
+      name: conversations-conversationid
+      description: REST surface for conversations-conversationId.
+      operations:
+      - method: GET
+        name: viewconversation
+        description: View a conversation
+        call: conversations-conversations.viewconversation
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateconversation
+        description: Update a conversation
+        call: conversations-conversations.updateconversation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: conversations-conversations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MessageBird Conversations API — Conversations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-conversations
+      description: List conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.listconversations
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-conversation
+      description: Start a conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: conversations-conversations.startconversation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-conversation
+      description: View a conversation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.viewconversation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-conversation
+      description: Update a conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: conversations-conversations.updateconversation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Balance API — Balance
+  description: 'MessageBird Balance API — Balance. 1 operations. Lead operation: Get account balance. Self-contained Naftiko
+    capability covering one Messagebird business surface.'
+  tags:
+  - Messagebird
+  - Balance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_API_KEY: MESSAGEBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: balance-balance
+    baseUri: https://rest.messagebird.com
+    description: MessageBird Balance API — Balance business capability. Self-contained, no shared references.
+    resources:
+    - name: balance
+      path: /balance
+      operations:
+      - name: getbalance
+        method: GET
+        description: Get account balance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MESSAGEBIRD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: balance-balance-rest
+    port: 8080
+    description: REST adapter for MessageBird Balance API — Balance. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/balance
+      name: balance
+      description: REST surface for balance.
+      operations:
+      - method: GET
+        name: getbalance
+        description: Get account balance
+        call: balance-balance.getbalance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: balance-balance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MessageBird Balance API — Balance. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-account-balance
+      description: Get account balance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: balance-balance.getbalance
+      outputParameters:
+      - type: object
+        mapping: $.

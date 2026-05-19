@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Contacts API — Contacts
+  description: 'MessageBird Contacts API — Contacts. 6 operations. Lead operation: List contacts. Self-contained Naftiko capability
+    covering one Messagebird business surface.'
+  tags:
+  - Messagebird
+  - Contacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_API_KEY: MESSAGEBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: contacts-contacts
+    baseUri: https://rest.messagebird.com
+    description: MessageBird Contacts API — Contacts business capability. Self-contained, no shared references.
+    resources:
+    - name: contacts
+      path: /contacts
+      operations:
+      - name: listcontacts
+        method: GET
+        description: List contacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcontact
+        method: POST
+        description: Create a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: contacts-contactId
+      path: /contacts/{contactId}
+      operations:
+      - name: viewcontact
+        method: GET
+        description: View a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecontact
+        method: PATCH
+        description: Update a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecontact
+        method: DELETE
+        description: Delete a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contacts-contactId-messages
+      path: /contacts/{contactId}/messages
+      operations:
+      - name: listcontactmessages
+        method: GET
+        description: List messages for a contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MESSAGEBIRD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: contacts-contacts-rest
+    port: 8080
+    description: REST adapter for MessageBird Contacts API — Contacts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/contacts
+      name: contacts
+      description: REST surface for contacts.
+      operations:
+      - method: GET
+        name: listcontacts
+        description: List contacts
+        call: contacts-contacts.listcontacts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcontact
+        description: Create a contact
+        call: contacts-contacts.createcontact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{contactid}
+      name: contacts-contactid
+      description: REST surface for contacts-contactId.
+      operations:
+      - method: GET
+        name: viewcontact
+        description: View a contact
+        call: contacts-contacts.viewcontact
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecontact
+        description: Update a contact
+        call: contacts-contacts.updatecontact
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecontact
+        description: Delete a contact
+        call: contacts-contacts.deletecontact
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contacts/{contactid}/messages
+      name: contacts-contactid-messages
+      description: REST surface for contacts-contactId-messages.
+      operations:
+      - method: GET
+        name: listcontactmessages
+        description: List messages for a contact
+        call: contacts-contacts.listcontactmessages
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: contacts-contacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MessageBird Contacts API — Contacts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-contacts
+      description: List contacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: contacts-contacts.listcontacts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-contact
+      description: Create a contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: contacts-contacts.createcontact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-contact
+      description: View a contact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: contacts-contacts.viewcontact
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-contact
+      description: Update a contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: contacts-contacts.updatecontact
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-contact
+      description: Delete a contact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: contacts-contacts.deletecontact
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-messages-contact
+      description: List messages for a contact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: contacts-contacts.listcontactmessages
+      outputParameters:
+      - type: object
+        mapping: $.

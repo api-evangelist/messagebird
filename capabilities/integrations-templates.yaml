@@ -1,0 +1,164 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MessageBird Integrations API — Templates
+  description: 'MessageBird Integrations API — Templates. 4 operations. Lead operation: List WhatsApp templates. Self-contained
+    Naftiko capability covering one Messagebird business surface.'
+  tags:
+  - Messagebird
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MESSAGEBIRD_API_KEY: MESSAGEBIRD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: integrations-templates
+    baseUri: https://integrations.messagebird.com
+    description: MessageBird Integrations API — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-platforms-whatsapp-templates
+      path: /v2/platforms/whatsapp/templates
+      operations:
+      - name: listwhatsapptemplates
+        method: GET
+        description: List WhatsApp templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwhatsapptemplate
+        method: POST
+        description: Create a WhatsApp template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-platforms-whatsapp-templates-templateName
+      path: /v2/platforms/whatsapp/templates/{templateName}
+      operations:
+      - name: viewwhatsapptemplate
+        method: GET
+        description: View a WhatsApp template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletewhatsapptemplate
+        method: DELETE
+        description: Delete a WhatsApp template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MESSAGEBIRD_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: integrations-templates-rest
+    port: 8080
+    description: REST adapter for MessageBird Integrations API — Templates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/platforms/whatsapp/templates
+      name: v2-platforms-whatsapp-templates
+      description: REST surface for v2-platforms-whatsapp-templates.
+      operations:
+      - method: GET
+        name: listwhatsapptemplates
+        description: List WhatsApp templates
+        call: integrations-templates.listwhatsapptemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwhatsapptemplate
+        description: Create a WhatsApp template
+        call: integrations-templates.createwhatsapptemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/platforms/whatsapp/templates/{templatename}
+      name: v2-platforms-whatsapp-templates-templatename
+      description: REST surface for v2-platforms-whatsapp-templates-templateName.
+      operations:
+      - method: GET
+        name: viewwhatsapptemplate
+        description: View a WhatsApp template
+        call: integrations-templates.viewwhatsapptemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewhatsapptemplate
+        description: Delete a WhatsApp template
+        call: integrations-templates.deletewhatsapptemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: integrations-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MessageBird Integrations API — Templates. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-whatsapp-templates
+      description: List WhatsApp templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: integrations-templates.listwhatsapptemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-whatsapp-template
+      description: Create a WhatsApp template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: integrations-templates.createwhatsapptemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-whatsapp-template
+      description: View a WhatsApp template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: integrations-templates.viewwhatsapptemplate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-whatsapp-template
+      description: Delete a WhatsApp template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: integrations-templates.deletewhatsapptemplate
+      outputParameters:
+      - type: object
+        mapping: $.
