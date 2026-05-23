@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageList",
+  "title": "MessageList",
+  "type": "object",
+  "properties": {
+    "offset": {
+      "type": "integer",
+      "description": "The offset of the result set."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "The limit applied to the result set."
+    },
+    "count": {
+      "type": "integer",
+      "description": "The number of items in the current result set."
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of items available."
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the first page of results."
+        },
+        "previous": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the previous page of results."
+        },
+        "next": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the next page of results."
+        },
+        "last": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the last page of results."
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "description": "The list of messages.",
+      "items": {
+        "$ref": "#/components/schemas/Message"
+      }
+    }
+  }
+}

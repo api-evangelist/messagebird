@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Call",
+  "title": "Call",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the call."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the call.",
+      "enum": [
+        "queued",
+        "starting",
+        "ongoing",
+        "ended"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "The caller ID number."
+    },
+    "destination": {
+      "type": "string",
+      "description": "The destination number or SIP URI."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the call was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the call was last updated."
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the call ended."
+    }
+  }
+}

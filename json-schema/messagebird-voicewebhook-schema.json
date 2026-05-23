@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoiceWebhook",
+  "title": "VoiceWebhook",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the webhook."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL that receives webhook callbacks."
+    },
+    "token": {
+      "type": "string",
+      "description": "The token used for signature validation."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the webhook was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the webhook was last updated."
+    }
+  }
+}

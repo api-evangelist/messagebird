@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Channel",
+  "title": "Channel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the channel."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the channel."
+    },
+    "platformId": {
+      "type": "string",
+      "description": "The platform identifier for the channel.",
+      "enum": [
+        "sms",
+        "whatsapp",
+        "facebook",
+        "telegram",
+        "line",
+        "wechat",
+        "email"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the channel.",
+      "enum": [
+        "active",
+        "inactive",
+        "pending"
+      ]
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the channel was created."
+    },
+    "updatedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the channel was last updated."
+    }
+  }
+}

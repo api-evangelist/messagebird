@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContactUpdate",
+  "title": "ContactUpdate",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "description": "The first name of the contact."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The last name of the contact."
+    },
+    "msisdn": {
+      "type": "string",
+      "description": "The phone number of the contact."
+    },
+    "custom1": {
+      "type": "string",
+      "description": "Custom field 1."
+    },
+    "custom2": {
+      "type": "string",
+      "description": "Custom field 2."
+    },
+    "custom3": {
+      "type": "string",
+      "description": "Custom field 3."
+    },
+    "custom4": {
+      "type": "string",
+      "description": "Custom field 4."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateCreate",
+  "title": "TemplateCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "language",
+    "category",
+    "components"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the template. Must be unique within the account.",
+      "pattern": "^[a-z0-9_]+$",
+      "maxLength": 512
+    },
+    "language": {
+      "type": "string",
+      "description": "The language code for the template."
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the template.",
+      "enum": [
+        "ACCOUNT_UPDATE",
+        "PAYMENT_UPDATE",
+        "PERSONAL_FINANCE_UPDATE",
+        "SHIPPING_UPDATE",
+        "RESERVATION_UPDATE",
+        "ISSUE_RESOLUTION",
+        "APPOINTMENT_UPDATE",
+        "TRANSPORTATION_UPDATE",
+        "TICKET_UPDATE",
+        "ALERT_UPDATE",
+        "AUTO_REPLY"
+      ]
+    },
+    "components": {
+      "type": "array",
+      "description": "The components that make up the template content.",
+      "items": {
+        "$ref": "#/components/schemas/TemplateComponent"
+      }
+    }
+  }
+}

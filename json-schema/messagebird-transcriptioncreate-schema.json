@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TranscriptionCreate",
+  "title": "TranscriptionCreate",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "description": "The language of the recording for transcription."
+    }
+  }
+}

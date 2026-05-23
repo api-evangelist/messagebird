@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Recipients",
+  "title": "Recipients",
+  "type": "object",
+  "properties": {
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of recipients."
+    },
+    "totalSentCount": {
+      "type": "integer",
+      "description": "The number of messages sent."
+    },
+    "totalDeliveredCount": {
+      "type": "integer",
+      "description": "The number of messages delivered."
+    },
+    "totalDeliveryFailedCount": {
+      "type": "integer",
+      "description": "The number of messages that failed to deliver."
+    },
+    "items": {
+      "type": "array",
+      "description": "The list of recipient details.",
+      "items": {
+        "$ref": "#/components/schemas/Recipient"
+      }
+    }
+  }
+}

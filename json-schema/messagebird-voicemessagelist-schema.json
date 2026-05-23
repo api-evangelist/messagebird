@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoiceMessageList",
+  "title": "VoiceMessageList",
+  "type": "object",
+  "properties": {
+    "offset": {
+      "type": "integer",
+      "description": "The offset of the result set."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "The limit applied to the result set."
+    },
+    "count": {
+      "type": "integer",
+      "description": "The number of items returned."
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of items available."
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the first page."
+        },
+        "previous": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the previous page."
+        },
+        "next": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the next page."
+        },
+        "last": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the last page."
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VoiceMessage"
+      }
+    }
+  }
+}

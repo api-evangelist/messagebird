@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoiceMessage",
+  "title": "VoiceMessage",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the voice message."
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the voice message resource."
+    },
+    "body": {
+      "type": "string",
+      "description": "The text content of the voice message."
+    },
+    "originator": {
+      "type": "string",
+      "description": "The caller ID displayed to the recipient."
+    },
+    "reference": {
+      "type": "string",
+      "description": "The client reference for the voice message."
+    },
+    "language": {
+      "type": "string",
+      "description": "The language used for text-to-speech."
+    },
+    "voice": {
+      "type": "string",
+      "description": "The voice gender used for text-to-speech."
+    },
+    "repeat": {
+      "type": "integer",
+      "description": "The number of times the message is repeated."
+    },
+    "ifMachine": {
+      "type": "string",
+      "description": "The behavior when an answering machine is detected."
+    },
+    "scheduledDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The scheduled date and time for the message."
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the voice message was created."
+    },
+    "recipients": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "description": "The total number of recipients."
+        },
+        "totalSentCount": {
+          "type": "integer",
+          "description": "The number of messages sent."
+        },
+        "totalDeliveredCount": {
+          "type": "integer",
+          "description": "The number of messages delivered."
+        },
+        "totalDeliveryFailedCount": {
+          "type": "integer",
+          "description": "The number of messages that failed delivery."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "recipient": {
+                "type": "integer",
+                "format": "int64",
+                "description": "The recipient phone number."
+              },
+              "status": {
+                "type": "string",
+                "description": "The delivery status."
+              },
+              "statusDatetime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date and time of the last status update."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

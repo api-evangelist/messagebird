@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsAppContent",
+  "title": "WhatsAppContent",
+  "type": "object",
+  "description": "The content of the WhatsApp message. The structure depends on the message type.",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The text content, used when type is text."
+    },
+    "image": {
+      "type": "object",
+      "description": "The image content, used when type is image.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the image."
+        },
+        "caption": {
+          "type": "string",
+          "description": "An optional caption."
+        }
+      }
+    },
+    "video": {
+      "type": "object",
+      "description": "The video content, used when type is video.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the video."
+        },
+        "caption": {
+          "type": "string",
+          "description": "An optional caption."
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "description": "The audio content, used when type is audio.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the audio file."
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "description": "The file/document content, used when type is file.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the document."
+        },
+        "caption": {
+          "type": "string",
+          "description": "An optional caption."
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "description": "The location content, used when type is location.",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "The latitude coordinate."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "The longitude coordinate."
+        }
+      }
+    },
+    "hsm": {
+      "type": "object",
+      "description": "The template message content, used when type is hsm.",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "The template namespace."
+        },
+        "templateName": {
+          "type": "string",
+          "description": "The template name."
+        },
+        "language": {
+          "type": "object",
+          "properties": {
+            "policy": {
+              "type": "string",
+              "description": "The language policy.",
+              "enum": [
+                "fallback",
+                "deterministic"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "description": "The BCP 47 language code."
+            }
+          }
+        },
+        "params": {
+          "type": "array",
+          "description": "The template parameter values.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "default": {
+                "type": "string",
+                "description": "The parameter value."
+              }
+            }
+          }
+        }
+      }
+    },
+    "interactive": {
+      "type": "object",
+      "description": "Interactive message content for buttons and lists.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of interactive message.",
+          "enum": [
+            "button",
+            "list",
+            "product",
+            "product_list"
+          ]
+        },
+        "header": {
+          "type": "object",
+          "description": "The header content of the interactive message."
+        },
+        "body": {
+          "type": "object",
+          "description": "The body content of the interactive message.",
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "The body text."
+            }
+          }
+        },
+        "footer": {
+          "type": "object",
+          "description": "The footer content.",
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "The footer text."
+            }
+          }
+        },
+        "action": {
+          "type": "object",
+          "description": "The action configuration for buttons or list items."
+        }
+      }
+    }
+  }
+}

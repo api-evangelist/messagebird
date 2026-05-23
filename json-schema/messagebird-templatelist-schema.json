@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TemplateList",
+  "title": "TemplateList",
+  "type": "object",
+  "properties": {
+    "offset": {
+      "type": "integer",
+      "description": "The offset of the result set."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "The limit applied."
+    },
+    "count": {
+      "type": "integer",
+      "description": "The number of items returned."
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of templates."
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Template"
+      }
+    }
+  }
+}

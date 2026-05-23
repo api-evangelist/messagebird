@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NumberPurchase",
+  "title": "NumberPurchase",
+  "type": "object",
+  "required": [
+    "number",
+    "countryCode"
+  ],
+  "properties": {
+    "number": {
+      "type": "string",
+      "description": "The phone number to purchase in E.164 format."
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "The two-letter ISO 3166-1 country code.",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "billingIntervalMonths": {
+      "type": "integer",
+      "description": "The billing interval in months.",
+      "enum": [
+        1,
+        12
+      ],
+      "default": 1
+    }
+  }
+}

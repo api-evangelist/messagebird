@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Transcription",
+  "title": "Transcription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the transcription."
+    },
+    "recordingId": {
+      "type": "string",
+      "description": "The unique identifier of the recording."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the transcription.",
+      "enum": [
+        "created",
+        "transcribing",
+        "done",
+        "failed"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the transcription was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the transcription was last updated."
+    }
+  }
+}

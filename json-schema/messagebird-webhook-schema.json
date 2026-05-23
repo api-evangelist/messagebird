@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Webhook",
+  "title": "Webhook",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the webhook."
+    },
+    "channelId": {
+      "type": "string",
+      "description": "The channel the webhook is subscribed to."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL that receives webhook payloads."
+    },
+    "events": {
+      "type": "array",
+      "description": "The events the webhook is subscribed to.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the webhook.",
+      "enum": [
+        "enabled",
+        "disabled"
+      ]
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the webhook was created."
+    },
+    "updatedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the webhook was last updated."
+    }
+  }
+}

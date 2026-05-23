@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsAppMessageSend",
+  "title": "WhatsAppMessageSend",
+  "type": "object",
+  "required": [
+    "to",
+    "from",
+    "type",
+    "content"
+  ],
+  "properties": {
+    "to": {
+      "type": "string",
+      "description": "The recipient WhatsApp phone number in international format."
+    },
+    "from": {
+      "type": "string",
+      "description": "The WhatsApp channel identifier to send from."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of WhatsApp message content.",
+      "enum": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "file",
+        "location",
+        "hsm",
+        "interactive"
+      ]
+    },
+    "content": {
+      "$ref": "#/components/schemas/WhatsAppContent"
+    },
+    "reportUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL for delivery and read receipt callbacks."
+    }
+  }
+}

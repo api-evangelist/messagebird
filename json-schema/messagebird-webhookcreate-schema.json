@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookCreate",
+  "title": "WebhookCreate",
+  "type": "object",
+  "required": [
+    "channelId",
+    "url",
+    "events"
+  ],
+  "properties": {
+    "channelId": {
+      "type": "string",
+      "description": "The channel to subscribe to. Omit for a generic webhook that receives events from all channels."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to receive webhook payloads."
+    },
+    "events": {
+      "type": "array",
+      "description": "The list of events to subscribe to.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "message.created",
+          "message.updated",
+          "conversation.created",
+          "conversation.updated"
+        ]
+      }
+    }
+  }
+}

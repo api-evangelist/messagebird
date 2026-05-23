@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Lookup",
+  "title": "Lookup",
+  "type": "object",
+  "properties": {
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the lookup resource."
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "The two-letter ISO 3166-1 country code."
+    },
+    "countryPrefix": {
+      "type": "integer",
+      "description": "The international dialing prefix for the country."
+    },
+    "phoneNumber": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The phone number in E.164 format."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of phone number.",
+      "enum": [
+        "fixed line",
+        "mobile",
+        "fixed line or mobile",
+        "toll free",
+        "premium rate",
+        "shared cost",
+        "voip",
+        "personal number",
+        "pager",
+        "universal access number",
+        "unknown"
+      ]
+    },
+    "formats": {
+      "type": "object",
+      "description": "Alternative formats for the phone number.",
+      "properties": {
+        "e164": {
+          "type": "string",
+          "description": "The phone number in E.164 format."
+        },
+        "international": {
+          "type": "string",
+          "description": "The phone number in international format."
+        },
+        "national": {
+          "type": "string",
+          "description": "The phone number in national format."
+        },
+        "rfc3966": {
+          "type": "string",
+          "description": "The phone number in RFC 3966 format."
+        }
+      }
+    },
+    "hlr": {
+      "$ref": "#/components/schemas/HlrLookup"
+    }
+  }
+}

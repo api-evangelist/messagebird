@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AvailableNumberList",
+  "title": "AvailableNumberList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AvailableNumber"
+      }
+    },
+    "count": {
+      "type": "integer",
+      "description": "The number of items returned."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "The limit applied."
+    }
+  }
+}

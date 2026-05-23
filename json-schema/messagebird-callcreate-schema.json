@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CallCreate",
+  "title": "CallCreate",
+  "type": "object",
+  "required": [
+    "source",
+    "destination",
+    "callFlow"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "The caller ID to display, must be a purchased MessageBird number."
+    },
+    "destination": {
+      "type": "string",
+      "description": "The phone number or SIP URI to call."
+    },
+    "callFlow": {
+      "$ref": "#/components/schemas/CallFlowCreate"
+    },
+    "webhook": {
+      "$ref": "#/components/schemas/VoiceWebhookCreate"
+    }
+  }
+}

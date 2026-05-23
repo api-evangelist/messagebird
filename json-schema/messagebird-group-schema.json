@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Group",
+  "title": "Group",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the group."
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the group resource."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the group."
+    },
+    "contacts": {
+      "type": "object",
+      "description": "Links to the contacts in the group.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "format": "uri"
+        },
+        "totalCount": {
+          "type": "integer"
+        }
+      }
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the group was created."
+    },
+    "updatedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the group was last updated."
+    }
+  }
+}

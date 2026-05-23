@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CallFlowCreate",
+  "title": "CallFlowCreate",
+  "type": "object",
+  "required": [
+    "steps"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "A human-readable title for the call flow."
+    },
+    "record": {
+      "type": "boolean",
+      "description": "Whether to record the entire call."
+    },
+    "steps": {
+      "type": "array",
+      "description": "A sequence of steps that define the call flow behavior.",
+      "items": {
+        "$ref": "#/components/schemas/CallFlowStep"
+      }
+    }
+  }
+}

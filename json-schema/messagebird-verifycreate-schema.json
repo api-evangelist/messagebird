@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerifyCreate",
+  "title": "VerifyCreate",
+  "type": "object",
+  "required": [
+    "recipient"
+  ],
+  "properties": {
+    "recipient": {
+      "type": "string",
+      "description": "The phone number to verify in international format."
+    },
+    "originator": {
+      "type": "string",
+      "description": "The sender ID for the verification message."
+    },
+    "reference": {
+      "type": "string",
+      "description": "A client reference for tracking purposes."
+    },
+    "type": {
+      "type": "string",
+      "description": "The delivery channel for the verification token.",
+      "enum": [
+        "sms",
+        "tts"
+      ],
+      "default": "sms"
+    },
+    "template": {
+      "type": "string",
+      "description": "A custom message template. Use %token to indicate where the token should be placed."
+    },
+    "datacoding": {
+      "type": "string",
+      "description": "The encoding for the SMS message body.",
+      "enum": [
+        "plain",
+        "unicode",
+        "auto"
+      ]
+    },
+    "timeout": {
+      "type": "integer",
+      "description": "The expiration time of the token in seconds.",
+      "minimum": 30,
+      "maximum": 259200,
+      "default": 30
+    },
+    "tokenLength": {
+      "type": "integer",
+      "description": "The number of digits in the verification token.",
+      "minimum": 4,
+      "maximum": 10,
+      "default": 6
+    },
+    "voice": {
+      "type": "string",
+      "description": "The voice gender for text-to-speech delivery.",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "description": "The language for text-to-speech delivery."
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Leg",
+  "title": "Leg",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the leg."
+    },
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier of the parent call."
+    },
+    "source": {
+      "type": "string",
+      "description": "The source number or SIP URI."
+    },
+    "destination": {
+      "type": "string",
+      "description": "The destination number or SIP URI."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the leg.",
+      "enum": [
+        "starting",
+        "ringing",
+        "ongoing",
+        "busy",
+        "no_answer",
+        "failed",
+        "hangup"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "description": "The direction of the leg.",
+      "enum": [
+        "incoming",
+        "outgoing"
+      ]
+    },
+    "duration": {
+      "type": "integer",
+      "description": "The duration of the leg in seconds."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the leg was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the leg was last updated."
+    },
+    "answeredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the leg was answered."
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the leg ended."
+    }
+  }
+}

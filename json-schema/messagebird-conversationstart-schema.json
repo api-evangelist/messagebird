@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversationStart",
+  "title": "ConversationStart",
+  "type": "object",
+  "required": [
+    "to",
+    "type",
+    "content",
+    "channelId"
+  ],
+  "properties": {
+    "to": {
+      "type": "string",
+      "description": "The identifier of the recipient, such as a phone number or platform-specific ID."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of message content being sent.",
+      "enum": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "file",
+        "location",
+        "hsm"
+      ]
+    },
+    "content": {
+      "$ref": "#/components/schemas/MessageContent"
+    },
+    "channelId": {
+      "type": "string",
+      "description": "The unique identifier of the channel to use for sending."
+    },
+    "reportUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to receive delivery status callbacks."
+    }
+  }
+}

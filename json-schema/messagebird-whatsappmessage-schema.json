@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WhatsAppMessage",
+  "title": "WhatsAppMessage",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the message."
+    },
+    "conversationId": {
+      "type": "string",
+      "description": "The conversation this message belongs to."
+    },
+    "channelId": {
+      "type": "string",
+      "description": "The WhatsApp channel identifier."
+    },
+    "platform": {
+      "type": "string",
+      "description": "The platform identifier.",
+      "enum": [
+        "whatsapp"
+      ]
+    },
+    "to": {
+      "type": "string",
+      "description": "The recipient identifier."
+    },
+    "from": {
+      "type": "string",
+      "description": "The sender identifier."
+    },
+    "direction": {
+      "type": "string",
+      "description": "The direction of the message.",
+      "enum": [
+        "sent",
+        "received"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The delivery status.",
+      "enum": [
+        "accepted",
+        "pending",
+        "sent",
+        "delivered",
+        "read",
+        "failed",
+        "deleted"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of message content."
+    },
+    "content": {
+      "$ref": "#/components/schemas/WhatsAppContent"
+    },
+    "createdDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the message was created."
+    },
+    "updatedDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the message was last updated."
+    }
+  }
+}

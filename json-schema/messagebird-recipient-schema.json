@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Recipient",
+  "title": "Recipient",
+  "type": "object",
+  "properties": {
+    "recipient": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The recipient phone number."
+    },
+    "status": {
+      "type": "string",
+      "description": "The delivery status of the message.",
+      "enum": [
+        "scheduled",
+        "sent",
+        "buffered",
+        "delivered",
+        "expired",
+        "delivery_failed"
+      ]
+    },
+    "statusDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the status was last updated."
+    }
+  }
+}

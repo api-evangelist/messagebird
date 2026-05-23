@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageCreate",
+  "title": "MessageCreate",
+  "type": "object",
+  "required": [
+    "recipients",
+    "originator",
+    "body"
+  ],
+  "properties": {
+    "recipients": {
+      "type": "array",
+      "description": "The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 50
+    },
+    "originator": {
+      "type": "string",
+      "description": "The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+      "maxLength": 17
+    },
+    "body": {
+      "type": "string",
+      "description": "The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+      "maxLength": 1377
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of message. Can be sms, binary, or flash.",
+      "enum": [
+        "sms",
+        "binary",
+        "flash"
+      ],
+      "default": "sms"
+    },
+    "reference": {
+      "type": "string",
+      "description": "A client reference for tracking purposes."
+    },
+    "reportUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL for delivery report callbacks for this message."
+    },
+    "validity": {
+      "type": "integer",
+      "description": "The validity period of the message in seconds."
+    },
+    "gateway": {
+      "type": "integer",
+      "description": "The SMS route used to send the message."
+    },
+    "typeDetails": {
+      "type": "object",
+      "description": "Additional type-specific details for the message."
+    },
+    "datacoding": {
+      "type": "string",
+      "description": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+      "enum": [
+        "plain",
+        "unicode",
+        "auto"
+      ],
+      "default": "plain"
+    },
+    "mclass": {
+      "type": "integer",
+      "description": "The message class. Set to 1 for flash messages.",
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "scheduledDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The scheduled date and time of the message in RFC 3339 format."
+    }
+  }
+}

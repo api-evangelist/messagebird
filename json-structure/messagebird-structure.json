@@ -1,0 +1,230 @@
+{
+  "provider": "Messagebird",
+  "providerId": "messagebird",
+  "kind": "json-structure",
+  "description": "Structural overview of the Messagebird API surface; extracted from openapi/.",
+  "schemaCount": 14,
+  "operationCount": 13,
+  "schemas": [
+    {
+      "name": "ConversationStart",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "to",
+        "type",
+        "content",
+        "channelId"
+      ]
+    },
+    {
+      "name": "ConversationUpdate",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ConversationMessageSend",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "content"
+      ]
+    },
+    {
+      "name": "MessageSend",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "to",
+        "from",
+        "type",
+        "content"
+      ]
+    },
+    {
+      "name": "MessageContent",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Conversation",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ConversationList",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ConversationMessage",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "ConversationMessageList",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Contact",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Channel",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "WebhookCreate",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "channelId",
+        "url",
+        "events"
+      ]
+    },
+    {
+      "name": "Webhook",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "WebhookList",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/conversations",
+      "operationId": "listConversations",
+      "summary": "List conversations",
+      "tags": [
+        "Conversations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/conversations/start",
+      "operationId": "startConversation",
+      "summary": "Start a conversation",
+      "tags": [
+        "Conversations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations/{conversationId}",
+      "operationId": "viewConversation",
+      "summary": "View a conversation",
+      "tags": [
+        "Conversations"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/conversations/{conversationId}",
+      "operationId": "updateConversation",
+      "summary": "Update a conversation",
+      "tags": [
+        "Conversations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations/{conversationId}/messages",
+      "operationId": "listConversationMessages",
+      "summary": "List messages in a conversation",
+      "tags": [
+        "Messages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/conversations/{conversationId}/messages",
+      "operationId": "sendConversationMessage",
+      "summary": "Send a message in a conversation",
+      "tags": [
+        "Messages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/send",
+      "operationId": "sendMessage",
+      "summary": "Send a message",
+      "tags": [
+        "Messages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/messages/{messageId}",
+      "operationId": "viewMessage",
+      "summary": "View a message",
+      "tags": [
+        "Messages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks",
+      "operationId": "listWebhooks",
+      "summary": "List webhooks",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks",
+      "operationId": "createWebhook",
+      "summary": "Create a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhookId}",
+      "operationId": "viewWebhook",
+      "summary": "View a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhookId}",
+      "operationId": "deleteWebhook",
+      "summary": "Delete a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhooks/{webhookId}",
+      "operationId": "updateWebhook",
+      "summary": "Update a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    }
+  ]
+}

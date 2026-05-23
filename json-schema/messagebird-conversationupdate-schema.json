@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConversationUpdate",
+  "title": "ConversationUpdate",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The new status for the conversation.",
+      "enum": [
+        "active",
+        "archived"
+      ]
+    }
+  }
+}

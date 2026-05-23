@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CallFlow",
+  "title": "CallFlow",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the call flow."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the call flow."
+    },
+    "record": {
+      "type": "boolean",
+      "description": "Whether recording is enabled for the call flow."
+    },
+    "steps": {
+      "type": "array",
+      "description": "The steps that define the call flow.",
+      "items": {
+        "$ref": "#/components/schemas/CallFlowStep"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the call flow was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the call flow was last updated."
+    }
+  }
+}

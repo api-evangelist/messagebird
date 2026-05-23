@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageSend",
+  "title": "MessageSend",
+  "type": "object",
+  "required": [
+    "to",
+    "from",
+    "type",
+    "content"
+  ],
+  "properties": {
+    "to": {
+      "type": "string",
+      "description": "The recipient identifier."
+    },
+    "from": {
+      "type": "string",
+      "description": "The channel identifier to send from."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of message content.",
+      "enum": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "file",
+        "location",
+        "hsm"
+      ]
+    },
+    "content": {
+      "$ref": "#/components/schemas/MessageContent"
+    },
+    "reportUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL for delivery status callbacks."
+    }
+  }
+}

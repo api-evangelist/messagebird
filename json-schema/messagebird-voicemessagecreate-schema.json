@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoiceMessageCreate",
+  "title": "VoiceMessageCreate",
+  "type": "object",
+  "required": [
+    "recipients",
+    "body"
+  ],
+  "properties": {
+    "recipients": {
+      "type": "array",
+      "description": "The phone numbers that will receive the voice message in international format. A maximum of 50 recipients per request.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 50
+    },
+    "body": {
+      "type": "string",
+      "description": "The text content to be converted to speech and delivered as a voice message."
+    },
+    "originator": {
+      "type": "string",
+      "description": "The caller ID to display to the recipient."
+    },
+    "reference": {
+      "type": "string",
+      "description": "A client reference for tracking purposes."
+    },
+    "reportUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL for delivery report callbacks."
+    },
+    "language": {
+      "type": "string",
+      "description": "The language of the text-to-speech voice. Supports 26 languages.",
+      "enum": [
+        "cy-gb",
+        "da-dk",
+        "de-de",
+        "el-gr",
+        "en-au",
+        "en-gb",
+        "en-gb-wls",
+        "en-in",
+        "en-us",
+        "es-es",
+        "es-mx",
+        "es-us",
+        "fr-ca",
+        "fr-fr",
+        "id-id",
+        "is-is",
+        "it-it",
+        "ja-jp",
+        "ko-kr",
+        "ms-my",
+        "nb-no",
+        "nl-nl",
+        "pl-pl",
+        "pt-br",
+        "pt-pt",
+        "ro-ro",
+        "ru-ru",
+        "sv-se",
+        "ta-in",
+        "th-th",
+        "tr-tr",
+        "vi-vn",
+        "zh-cn",
+        "zh-hk"
+      ],
+      "default": "en-gb"
+    },
+    "voice": {
+      "type": "string",
+      "description": "The voice gender for text-to-speech.",
+      "enum": [
+        "male",
+        "female"
+      ],
+      "default": "female"
+    },
+    "repeat": {
+      "type": "integer",
+      "description": "The number of times the message should be repeated.",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 1
+    },
+    "ifMachine": {
+      "type": "string",
+      "description": "What to do when an answering machine is detected.",
+      "enum": [
+        "continue",
+        "delay",
+        "hangup"
+      ],
+      "default": "continue"
+    },
+    "machineTimeout": {
+      "type": "integer",
+      "description": "The timeout in milliseconds for answering machine detection."
+    },
+    "scheduledDatetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The scheduled date and time for the voice message in RFC 3339 format."
+    }
+  }
+}

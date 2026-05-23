@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HlrCreate",
+  "title": "HlrCreate",
+  "type": "object",
+  "required": [
+    "msisdn"
+  ],
+  "properties": {
+    "msisdn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The phone number to perform the HLR query on in international format."
+    },
+    "reference": {
+      "type": "string",
+      "description": "A client reference for tracking purposes."
+    }
+  }
+}

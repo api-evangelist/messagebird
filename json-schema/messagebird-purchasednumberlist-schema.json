@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PurchasedNumberList",
+  "title": "PurchasedNumberList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PurchasedNumber"
+      }
+    },
+    "count": {
+      "type": "integer",
+      "description": "The number of items returned."
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "The total number of purchased numbers."
+    },
+    "offset": {
+      "type": "integer",
+      "description": "The offset applied."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "The limit applied."
+    }
+  }
+}

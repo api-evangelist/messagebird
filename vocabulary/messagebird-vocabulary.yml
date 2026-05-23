@@ -1,0 +1,11 @@
+name: Messagebird Domain Vocabulary
+provider: Messagebird
+providerId: messagebird
+description: Tag-derived vocabulary for the Messagebird API surface; sourced from openapi/ tags.
+terms:
+- term: Conversations
+  description: Operations for listing and managing conversations across channels.
+- term: Messages
+  description: Operations for sending and retrieving messages within conversations.
+- term: Webhooks
+  description: Operations for managing conversation webhooks that receive real-time event notifications.

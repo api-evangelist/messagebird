@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PurchasedNumber",
+  "title": "PurchasedNumber",
+  "type": "object",
+  "properties": {
+    "number": {
+      "type": "string",
+      "description": "The phone number in E.164 format."
+    },
+    "country": {
+      "type": "string",
+      "description": "The two-letter country code."
+    },
+    "region": {
+      "type": "string",
+      "description": "The region for the number."
+    },
+    "locality": {
+      "type": "string",
+      "description": "The locality for the number."
+    },
+    "features": {
+      "type": "array",
+      "description": "The features enabled for the number.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags assigned to the number.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of phone number."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the number.",
+      "enum": [
+        "active",
+        "cancelled"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the number was purchased."
+    },
+    "renewalAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time of the next renewal."
+    }
+  }
+}

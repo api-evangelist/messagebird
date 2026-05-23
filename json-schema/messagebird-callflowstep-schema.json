@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CallFlowStep",
+  "title": "CallFlowStep",
+  "type": "object",
+  "required": [
+    "action"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the step."
+    },
+    "action": {
+      "type": "string",
+      "description": "The action to perform in this step.",
+      "enum": [
+        "say",
+        "play",
+        "pause",
+        "record",
+        "fetchCallFlow",
+        "hangup",
+        "transfer"
+      ]
+    },
+    "options": {
+      "type": "object",
+      "description": "Action-specific options for the step."
+    }
+  }
+}
