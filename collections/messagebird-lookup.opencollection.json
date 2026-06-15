@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Lookup API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look up a phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/lookup/:phoneNumber",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "The phone number to look up in international format."
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query",
+                "description": "The country code to use for parsing the phone number if it is provided in a local format."
+              }
+            ]
+          },
+          "docs": "Performs a phone number validation and returns formatting information, country details, and operator data for the specified number."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "HLR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View an HLR lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/lookup/:phoneNumber/hlr",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "The phone number to look up in international format."
+              }
+            ]
+          },
+          "docs": "Retrieves the result of an HLR lookup for the specified phone number."
+        },
+        {
+          "info": {
+            "name": "Request an HLR lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/lookup/:phoneNumber/hlr",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "The phone number to look up in international format."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new HLR lookup for the specified phone number. The lookup is performed asynchronously on the mobile network."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,456 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Voice Calling API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/calls",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all calls made or received on the account."
+        },
+        {
+          "info": {
+            "name": "Create a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.messagebird.com/calls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new outbound call. The call will be placed from the specified source to the destination number, and the call flow will be executed."
+        },
+        {
+          "info": {
+            "name": "View a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/calls/:callId",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of an existing call by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://voice.messagebird.com/calls/:callId",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              }
+            ]
+          },
+          "docs": "Deletes an existing call by hanging up all active legs and removing the call resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Legs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List legs for a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/calls/:callId/legs",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all legs associated with a specific call. Each leg represents a voice connection within the call."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recordings for a leg",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/calls/:callId/legs/:legId/recordings",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              },
+              {
+                "name": "legId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the leg."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all recordings associated with a specific call leg."
+        },
+        {
+          "info": {
+            "name": "View a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific recording by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://voice.messagebird.com/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ]
+          },
+          "docs": "Deletes an existing recording by its unique identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transcriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transcriptions for a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/recordings/:recordingId/transcriptions",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ]
+          },
+          "docs": "Retrieves all transcriptions associated with a specific recording."
+        },
+        {
+          "info": {
+            "name": "Create a transcription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.messagebird.com/recordings/:recordingId/transcriptions",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new transcription request for a recording. Transcriptions are generated asynchronously."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Call Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all call flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/call-flows",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all call flows configured on the account."
+        },
+        {
+          "info": {
+            "name": "Create a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.messagebird.com/call-flows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new call flow with a sequence of steps that define the interactive voice response behavior."
+        },
+        {
+          "info": {
+            "name": "View a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/call-flows/:callFlowId",
+            "params": [
+              {
+                "name": "callFlowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call flow."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific call flow by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://voice.messagebird.com/call-flows/:callFlowId",
+            "params": [
+              {
+                "name": "callFlowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call flow."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing call flow with new step definitions."
+        },
+        {
+          "info": {
+            "name": "Delete a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://voice.messagebird.com/call-flows/:callFlowId",
+            "params": [
+              {
+                "name": "callFlowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call flow."
+              }
+            ]
+          },
+          "docs": "Deletes an existing call flow by its unique identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all voice webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/webhooks"
+          },
+          "docs": "Retrieves a list of all account-wide voice webhooks. Up to 5 generic webhooks can be created per account."
+        },
+        {
+          "info": {
+            "name": "Create a voice webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://voice.messagebird.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new account-wide voice webhook to receive events from all calls, both inbound and outbound."
+        },
+        {
+          "info": {
+            "name": "View a voice webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://voice.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific voice webhook."
+        },
+        {
+          "info": {
+            "name": "Update a voice webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://voice.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing voice webhook configuration."
+        },
+        {
+          "info": {
+            "name": "Delete a voice webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://voice.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "Deletes an existing voice webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

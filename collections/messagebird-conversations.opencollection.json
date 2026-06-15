@@ -1,0 +1,319 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Conversations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/conversations",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter conversations by status."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all conversations. Conversations are returned in reverse chronological order based on the last received message."
+        },
+        {
+          "info": {
+            "name": "Start a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.messagebird.com/v1/conversations/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new conversation by sending a message to a contact. If a conversation already exists with the contact, the message is added to the existing conversation."
+        },
+        {
+          "info": {
+            "name": "View a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific conversation by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://conversations.messagebird.com/v1/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status of an existing conversation, such as archiving or reactivating it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List messages in a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all messages within a specific conversation. Messages are returned with the newest first."
+        },
+        {
+          "info": {
+            "name": "Send a message in a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.messagebird.com/v1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a new message within an existing conversation. The message will be delivered through the channel associated with the conversation."
+        },
+        {
+          "info": {
+            "name": "Send a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.messagebird.com/v1/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message to a recipient without requiring an existing conversation. MessageBird will automatically match or create a conversation for the recipient."
+        },
+        {
+          "info": {
+            "name": "View a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the message."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific message by its unique identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/webhooks",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all configured conversation webhooks. The platform supports up to 10 channel-specific webhooks and 5 generic webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.messagebird.com/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook to receive real-time notifications for conversation events. Webhooks can be channel-specific or generic."
+        },
+        {
+          "info": {
+            "name": "View a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific webhook by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://conversations.messagebird.com/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://conversations.messagebird.com/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "Deletes an existing webhook by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1295 @@
+{
+  "item": [
+    {
+      "id": "17460ba3-c752-40ca-a227-e49d364cee83",
+      "name": "Messages",
+      "description": {
+        "content": "Operations for sending, listing, and viewing SMS messages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "032a1a38-1366-4515-a013-2404cc384d5e",
+          "name": "List messages",
+          "request": {
+            "name": "List messages",
+            "description": {
+              "content": "Retrieves a list of SMS messages that have been sent or received. Messages are returned in reverse chronological order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip before starting to collect the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2222ad56-8fbe-4cf6-90aa-799fea1664a6",
+              "name": "A list of messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 3381,\n  \"limit\": 7051,\n  \"count\": 6274,\n  \"totalCount\": 356,\n  \"links\": {\n    \"first\": \"https://JxWUQfNdZj.cmywP3qmb\",\n    \"previous\": \"https://xmuuowEdiJqCqmqigFMPcXf.mozjWBUWzHjorsONMGcJHhVHRC+.qUupvA4T29cwBlP11s\",\n    \"next\": \"http://oBbskopfrdgFxYQZgiYiVlikubr.ipsKTnvgqfP3h2+o-bto4k-1RCwoIIkz\",\n    \"last\": \"http://gjIXtLYYuedSnGsvwzirW.fdSGuykmRpZSN-3,Jyz6JT6c,dNe,PLlfhmGuJLSnGTzUK.Nm,VytG\"\n  },\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"href\": \"https://dpnJRyybidzqSVoPYjHikat.taLxu.Gz-P4V5ifWonOMiSg8EsNT8Bj\",\n      \"direction\": \"mo\",\n      \"type\": \"sms\",\n      \"originator\": \"string\",\n      \"body\": \"string\",\n      \"reference\": \"string\",\n      \"validity\": 3265,\n      \"gateway\": 4601,\n      \"typeDetails\": {},\n      \"datacoding\": \"string\",\n      \"mclass\": 1737,\n      \"scheduledDatetime\": \"2017-04-09T12:40:35.777Z\",\n      \"createdDatetime\": \"1977-03-18T17:27:23.526Z\",\n      \"recipients\": {\n        \"totalCount\": 1877,\n        \"totalSentCount\": 1410,\n        \"totalDeliveredCount\": 9585,\n        \"totalDeliveryFailedCount\": 8471,\n        \"items\": [\n          {\n            \"recipient\": 4960,\n            \"status\": \"expired\",\n            \"statusDatetime\": \"2003-08-09T02:34:01.073Z\"\n          },\n          {\n            \"recipient\": 5214,\n            \"status\": \"delivery_failed\",\n            \"statusDatetime\": \"1983-12-25T03:05:30.079Z\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"href\": \"https://hdVaayhvxhufmIDdMhrMfbr.eiyiiu0o3yWjpIfpZ,S5Mkv-+UTnsovXdoONU,Dbij5fQf9a6VkZf\",\n      \"direction\": \"mt\",\n      \"type\": \"binary\",\n      \"originator\": \"string\",\n      \"body\": \"string\",\n      \"reference\": \"string\",\n      \"validity\": 7890,\n      \"gateway\": 3519,\n      \"typeDetails\": {},\n      \"datacoding\": \"string\",\n      \"mclass\": 1567,\n      \"scheduledDatetime\": \"1975-10-21T02:29:08.689Z\",\n      \"createdDatetime\": \"1958-04-12T02:28:25.937Z\",\n      \"recipients\": {\n        \"totalCount\": 3485,\n        \"totalSentCount\": 832,\n        \"totalDeliveredCount\": 4075,\n        \"totalDeliveryFailedCount\": 3359,\n        \"items\": [\n          {\n            \"recipient\": 6337,\n            \"status\": \"scheduled\",\n            \"statusDatetime\": \"1947-04-07T00:11:42.872Z\"\n          },\n          {\n            \"recipient\": 8071,\n            \"status\": \"delivered\",\n            \"statusDatetime\": \"2021-11-02T23:50:14.613Z\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c510273-f376-47f9-abba-d63627d6db0d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f46d29d-1c9b-4c05-83e7-9474fabe9b93",
+          "name": "Send a new message",
+          "request": {
+            "name": "Send a new message",
+            "description": {
+              "content": "Creates a new SMS message and sends it to the specified recipients. A single message can be sent to up to 50 recipients at a time. Messages longer than 160 characters are automatically split into multiple parts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "recipients",
+                  "value": "<string>",
+                  "description": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "originator",
+                  "value": "<string>",
+                  "description": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "body",
+                  "value": "<string>",
+                  "description": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "sms",
+                  "description": "The type of message. Can be sms, binary, or flash."
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "A client reference for tracking purposes."
+                },
+                {
+                  "disabled": false,
+                  "key": "reportUrl",
+                  "value": "<uri>",
+                  "description": "The URL for delivery report callbacks for this message."
+                },
+                {
+                  "disabled": false,
+                  "key": "validity",
+                  "value": "<integer>",
+                  "description": "The validity period of the message in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "gateway",
+                  "value": "<integer>",
+                  "description": "The SMS route used to send the message."
+                },
+                {
+                  "disabled": false,
+                  "key": "typeDetails",
+                  "value": "<object>",
+                  "description": "Additional type-specific details for the message."
+                },
+                {
+                  "disabled": false,
+                  "key": "datacoding",
+                  "value": "plain",
+                  "description": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding."
+                },
+                {
+                  "disabled": false,
+                  "key": "mclass",
+                  "value": "<integer>",
+                  "description": "The message class. Set to 1 for flash messages."
+                },
+                {
+                  "disabled": false,
+                  "key": "scheduledDatetime",
+                  "value": "<dateTime>",
+                  "description": "The scheduled date and time of the message in RFC 3339 format."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ec85a84-9f56-408f-bcc1-32ed5bbc3edd",
+              "name": "Message created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"href\": \"https://ndNbQ.dwOo5XLKvrD2F,Va0Y-FN2.UlCKQvXPrX0YJJoGq\",\n  \"direction\": \"mo\",\n  \"type\": \"flash\",\n  \"originator\": \"string\",\n  \"body\": \"string\",\n  \"reference\": \"string\",\n  \"validity\": 4184,\n  \"gateway\": 6052,\n  \"typeDetails\": {},\n  \"datacoding\": \"string\",\n  \"mclass\": 9021,\n  \"scheduledDatetime\": \"2025-11-07T05:50:42.867Z\",\n  \"createdDatetime\": \"2003-05-04T08:51:35.081Z\",\n  \"recipients\": {\n    \"totalCount\": 9666,\n    \"totalSentCount\": 2268,\n    \"totalDeliveredCount\": 9299,\n    \"totalDeliveryFailedCount\": 41,\n    \"items\": [\n      {\n        \"recipient\": 4225,\n        \"status\": \"buffered\",\n        \"statusDatetime\": \"1948-06-18T22:26:46.644Z\"\n      },\n      {\n        \"recipient\": 4503,\n        \"status\": \"buffered\",\n        \"statusDatetime\": \"1965-02-01T05:29:26.649Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60fbbce3-5dc3-44d0-b352-5dad6025684d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0450368d-823c-4129-8288-febb118aae36",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "264e4d36-d8e1-4d66-a962-e1781ce2c024",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34dd86b6-1ffc-49fa-9fff-f018aea5e68c",
+          "name": "View a message",
+          "request": {
+            "name": "View a message",
+            "description": {
+              "content": "Retrieves the information of an existing inbound or outbound SMS message. You only need to supply the unique message ID that was returned upon creation or receiving.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the message."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0970a072-c2e8-4ca2-b9db-71dc288fd70f",
+              "name": "Message details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"href\": \"https://ndNbQ.dwOo5XLKvrD2F,Va0Y-FN2.UlCKQvXPrX0YJJoGq\",\n  \"direction\": \"mo\",\n  \"type\": \"flash\",\n  \"originator\": \"string\",\n  \"body\": \"string\",\n  \"reference\": \"string\",\n  \"validity\": 4184,\n  \"gateway\": 6052,\n  \"typeDetails\": {},\n  \"datacoding\": \"string\",\n  \"mclass\": 9021,\n  \"scheduledDatetime\": \"2025-11-07T05:50:42.867Z\",\n  \"createdDatetime\": \"2003-05-04T08:51:35.081Z\",\n  \"recipients\": {\n    \"totalCount\": 9666,\n    \"totalSentCount\": 2268,\n    \"totalDeliveredCount\": 9299,\n    \"totalDeliveryFailedCount\": 41,\n    \"items\": [\n      {\n        \"recipient\": 4225,\n        \"status\": \"buffered\",\n        \"statusDatetime\": \"1948-06-18T22:26:46.644Z\"\n      },\n      {\n        \"recipient\": 4503,\n        \"status\": \"buffered\",\n        \"statusDatetime\": \"1965-02-01T05:29:26.649Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20453d49-f6d1-41cf-af31-0870b0894489",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4963bec7-c94d-407e-99bf-05e9f4b13847",
+              "name": "Message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcddf71e-f328-4d23-8fd1-92ce372db38e",
+          "name": "Delete a message",
+          "request": {
+            "name": "Delete a message",
+            "description": {
+              "content": "Deletes an existing message. You only need to supply the unique message ID that was returned upon creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the message."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e93819e3-222e-4c51-95e8-f534fc562636",
+              "name": "Message deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "342e329d-985f-4c87-ae62-97d258a71f70",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2928c897-c853-407c-a1e8-551aa17c63fb",
+              "name": "Message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "83d8486a-d928-4fca-8f31-15e4af7fc1ff",
+    "name": "MessageBird SMS Messaging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird SMS Messaging API allows developers to send and receive SMS messages to and from any country in the world through a REST interface. It supports features such as message scheduling, delivery reports, Unicode messages, and concatenated messages for longer content. The API provides both HTTP and SMPP connectivity options for high-volume messaging use cases.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

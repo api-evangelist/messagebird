@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Balance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/balance"
+          },
+          "docs": "Retrieves the current account balance, including the payment type, available amount, and currency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

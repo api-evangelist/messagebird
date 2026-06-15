@@ -1,0 +1,963 @@
+{
+  "item": [
+    {
+      "id": "7164e889-8e72-4851-8519-b40f8f056751",
+      "name": "WhatsApp Messages",
+      "description": {
+        "content": "Operations for sending and receiving WhatsApp messages through the Conversations API interface.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd71794b-57c7-43fc-980d-6f5f9e15c5f1",
+          "name": "Send a WhatsApp message",
+          "request": {
+            "name": "Send a WhatsApp message",
+            "description": {
+              "content": "Sends a WhatsApp message to a recipient. Supports text, image, video, audio, document, location, and template (HSM) message types. Template messages require pre-approved templates from the WhatsApp Business platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"image\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"video\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"audio\": {\n      \"url\": \"<uri>\"\n    },\n    \"file\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"hsm\": {\n      \"namespace\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"language\": {\n        \"policy\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      \"params\": [\n        {\n          \"default\": \"<string>\"\n        },\n        {\n          \"default\": \"<string>\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"<string>\",\n      \"header\": \"<object>\",\n      \"body\": {\n        \"text\": \"<string>\"\n      },\n      \"footer\": {\n        \"text\": \"<string>\"\n      },\n      \"action\": \"<object>\"\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60193a4f-f4c0-4557-a127-1a85610f1653",
+              "name": "Message accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://fNrFfZmz.gaibYjde+Ik7SP7ZSlVhhm87eOP7\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://s.nnuh87pQk1I,UKlXjhrPs,yVTr6kram6NCGPfBV\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://GtkYxwqHxqAbEITbdKstXStuGRkaqNf.hiqljwtA8IU1wTuhK+tES\"\n    },\n    \"file\": {\n      \"url\": \"https://xwmYtAnKbDPVrQRVeeXHclCHdN.sxAi0VQeMvp5d27+K7pohnhdh2Jiqh36VqpdPhJk8iJc\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 3944.7834850944664,\n      \"longitude\": 8713.381319290746\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"list\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"conversationId\": \"string\",\n  \"channelId\": \"string\",\n  \"platform\": \"whatsapp\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"sent\",\n  \"status\": \"pending\",\n  \"type\": \"string\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://yyszLxy.jsjC9Gfjt54cQ3wJtENZvDjDKJx9a2z-iCnf,bXVuji\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://mmFyavaX.fremEiIlvlpah-IeJfOKFk4LRo-ZGqsne-.kAosaGUuqsqcPKf39lM\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://arfE.hhqqfK9snw\"\n    },\n    \"file\": {\n      \"url\": \"https://lDMMbNppYgZ.khfkpiEN\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6522.796329979218,\n      \"longitude\": 7283.481481163359\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"list\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  },\n  \"createdDatetime\": \"1960-02-03T23:21:52.697Z\",\n  \"updatedDatetime\": \"1959-11-24T05:33:24.912Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6d20be3-d665-49d0-8a09-fcbb0ca0d631",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://fNrFfZmz.gaibYjde+Ik7SP7ZSlVhhm87eOP7\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://s.nnuh87pQk1I,UKlXjhrPs,yVTr6kram6NCGPfBV\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://GtkYxwqHxqAbEITbdKstXStuGRkaqNf.hiqljwtA8IU1wTuhK+tES\"\n    },\n    \"file\": {\n      \"url\": \"https://xwmYtAnKbDPVrQRVeeXHclCHdN.sxAi0VQeMvp5d27+K7pohnhdh2Jiqh36VqpdPhJk8iJc\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 3944.7834850944664,\n      \"longitude\": 8713.381319290746\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"list\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6b9203d-4e52-4cf8-8193-44c0514b4566",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://fNrFfZmz.gaibYjde+Ik7SP7ZSlVhhm87eOP7\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://s.nnuh87pQk1I,UKlXjhrPs,yVTr6kram6NCGPfBV\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://GtkYxwqHxqAbEITbdKstXStuGRkaqNf.hiqljwtA8IU1wTuhK+tES\"\n    },\n    \"file\": {\n      \"url\": \"https://xwmYtAnKbDPVrQRVeeXHclCHdN.sxAi0VQeMvp5d27+K7pohnhdh2Jiqh36VqpdPhJk8iJc\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 3944.7834850944664,\n      \"longitude\": 8713.381319290746\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"list\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "682ddebf-98a5-4819-a2c3-3e5238e23397",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://fNrFfZmz.gaibYjde+Ik7SP7ZSlVhhm87eOP7\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://s.nnuh87pQk1I,UKlXjhrPs,yVTr6kram6NCGPfBV\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://GtkYxwqHxqAbEITbdKstXStuGRkaqNf.hiqljwtA8IU1wTuhK+tES\"\n    },\n    \"file\": {\n      \"url\": \"https://xwmYtAnKbDPVrQRVeeXHclCHdN.sxAi0VQeMvp5d27+K7pohnhdh2Jiqh36VqpdPhJk8iJc\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 3944.7834850944664,\n      \"longitude\": 8713.381319290746\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"list\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dd3fc6e-73a5-4395-9954-4d56d7816644",
+          "name": "List WhatsApp conversations",
+          "request": {
+            "name": "List WhatsApp conversations",
+            "description": {
+              "content": "Retrieves a list of WhatsApp conversations. Conversations contain all messages exchanged with a specific WhatsApp contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "389da374-daba-42b8-9bfc-3a72e85d82a4",
+              "name": "A list of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 7202,\n  \"limit\": 8314,\n  \"count\": 9784,\n  \"totalCount\": 9596,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"createdDatetime\": \"1956-11-07T22:35:29.920Z\",\n      \"updatedDatetime\": \"2005-01-10T09:00:42.455Z\",\n      \"lastReceivedDatetime\": \"2002-11-10T04:03:06.349Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"createdDatetime\": \"1982-09-25T12:10:18.279Z\",\n      \"updatedDatetime\": \"1960-05-01T18:21:25.156Z\",\n      \"lastReceivedDatetime\": \"1959-10-10T12:39:41.566Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8961e6bf-5917-4e1b-aa31-8da51b789244",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "905f5f00-773e-4f5a-9d75-dc43c1cdaca6",
+          "name": "List messages in a WhatsApp conversation",
+          "request": {
+            "name": "List messages in a WhatsApp conversation",
+            "description": {
+              "content": "Retrieves all messages in a specific WhatsApp conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversationId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The unique identifier of the conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e468985e-7689-49af-968a-315eda44d2c5",
+              "name": "A list of messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 1287,\n  \"limit\": 7644,\n  \"count\": 2995,\n  \"totalCount\": 6701,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"conversationId\": \"string\",\n      \"channelId\": \"string\",\n      \"platform\": \"whatsapp\",\n      \"to\": \"string\",\n      \"from\": \"string\",\n      \"direction\": \"sent\",\n      \"status\": \"deleted\",\n      \"type\": \"string\",\n      \"content\": {\n        \"text\": \"string\",\n        \"image\": {\n          \"url\": \"http://muhrERyrCokvgFQlQmiGtlztjHriwf.tuT.wPeehmdJF8a9GhAg13tjQDBD4J9nHZT+SFGIAUiM,j3xz\",\n          \"caption\": \"string\"\n        },\n        \"video\": {\n          \"url\": \"http://HMScYWpZZPIdZrz.chMk8KtQj.RQ8BDEx+Ndmy1\",\n          \"caption\": \"string\"\n        },\n        \"audio\": {\n          \"url\": \"https://xPqsXBTvCilkKzZLqXPDskOdgzZPilzm.wxiDNeSIcZeg\"\n        },\n        \"file\": {\n          \"url\": \"http://sChdMmNhQOdqVynYutHdwjpOCP.wkbr0VMuDFNhpkMv93rSaOYg9\",\n          \"caption\": \"string\"\n        },\n        \"location\": {\n          \"latitude\": 2656.5099892593194,\n          \"longitude\": 3862.9539331283645\n        },\n        \"hsm\": {\n          \"namespace\": \"string\",\n          \"templateName\": \"string\",\n          \"language\": {\n            \"policy\": \"fallback\",\n            \"code\": \"string\"\n          },\n          \"params\": [\n            {\n              \"default\": \"string\"\n            },\n            {\n              \"default\": \"string\"\n            }\n          ]\n        },\n        \"interactive\": {\n          \"type\": \"button\",\n          \"header\": {},\n          \"body\": {\n            \"text\": \"string\"\n          },\n          \"footer\": {\n            \"text\": \"string\"\n          },\n          \"action\": {}\n        }\n      },\n      \"createdDatetime\": \"1992-04-28T17:47:46.246Z\",\n      \"updatedDatetime\": \"1986-02-16T16:10:38.214Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"conversationId\": \"string\",\n      \"channelId\": \"string\",\n      \"platform\": \"whatsapp\",\n      \"to\": \"string\",\n      \"from\": \"string\",\n      \"direction\": \"received\",\n      \"status\": \"pending\",\n      \"type\": \"string\",\n      \"content\": {\n        \"text\": \"string\",\n        \"image\": {\n          \"url\": \"http://KwOzJIcZKoEu.gcuwDkRuQjKlNOKy6WbZMv2WrmNud9iHoEq6B2LyIxl\",\n          \"caption\": \"string\"\n        },\n        \"video\": {\n          \"url\": \"https://FNtKYWqOVZVuBlNKO.fbe,sVdeUdMzfxPDiJXp32+fjeAT-k-IG0-Mzq.UwmWhwTPfzFBf\",\n          \"caption\": \"string\"\n        },\n        \"audio\": {\n          \"url\": \"http://pWLqDgspTEQFDbUYc.mvxrMKtHCKNudn2wM8ZUr11y-b4R\"\n        },\n        \"file\": {\n          \"url\": \"http://Vpmh.sxdfY.3PS-JM2YgeYTuin\",\n          \"caption\": \"string\"\n        },\n        \"location\": {\n          \"latitude\": 5801.421880720305,\n          \"longitude\": 2491.9483247271255\n        },\n        \"hsm\": {\n          \"namespace\": \"string\",\n          \"templateName\": \"string\",\n          \"language\": {\n            \"policy\": \"fallback\",\n            \"code\": \"string\"\n          },\n          \"params\": [\n            {\n              \"default\": \"string\"\n            },\n            {\n              \"default\": \"string\"\n            }\n          ]\n        },\n        \"interactive\": {\n          \"type\": \"list\",\n          \"header\": {},\n          \"body\": {\n            \"text\": \"string\"\n          },\n          \"footer\": {\n            \"text\": \"string\"\n          },\n          \"action\": {}\n        }\n      },\n      \"createdDatetime\": \"2016-09-07T11:38:58.430Z\",\n      \"updatedDatetime\": \"1975-04-07T07:49:40.779Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0db53bc1-5351-4755-a5fc-027a5c1ffc75",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4e27c38-2180-4169-ac06-24cf9bca99fe",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c73f1bc9-ba25-4748-8fbe-46fc3b96f86d",
+          "name": "Reply in a WhatsApp conversation",
+          "request": {
+            "name": "Reply in a WhatsApp conversation",
+            "description": {
+              "content": "Sends a reply message in an existing WhatsApp conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversationId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The unique identifier of the conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"image\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"video\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"audio\": {\n      \"url\": \"<uri>\"\n    },\n    \"file\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"hsm\": {\n      \"namespace\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"language\": {\n        \"policy\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      \"params\": [\n        {\n          \"default\": \"<string>\"\n        },\n        {\n          \"default\": \"<string>\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"<string>\",\n      \"header\": \"<object>\",\n      \"body\": {\n        \"text\": \"<string>\"\n      },\n      \"footer\": {\n        \"text\": \"<string>\"\n      },\n      \"action\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1ffcb98-21c4-4747-806b-66eecd1f9a62",
+              "name": "Reply sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://SYpCCEtPYeAMBMZdBmNbNaEGum.jolzuKf-3FM5KtcDK09\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://DRqiIylMfAB.utAzicOs3xDxSDkpUa4pFvlkZNM6iWgqbvqZNb9DM2.iDaKtmIZ\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://CBCEkTQBPOmRxUFCkPTqywLL.ajydAQvmgQ7Ur\"\n    },\n    \"file\": {\n      \"url\": \"http://mzQhLKjNVhyVSqXzUZXsae.vtScfLkpr1X1Pa1HzPmmA9I46gS,v45LISTmUyXZXoOLlnwooM2UtwGqty\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 8080.775085970239,\n      \"longitude\": 5780.503912236541\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"button\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"conversationId\": \"string\",\n  \"channelId\": \"string\",\n  \"platform\": \"whatsapp\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"sent\",\n  \"status\": \"pending\",\n  \"type\": \"string\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://yyszLxy.jsjC9Gfjt54cQ3wJtENZvDjDKJx9a2z-iCnf,bXVuji\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://mmFyavaX.fremEiIlvlpah-IeJfOKFk4LRo-ZGqsne-.kAosaGUuqsqcPKf39lM\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://arfE.hhqqfK9snw\"\n    },\n    \"file\": {\n      \"url\": \"https://lDMMbNppYgZ.khfkpiEN\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6522.796329979218,\n      \"longitude\": 7283.481481163359\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"list\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  },\n  \"createdDatetime\": \"1960-02-03T23:21:52.697Z\",\n  \"updatedDatetime\": \"1959-11-24T05:33:24.912Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08f22d3e-81ec-45c8-8f24-7bf6364a783c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://SYpCCEtPYeAMBMZdBmNbNaEGum.jolzuKf-3FM5KtcDK09\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://DRqiIylMfAB.utAzicOs3xDxSDkpUa4pFvlkZNM6iWgqbvqZNb9DM2.iDaKtmIZ\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://CBCEkTQBPOmRxUFCkPTqywLL.ajydAQvmgQ7Ur\"\n    },\n    \"file\": {\n      \"url\": \"http://mzQhLKjNVhyVSqXzUZXsae.vtScfLkpr1X1Pa1HzPmmA9I46gS,v45LISTmUyXZXoOLlnwooM2UtwGqty\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 8080.775085970239,\n      \"longitude\": 5780.503912236541\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"button\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4eb0140-658b-45fe-a66f-35847f161403",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://SYpCCEtPYeAMBMZdBmNbNaEGum.jolzuKf-3FM5KtcDK09\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://DRqiIylMfAB.utAzicOs3xDxSDkpUa4pFvlkZNM6iWgqbvqZNb9DM2.iDaKtmIZ\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://CBCEkTQBPOmRxUFCkPTqywLL.ajydAQvmgQ7Ur\"\n    },\n    \"file\": {\n      \"url\": \"http://mzQhLKjNVhyVSqXzUZXsae.vtScfLkpr1X1Pa1HzPmmA9I46gS,v45LISTmUyXZXoOLlnwooM2UtwGqty\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 8080.775085970239,\n      \"longitude\": 5780.503912236541\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"button\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4a615fc-330e-47ee-baff-5d9bb0adf41e",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://SYpCCEtPYeAMBMZdBmNbNaEGum.jolzuKf-3FM5KtcDK09\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://DRqiIylMfAB.utAzicOs3xDxSDkpUa4pFvlkZNM6iWgqbvqZNb9DM2.iDaKtmIZ\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://CBCEkTQBPOmRxUFCkPTqywLL.ajydAQvmgQ7Ur\"\n    },\n    \"file\": {\n      \"url\": \"http://mzQhLKjNVhyVSqXzUZXsae.vtScfLkpr1X1Pa1HzPmmA9I46gS,v45LISTmUyXZXoOLlnwooM2UtwGqty\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 8080.775085970239,\n      \"longitude\": 5780.503912236541\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"deterministic\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    },\n    \"interactive\": {\n      \"type\": \"button\",\n      \"header\": {},\n      \"body\": {\n        \"text\": \"string\"\n      },\n      \"footer\": {\n        \"text\": \"string\"\n      },\n      \"action\": {}\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://conversations.messagebird.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1cecdc3a-99fa-495b-beda-573aaca5315e",
+    "name": "MessageBird WhatsApp API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird WhatsApp API allows developers to send and receive WhatsApp messages for alerts, notifications, customer support, and two-factor authentication. It provides access to all WhatsApp Business features through a single API, including template messages, media messages, and interactive message types. The API supports rich media content and provides delivery and read receipts for message tracking.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

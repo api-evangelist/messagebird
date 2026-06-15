@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Voice Messaging API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voice Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voice messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/voicemessages",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of voice messages that have been sent. Messages are returned in reverse chronological order."
+        },
+        {
+          "info": {
+            "name": "Send a voice message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/voicemessages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new voice message and delivers it to the specified recipients using text-to-speech. A maximum of 50 recipients can be specified per request."
+        },
+        {
+          "info": {
+            "name": "View a voice message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/voicemessages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the voice message."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of an existing voice message by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a voice message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/voicemessages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the voice message."
+              }
+            ]
+          },
+          "docs": "Deletes an existing voice message by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

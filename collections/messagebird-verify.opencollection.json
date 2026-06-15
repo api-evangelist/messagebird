@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Verify API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verify",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Verify object and sends a verification token to the specified recipient via SMS or voice call. The token is generated automatically by the platform."
+        },
+        {
+          "info": {
+            "name": "View a verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/verify/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the verification."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of an existing verification by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/verify/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the verification."
+              }
+            ]
+          },
+          "docs": "Deletes an existing verification by its unique identifier, invalidating any pending token."
+        },
+        {
+          "info": {
+            "name": "Verify a token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/verify/:id/verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the verification."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The verification token to validate."
+              }
+            ]
+          },
+          "docs": "Verifies a token that was sent to the recipient. The token parameter must match the token that was delivered."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

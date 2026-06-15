@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird HLR API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HLR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an HLR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/hlr",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new HLR object and sends a network query for the specified phone number. MessageBird returns the created HLR object with each request."
+        },
+        {
+          "info": {
+            "name": "View an HLR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/hlr/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the HLR."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of an existing HLR by its unique identifier. Use this to check the result of a previously submitted HLR query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,859 @@
+{
+  "item": [
+    {
+      "id": "018e319c-2e37-4ed8-9771-bff0c1833c7a",
+      "name": "Templates",
+      "description": {
+        "content": "Operations for managing message templates on supported platforms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e48bd8e-e735-4a66-b66a-55dfa2de3fe4",
+          "name": "List WhatsApp templates",
+          "request": {
+            "name": "List WhatsApp templates",
+            "description": {
+              "content": "Retrieves a list of all WhatsApp message templates associated with the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "platforms",
+                "whatsapp",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e522f481-6b0a-44d7-a386-0a0422ff1974",
+              "name": "A list of templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 7223,\n  \"limit\": 6408,\n  \"count\": 340,\n  \"totalCount\": 1594,\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"language\": \"string\",\n      \"category\": \"string\",\n      \"components\": [\n        {\n          \"type\": \"HEADER\",\n          \"format\": \"VIDEO\",\n          \"text\": \"string\",\n          \"buttons\": [\n            {\n              \"type\": \"PHONE_NUMBER\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://mFlKFtGGHVWlJwZtA.ygejbT9MfOTy6AGShH6hIQIQLWK39NZ9IC0bBF\"\n            },\n            {\n              \"type\": \"URL\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://rMyCDoOGaycedjSuxUlYA.limirt-iFGKq6-OquR8J1Ybm8jDJ,I6VjR6J7UZA2jWK1od-qdvsk3FncJiuiRzO0y\"\n            }\n          ]\n        },\n        {\n          \"type\": \"BUTTONS\",\n          \"format\": \"VIDEO\",\n          \"text\": \"string\",\n          \"buttons\": [\n            {\n              \"type\": \"URL\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://iIMDzv.tavV.+dKGJectIMAOhL,S+RH.Z-Qb14gWEEqjzuYv+SoANLka+\"\n            },\n            {\n              \"type\": \"PHONE_NUMBER\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"http://zZnDLKwMZ.uuglAVR,7DCxY+ETv.DXDT9IlUgqFFxY-iS+aNr6Gy\"\n            }\n          ]\n        }\n      ],\n      \"status\": \"NEW\",\n      \"rejectedReason\": \"string\",\n      \"createdAt\": \"2010-11-12T07:43:15.948Z\",\n      \"updatedAt\": \"1967-08-29T23:20:56.008Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"language\": \"string\",\n      \"category\": \"string\",\n      \"components\": [\n        {\n          \"type\": \"FOOTER\",\n          \"format\": \"VIDEO\",\n          \"text\": \"string\",\n          \"buttons\": [\n            {\n              \"type\": \"PHONE_NUMBER\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://HSTyMFqKny.papMX\"\n            },\n            {\n              \"type\": \"PHONE_NUMBER\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://xCPXDZlahRiMWtdNqnsiqv.aazp5vrdYDfIEvBNXdheIIQY217.jNN4DuZ5M3YzrNZQYu\"\n            }\n          ]\n        },\n        {\n          \"type\": \"BODY\",\n          \"format\": \"DOCUMENT\",\n          \"text\": \"string\",\n          \"buttons\": [\n            {\n              \"type\": \"PHONE_NUMBER\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://gNttdfRLppdqJhFjxElNdfrQmKZ.neeXPZW9Yq4gkJK9XA4.s1kWyomQqQuILkiiDKe9NXyTBNV\"\n            },\n            {\n              \"type\": \"URL\",\n              \"text\": \"string\",\n              \"phone_number\": \"string\",\n              \"url\": \"https://sLWpAkTNKTjZxyC.hjpuGML0adD7Fr3kpM\"\n            }\n          ]\n        }\n      ],\n      \"status\": \"APPROVED\",\n      \"rejectedReason\": \"string\",\n      \"createdAt\": \"1958-05-29T16:42:30.770Z\",\n      \"updatedAt\": \"1981-12-11T03:49:37.842Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9e7b736-3b8a-418c-8e24-ae7faec50e1e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f394315-f4c6-4215-985a-1c29926b433f",
+          "name": "Create a WhatsApp template",
+          "request": {
+            "name": "Create a WhatsApp template",
+            "description": {
+              "content": "Creates a new WhatsApp message template and submits it for approval. Templates must be approved by WhatsApp before they can be used to send messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "platforms",
+                "whatsapp",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"category\": \"<string>\",\n  \"components\": [\n    {\n      \"type\": \"<string>\",\n      \"format\": \"<string>\",\n      \"text\": \"<string>\",\n      \"buttons\": [\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"phone_number\": \"<string>\",\n          \"url\": \"<uri>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"phone_number\": \"<string>\",\n          \"url\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"format\": \"<string>\",\n      \"text\": \"<string>\",\n      \"buttons\": [\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"phone_number\": \"<string>\",\n          \"url\": \"<uri>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"phone_number\": \"<string>\",\n          \"url\": \"<uri>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e9512ce-454e-46c1-a74e-d92410f230f9",
+              "name": "Template created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"category\": \"<string>\",\n  \"components\": [\n    {\n      \"type\": \"BODY\",\n      \"format\": \"TEXT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://xFncQTGFinr.elMb5i9OEUZMH.OsFV7ovMEBiQBzBxSNn5fRvFj8aGLObj7vkZyujjaOC\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://KntxQwfPKtnHbiiRVJSFLiJrzyFAqql.huvEKb2AlxRH\"\n        }\n      ]\n    },\n    {\n      \"type\": \"FOOTER\",\n      \"format\": \"DOCUMENT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://pPxzQyWoTMKgUXbae.wmrmbyf\"\n        },\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://YCCnljuMtdHAps.ygf3-DsZkQpyEBEdgtIhHPLX+HiMjp-7cZiymFvb\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"language\": \"string\",\n  \"category\": \"string\",\n  \"components\": [\n    {\n      \"type\": \"BODY\",\n      \"format\": \"DOCUMENT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://cFQCSQkOdGOtgQKhTFKBpQZ.wqxAhr7dWdCE5I0moL,UK6T8\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://IlSDIFWJkxlyZeF.eomPDkGa7IVyIpwyQXKT\"\n        }\n      ]\n    },\n    {\n      \"type\": \"HEADER\",\n      \"format\": \"TEXT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://fjyyyzHdNyLdCduvTrzPTcKEnSr.ymvtJ8mI.CSEx,H+ggHqT,2lTx,YM5P6Q8L8rj.v9.8NtzT,Hso5MFRXnEo\"\n        },\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://VULTVayepdX.mtiI5CizdIeakO\"\n        }\n      ]\n    }\n  ],\n  \"status\": \"REJECTED\",\n  \"rejectedReason\": \"string\",\n  \"createdAt\": \"1969-07-19T14:16:12.785Z\",\n  \"updatedAt\": \"1965-07-04T07:34:55.694Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20d7379b-2686-4488-bb57-5f000694d2dc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"category\": \"<string>\",\n  \"components\": [\n    {\n      \"type\": \"BODY\",\n      \"format\": \"TEXT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://xFncQTGFinr.elMb5i9OEUZMH.OsFV7ovMEBiQBzBxSNn5fRvFj8aGLObj7vkZyujjaOC\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://KntxQwfPKtnHbiiRVJSFLiJrzyFAqql.huvEKb2AlxRH\"\n        }\n      ]\n    },\n    {\n      \"type\": \"FOOTER\",\n      \"format\": \"DOCUMENT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://pPxzQyWoTMKgUXbae.wmrmbyf\"\n        },\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://YCCnljuMtdHAps.ygf3-DsZkQpyEBEdgtIhHPLX+HiMjp-7cZiymFvb\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc2495c0-ba41-401a-9bef-87ba287299ab",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"category\": \"<string>\",\n  \"components\": [\n    {\n      \"type\": \"BODY\",\n      \"format\": \"TEXT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://xFncQTGFinr.elMb5i9OEUZMH.OsFV7ovMEBiQBzBxSNn5fRvFj8aGLObj7vkZyujjaOC\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://KntxQwfPKtnHbiiRVJSFLiJrzyFAqql.huvEKb2AlxRH\"\n        }\n      ]\n    },\n    {\n      \"type\": \"FOOTER\",\n      \"format\": \"DOCUMENT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://pPxzQyWoTMKgUXbae.wmrmbyf\"\n        },\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://YCCnljuMtdHAps.ygf3-DsZkQpyEBEdgtIhHPLX+HiMjp-7cZiymFvb\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b17a10da-a196-430a-acdf-225e538c832a",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"category\": \"<string>\",\n  \"components\": [\n    {\n      \"type\": \"BODY\",\n      \"format\": \"TEXT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://xFncQTGFinr.elMb5i9OEUZMH.OsFV7ovMEBiQBzBxSNn5fRvFj8aGLObj7vkZyujjaOC\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://KntxQwfPKtnHbiiRVJSFLiJrzyFAqql.huvEKb2AlxRH\"\n        }\n      ]\n    },\n    {\n      \"type\": \"FOOTER\",\n      \"format\": \"DOCUMENT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://pPxzQyWoTMKgUXbae.wmrmbyf\"\n        },\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://YCCnljuMtdHAps.ygf3-DsZkQpyEBEdgtIhHPLX+HiMjp-7cZiymFvb\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3047b7cd-230a-4a2b-a326-5afac9cb27c5",
+          "name": "View a WhatsApp template",
+          "request": {
+            "name": "View a WhatsApp template",
+            "description": {
+              "content": "Retrieves the details of a specific WhatsApp template by its name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "platforms",
+                "whatsapp",
+                "templates",
+                ":templateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateName",
+                  "description": "(Required) The name of the WhatsApp template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85f4355c-05f4-4472-9bc7-16c339ffc254",
+              "name": "Template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) The name of the WhatsApp template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"language\": \"string\",\n  \"category\": \"string\",\n  \"components\": [\n    {\n      \"type\": \"BODY\",\n      \"format\": \"DOCUMENT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://cFQCSQkOdGOtgQKhTFKBpQZ.wqxAhr7dWdCE5I0moL,UK6T8\"\n        },\n        {\n          \"type\": \"URL\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://IlSDIFWJkxlyZeF.eomPDkGa7IVyIpwyQXKT\"\n        }\n      ]\n    },\n    {\n      \"type\": \"HEADER\",\n      \"format\": \"TEXT\",\n      \"text\": \"string\",\n      \"buttons\": [\n        {\n          \"type\": \"PHONE_NUMBER\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"https://fjyyyzHdNyLdCduvTrzPTcKEnSr.ymvtJ8mI.CSEx,H+ggHqT,2lTx,YM5P6Q8L8rj.v9.8NtzT,Hso5MFRXnEo\"\n        },\n        {\n          \"type\": \"QUICK_REPLY\",\n          \"text\": \"string\",\n          \"phone_number\": \"string\",\n          \"url\": \"http://VULTVayepdX.mtiI5CizdIeakO\"\n        }\n      ]\n    }\n  ],\n  \"status\": \"REJECTED\",\n  \"rejectedReason\": \"string\",\n  \"createdAt\": \"1969-07-19T14:16:12.785Z\",\n  \"updatedAt\": \"1965-07-04T07:34:55.694Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "146e8738-12b9-4994-ae7c-a9ef93a6da49",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) The name of the WhatsApp template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "573f8327-3e6f-47ce-8c80-37be8deb3f17",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) The name of the WhatsApp template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5c97b04-b085-40e2-8f71-57c7b70aa185",
+          "name": "Delete a WhatsApp template",
+          "request": {
+            "name": "Delete a WhatsApp template",
+            "description": {
+              "content": "Deletes a WhatsApp message template by its name. This removes all language versions of the template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "platforms",
+                "whatsapp",
+                "templates",
+                ":templateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateName",
+                  "description": "(Required) The name of the WhatsApp template."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f26c404-de36-4589-9675-f01f74e67029",
+              "name": "Template deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) The name of the WhatsApp template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8699a1d-7eff-406c-83c2-61a298ac2206",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) The name of the WhatsApp template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58d37881-03ae-4d98-956d-a4f878d4e5de",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "platforms",
+                    "whatsapp",
+                    "templates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) The name of the WhatsApp template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://integrations.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "231f2603-ab59-4618-b0d6-90006081e916",
+    "name": "MessageBird Integrations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Integrations API allows developers to create, fetch, and delete message templates for supported platforms. It currently supports template management for the WhatsApp platform, enabling developers to programmatically manage the templates required for sending WhatsApp Business notifications and messages. The API handles template submission, approval status tracking, and lifecycle management.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

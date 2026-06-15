@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird WhatsApp API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WhatsApp Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a WhatsApp message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.messagebird.com/v1/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a WhatsApp message to a recipient. Supports text, image, video, audio, document, location, and template (HSM) message types. Template messages require pre-approved templates from the WhatsApp Business platform."
+        },
+        {
+          "info": {
+            "name": "List WhatsApp conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/conversations",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of WhatsApp conversations. Conversations contain all messages exchanged with a specific WhatsApp contact."
+        },
+        {
+          "info": {
+            "name": "List messages in a WhatsApp conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://conversations.messagebird.com/v1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves all messages in a specific WhatsApp conversation."
+        },
+        {
+          "info": {
+            "name": "Reply in a WhatsApp conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.messagebird.com/v1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a reply message in an existing WhatsApp conversation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

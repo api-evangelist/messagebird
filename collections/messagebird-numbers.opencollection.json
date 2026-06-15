@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Numbers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Available Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search available phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://numbers.messagebird.com/v1/available-phone-numbers/:countryCode",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "path",
+                "description": "The two-letter ISO 3166-1 country code to search in."
+              },
+              {
+                "name": "features",
+                "value": "",
+                "type": "query",
+                "description": "Filter by number features."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by number type."
+              },
+              {
+                "name": "searchPattern",
+                "value": "",
+                "type": "query",
+                "description": "A pattern to search for in available numbers."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Searches for available phone numbers that can be purchased in the specified country. Results can be filtered by number type, features, and search pattern."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Purchased Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List purchased phone numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://numbers.messagebird.com/v1/phone-numbers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all phone numbers purchased on the account."
+        },
+        {
+          "info": {
+            "name": "Purchase a phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://numbers.messagebird.com/v1/phone-numbers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchases an available phone number and adds it to the account."
+        },
+        {
+          "info": {
+            "name": "View a purchased phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://numbers.messagebird.com/v1/phone-numbers/:number",
+            "params": [
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "The phone number in E.164 format."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific purchased phone number."
+        },
+        {
+          "info": {
+            "name": "Update a purchased phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://numbers.messagebird.com/v1/phone-numbers/:number",
+            "params": [
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "The phone number in E.164 format."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a purchased phone number, such as assigning tags or enabling features."
+        },
+        {
+          "info": {
+            "name": "Cancel a purchased phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://numbers.messagebird.com/v1/phone-numbers/:number",
+            "params": [
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "The phone number in E.164 format."
+              }
+            ]
+          },
+          "docs": "Cancels a purchased phone number, releasing it from the account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
