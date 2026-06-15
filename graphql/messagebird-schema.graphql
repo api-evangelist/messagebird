@@ -1,0 +1,943 @@
+"""
+MessageBird (Bird) GraphQL Schema
+Conceptual schema derived from MessageBird REST API covering SMS, WhatsApp,
+voice, conversations, contacts, numbers, verify, and omnichannel communications.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar PhoneNumber
+scalar ISO8601Duration
+scalar URL
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum MessageStatus {
+  SCHEDULED
+  BUFFERED
+  SENDING
+  SENT
+  DELIVERY_FAILED
+  DELIVERED
+  EXPIRED
+  READ
+  DELETED
+}
+
+enum MessageType {
+  SMS
+  BINARY
+  FLASH
+  PREMIUM
+}
+
+enum MessageDirection {
+  MT
+  MO
+}
+
+enum ConversationStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+enum ConversationMessageType {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  FILE
+  LOCATION
+  INTERACTIVE
+  TEMPLATE
+  HSMBUTTONREPLY
+  LISTBUTTONREPLY
+}
+
+enum ChannelPlatform {
+  SMS
+  WHATSAPP
+  FACEBOOK_MESSENGER
+  TELEGRAM
+  LINE
+  WECHAT
+  EMAIL
+  INSTAGRAM
+  VIBER
+  GOOGLE_BUSINESS_MESSAGES
+  TWITTER_DM
+  PUSH
+  RCS
+}
+
+enum VoiceCallStatus {
+  STARTING
+  ONGOING
+  ENDED
+  BUSY
+  FAILED
+  NO_ANSWER
+  CANCELLED
+}
+
+enum VoiceCallDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum VoiceLegStatus {
+  STARTING
+  RINGING
+  ONGOING
+  ENDED
+  FAILED
+  BUSY
+  NO_ANSWER
+  CANCELLED
+}
+
+enum VerifyStatus {
+  SENT
+  TOKEN_GENERATED
+  VERIFIED
+  EXPIRED
+  FAILED
+  DELETED
+}
+
+enum NumberType {
+  LONG_CODE
+  MOBILE
+  TOLL_FREE
+  SHORT_CODE
+  SHARED
+}
+
+enum NumberCapability {
+  SMS
+  VOICE
+  DATA
+  MMS
+}
+
+enum ContactGroupStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum HlrNetworkType {
+  GSM
+  CDMA
+  UMTS
+  LTE
+  NR
+  UNKNOWN
+}
+
+enum TemplateStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  DELETED
+  PAUSED
+  DISABLED
+}
+
+enum TemplateCategory {
+  AUTHENTICATION
+  MARKETING
+  UTILITY
+}
+
+enum TemplateComponentType {
+  HEADER
+  BODY
+  FOOTER
+  BUTTONS
+}
+
+enum TemplateButtonType {
+  QUICK_REPLY
+  URL
+  PHONE_NUMBER
+  OTP
+  COPY_CODE
+  CATALOG
+  MPM
+  FLOW
+}
+
+enum BalancePaymentType {
+  PREPAID
+  POSTPAID
+}
+
+enum FlowTriggerType {
+  INBOUND_MESSAGE
+  CALL_INITIATED
+  SCHEDULE
+  API
+  WEBHOOK
+}
+
+enum WebhookEvent {
+  MESSAGE_CREATED
+  MESSAGE_UPDATED
+  CONVERSATION_CREATED
+  CONVERSATION_UPDATED
+  CONTACT_CREATED
+  CONTACT_UPDATED
+  CALL_INITIATED
+  CALL_ANSWERED
+  CALL_ENDED
+  MESSAGE_DELIVERED
+  MESSAGE_READ
+  MESSAGE_FAILED
+}
+
+# ─────────────────────────────────────────────
+# Core Types
+# ─────────────────────────────────────────────
+
+type Message {
+  id: ID!
+  href: URL
+  direction: MessageDirection!
+  type: MessageType!
+  originator: PhoneNumber!
+  body: String!
+  reference: String
+  validity: Int
+  gateway: Int
+  typeDetails: JSON
+  datacoding: String
+  mclass: Int
+  scheduledDatetime: DateTime
+  createdDatetime: DateTime!
+  recipients: MessageRecipientList!
+}
+
+type MessageRecipientList {
+  totalCount: Int!
+  totalSentCount: Int!
+  totalDeliveredCount: Int!
+  totalDeliveryFailedCount: Int!
+  items: [MessageRecipient!]!
+}
+
+type MessageRecipient {
+  recipient: PhoneNumber!
+  originator: PhoneNumber
+  status: MessageStatus!
+  statusDatetime: DateTime
+  messagePartCount: Int
+  price: Price
+}
+
+type Price {
+  amount: Float!
+  currency: String!
+}
+
+type Conversation {
+  id: ID!
+  href: URL
+  contact: Contact!
+  channels: [ConversationChannel!]!
+  messages: ConversationMessagePage!
+  status: ConversationStatus!
+  createdDatetime: DateTime!
+  updatedDatetime: DateTime!
+  lastReceivedDatetime: DateTime
+  lastUsedChannelId: ID
+}
+
+type ConversationChannel {
+  id: ID!
+  name: String!
+  platform: ChannelPlatform!
+  status: String
+}
+
+type ConversationMessage {
+  id: ID!
+  conversationId: ID!
+  channelId: ID!
+  platform: ChannelPlatform!
+  to: String
+  from: String
+  direction: MessageDirection!
+  type: ConversationMessageType!
+  content: ConversationMessageContent!
+  status: MessageStatus!
+  createdDatetime: DateTime!
+  updatedDatetime: DateTime!
+  fallback: ConversationFallback
+}
+
+type ConversationMessageContent {
+  text: String
+  image: MediaContent
+  video: MediaContent
+  audio: MediaContent
+  file: MediaContent
+  location: LocationContent
+  hsm: HsmContent
+  interactive: InteractiveContent
+}
+
+type MediaContent {
+  url: URL
+  caption: String
+  filename: String
+}
+
+type LocationContent {
+  latitude: Float!
+  longitude: Float!
+  name: String
+  address: String
+}
+
+type HsmContent {
+  namespace: String!
+  templateName: String!
+  language: HsmLanguage!
+  params: [HsmParam!]!
+}
+
+type HsmLanguage {
+  policy: String!
+  code: String!
+}
+
+type HsmParam {
+  default: String!
+}
+
+type InteractiveContent {
+  type: String!
+  body: InteractiveBody
+  header: InteractiveHeader
+  footer: InteractiveFooter
+  action: JSON
+}
+
+type InteractiveBody {
+  text: String!
+}
+
+type InteractiveHeader {
+  type: String!
+  text: String
+  image: MediaContent
+  video: MediaContent
+  document: MediaContent
+}
+
+type InteractiveFooter {
+  text: String!
+}
+
+type ConversationFallback {
+  from: PhoneNumber
+  to: PhoneNumber
+  originator: PhoneNumber
+}
+
+type ConversationMessagePage {
+  items: [ConversationMessage!]!
+  totalCount: Int!
+  nextCursor: String
+}
+
+type Contact {
+  id: ID!
+  href: URL
+  msisdn: PhoneNumber
+  firstName: String
+  lastName: String
+  displayName: String
+  email: String
+  customDetails: JSON
+  groups: ContactGroupPage!
+  icon: URL
+  createdDatetime: DateTime!
+  updatedDatetime: DateTime!
+}
+
+type ContactGroup {
+  id: ID!
+  href: URL
+  name: String!
+  contacts: ContactPage!
+  createdDatetime: DateTime!
+  updatedDatetime: DateTime!
+}
+
+type ContactPage {
+  items: [Contact!]!
+  totalCount: Int!
+  nextCursor: String
+}
+
+type ContactGroupPage {
+  items: [ContactGroup!]!
+  totalCount: Int!
+  nextCursor: String
+}
+
+type VoiceCall {
+  id: ID!
+  href: URL
+  status: VoiceCallStatus!
+  source: PhoneNumber!
+  destination: PhoneNumber!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  endedAt: DateTime
+  duration: Int
+  legs: [VoiceLeg!]!
+  webhook: URL
+  webhookMethod: String
+}
+
+type VoiceLeg {
+  id: ID!
+  callId: ID!
+  source: PhoneNumber!
+  destination: PhoneNumber!
+  status: VoiceLegStatus!
+  direction: VoiceCallDirection!
+  duration: Int
+  cost: Float
+  currency: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  answeredAt: DateTime
+  endedAt: DateTime
+  recording: VoiceRecording
+}
+
+type VoiceRecording {
+  id: ID!
+  format: String!
+  legId: ID!
+  status: String!
+  duration: Int
+  type: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type VoiceMessage {
+  id: ID!
+  href: URL
+  originator: PhoneNumber!
+  body: String!
+  language: String!
+  voice: String!
+  repeat: Int!
+  ifMachine: String
+  scheduledDatetime: DateTime
+  createdDatetime: DateTime!
+  recipients: MessageRecipientList!
+}
+
+type Verification {
+  id: ID!
+  href: URL
+  recipient: PhoneNumber!
+  reference: String
+  messages: MessageRecipientList!
+  status: VerifyStatus!
+  createdDatetime: DateTime!
+  validUntilDatetime: DateTime!
+}
+
+type PhoneNumberLookup {
+  href: URL!
+  countryCode: String!
+  countryPrefix: String!
+  phoneNumber: PhoneNumber!
+  type: NumberType!
+  formats: PhoneNumberFormats!
+  hlr: HlrResult
+}
+
+type PhoneNumberFormats {
+  e164: String!
+  international: String!
+  national: String!
+  rfc3966: String!
+}
+
+type HlrResult {
+  id: ID!
+  network: String
+  mcc: String
+  mnc: String
+  ported: Boolean
+  roaming: Boolean
+  countryCode: String
+  countryName: String
+  countryPrefix: String
+  networkType: HlrNetworkType
+  status: String!
+  createdDatetime: DateTime!
+  validUntilDatetime: DateTime
+}
+
+type PhoneNumber {
+  number: String!
+  country: String!
+  region: String
+  locality: String
+  features: [NumberCapability!]!
+  type: NumberType!
+  status: String!
+  createdAt: DateTime!
+  renewalAt: DateTime
+}
+
+type PhoneNumberPage {
+  items: [PhoneNumber!]!
+  totalCount: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type AvailablePhoneNumber {
+  number: String!
+  country: String!
+  region: String
+  locality: String
+  features: [NumberCapability!]!
+  type: NumberType!
+  monthlyPrice: Price!
+  setupPrice: Price!
+}
+
+type Balance {
+  payment: BalancePaymentType!
+  type: String!
+  amount: Float!
+  currency: String!
+}
+
+type MessageTemplate {
+  id: ID!
+  name: String!
+  language: String!
+  status: TemplateStatus!
+  category: TemplateCategory!
+  components: [TemplateComponent!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  rejectedReason: String
+}
+
+type TemplateComponent {
+  type: TemplateComponentType!
+  format: String
+  text: String
+  buttons: [TemplateButton!]
+  example: JSON
+}
+
+type TemplateButton {
+  type: TemplateButtonType!
+  text: String!
+  url: URL
+  phoneNumber: PhoneNumber
+  otpType: String
+}
+
+type Channel {
+  id: ID!
+  name: String!
+  platform: ChannelPlatform!
+  status: String!
+  createdDatetime: DateTime!
+  updatedDatetime: DateTime!
+  platformDetails: JSON
+}
+
+type Flow {
+  id: ID!
+  title: String!
+  triggerStep: FlowStep!
+  steps: [FlowStep!]!
+  active: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type FlowStep {
+  id: ID!
+  action: String!
+  options: JSON
+  onSuccess: [ID!]
+  onFailure: [ID!]
+}
+
+type Webhook {
+  id: ID!
+  url: URL!
+  channelId: ID
+  events: [WebhookEvent!]!
+  active: Boolean!
+  createdDatetime: DateTime!
+  updatedDatetime: DateTime!
+}
+
+type WorkspaceSettings {
+  id: ID!
+  name: String!
+  timezone: String!
+  currency: String!
+  defaultCountry: String
+  webhookSigningKey: String
+}
+
+type ConversationPage {
+  items: [Conversation!]!
+  totalCount: Int!
+  nextCursor: String
+}
+
+type MessagePage {
+  items: [Message!]!
+  totalCount: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type VoiceCallPage {
+  items: [VoiceCall!]!
+  totalCount: Int!
+  nextCursor: String
+}
+
+type TemplatePage {
+  items: [MessageTemplate!]!
+  totalCount: Int!
+  limit: Int!
+  offset: Int!
+}
+
+type WebhookPage {
+  items: [Webhook!]!
+  totalCount: Int!
+}
+
+type ChannelPage {
+  items: [Channel!]!
+  totalCount: Int!
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+input SendSmsInput {
+  originator: String!
+  recipients: [String!]!
+  body: String!
+  type: MessageType
+  reference: String
+  gateway: Int
+  typeDetails: JSON
+  datacoding: String
+  validity: Int
+  scheduledDatetime: DateTime
+  reportUrl: URL
+  mclass: Int
+}
+
+input SendVoiceMessageInput {
+  originator: String!
+  recipients: [String!]!
+  body: String!
+  language: String
+  voice: String
+  repeat: Int
+  ifMachine: String
+  scheduledDatetime: DateTime
+  reportUrl: URL
+}
+
+input CreateConversationMessageInput {
+  conversationId: ID!
+  channelId: ID!
+  type: ConversationMessageType!
+  content: ConversationMessageContentInput!
+  fallback: ConversationFallbackInput
+}
+
+input ConversationMessageContentInput {
+  text: String
+  image: MediaContentInput
+  video: MediaContentInput
+  audio: MediaContentInput
+  file: MediaContentInput
+  location: LocationContentInput
+  hsm: HsmContentInput
+}
+
+input MediaContentInput {
+  url: URL
+  caption: String
+  filename: String
+}
+
+input LocationContentInput {
+  latitude: Float!
+  longitude: Float!
+  name: String
+  address: String
+}
+
+input HsmContentInput {
+  namespace: String!
+  templateName: String!
+  language: HsmLanguageInput!
+  params: [HsmParamInput!]!
+}
+
+input HsmLanguageInput {
+  policy: String!
+  code: String!
+}
+
+input HsmParamInput {
+  default: String!
+}
+
+input ConversationFallbackInput {
+  from: String
+  to: String
+  originator: String
+}
+
+input CreateContactInput {
+  msisdn: String
+  firstName: String
+  lastName: String
+  email: String
+  customDetails: JSON
+}
+
+input UpdateContactInput {
+  firstName: String
+  lastName: String
+  email: String
+  customDetails: JSON
+}
+
+input CreateContactGroupInput {
+  name: String!
+}
+
+input InitiateVoiceCallInput {
+  source: String!
+  destination: String!
+  callFlow: JSON
+  webhook: URL
+  webhookMethod: String
+}
+
+input CreateVerificationInput {
+  recipient: String!
+  originator: String
+  reference: String
+  type: String
+  timeout: Int
+  tokenLength: Int
+  tokenValue: String
+  voice: String
+  language: String
+}
+
+input CreateTemplateInput {
+  name: String!
+  language: String!
+  category: TemplateCategory!
+  components: [TemplateComponentInput!]!
+}
+
+input TemplateComponentInput {
+  type: TemplateComponentType!
+  format: String
+  text: String
+  buttons: [TemplateButtonInput!]
+  example: JSON
+}
+
+input TemplateButtonInput {
+  type: TemplateButtonType!
+  text: String!
+  url: URL
+  phoneNumber: String
+  otpType: String
+}
+
+input PurchaseNumberInput {
+  number: String!
+  billingIntervalMonths: Int
+}
+
+input CreateWebhookInput {
+  url: URL!
+  channelId: ID
+  events: [WebhookEvent!]!
+}
+
+input UpdateWebhookInput {
+  url: URL
+  events: [WebhookEvent!]
+  active: Boolean
+}
+
+input MessageFilter {
+  direction: MessageDirection
+  status: MessageStatus
+  originator: String
+  recipient: String
+  from: DateTime
+  to: DateTime
+}
+
+input ConversationFilter {
+  status: ConversationStatus
+  contactId: ID
+  channelId: ID
+  platform: ChannelPlatform
+}
+
+input ContactFilter {
+  msisdn: String
+  firstName: String
+  lastName: String
+  email: String
+  groupId: ID
+}
+
+input NumberFilter {
+  country: String
+  type: NumberType
+  features: [NumberCapability!]
+}
+
+# ─────────────────────────────────────────────
+# Query Root
+# ─────────────────────────────────────────────
+
+type Query {
+  # Account
+  balance: Balance!
+  workspaceSettings: WorkspaceSettings!
+
+  # Messaging
+  message(id: ID!): Message
+  messages(filter: MessageFilter, limit: Int, offset: Int): MessagePage!
+
+  # Conversations
+  conversation(id: ID!): Conversation
+  conversations(filter: ConversationFilter, limit: Int, cursor: String): ConversationPage!
+  conversationMessages(conversationId: ID!, limit: Int, cursor: String): ConversationMessagePage!
+  conversationMessage(id: ID!): ConversationMessage
+
+  # Contacts
+  contact(id: ID!): Contact
+  contacts(filter: ContactFilter, limit: Int, cursor: String): ContactPage!
+  contactGroup(id: ID!): ContactGroup
+  contactGroups(limit: Int, cursor: String): ContactGroupPage!
+
+  # Voice
+  voiceCall(id: ID!): VoiceCall
+  voiceCalls(limit: Int, cursor: String): VoiceCallPage!
+  voiceLeg(callId: ID!, legId: ID!): VoiceLeg
+  voiceRecording(callId: ID!, legId: ID!, recordingId: ID!): VoiceRecording
+
+  # Verification
+  verification(id: ID!): Verification
+
+  # Phone Number Lookup
+  lookupPhoneNumber(phoneNumber: String!, countryCode: String): PhoneNumberLookup
+  hlrLookup(id: ID!): HlrResult
+
+  # Numbers
+  ownedNumbers(filter: NumberFilter, limit: Int, offset: Int): PhoneNumberPage!
+  availableNumbers(country: String!, type: NumberType, features: [NumberCapability!], limit: Int, offset: Int): [AvailablePhoneNumber!]!
+
+  # Templates
+  messageTemplate(id: ID!): MessageTemplate
+  messageTemplates(language: String, status: TemplateStatus, limit: Int, offset: Int): TemplatePage!
+
+  # Channels
+  channel(id: ID!): Channel
+  channels(platform: ChannelPlatform, limit: Int): ChannelPage!
+
+  # Webhooks
+  webhook(id: ID!): Webhook
+  webhooks: WebhookPage!
+
+  # Flows
+  flow(id: ID!): Flow
+}
+
+# ─────────────────────────────────────────────
+# Mutation Root
+# ─────────────────────────────────────────────
+
+type Mutation {
+  # Messaging
+  sendSms(input: SendSmsInput!): Message!
+  sendVoiceMessage(input: SendVoiceMessageInput!): VoiceMessage!
+
+  # Conversations
+  createConversationMessage(input: CreateConversationMessageInput!): ConversationMessage!
+  updateConversationStatus(id: ID!, status: ConversationStatus!): Conversation!
+
+  # Contacts
+  createContact(input: CreateContactInput!): Contact!
+  updateContact(id: ID!, input: UpdateContactInput!): Contact!
+  deleteContact(id: ID!): Boolean!
+  createContactGroup(input: CreateContactGroupInput!): ContactGroup!
+  deleteContactGroup(id: ID!): Boolean!
+  addContactToGroup(contactId: ID!, groupId: ID!): Boolean!
+  removeContactFromGroup(contactId: ID!, groupId: ID!): Boolean!
+
+  # Voice
+  initiateVoiceCall(input: InitiateVoiceCallInput!): VoiceCall!
+  deleteVoiceCall(id: ID!): Boolean!
+  deleteVoiceRecording(callId: ID!, legId: ID!, recordingId: ID!): Boolean!
+
+  # Verification
+  createVerification(input: CreateVerificationInput!): Verification!
+  verifyToken(id: ID!, token: String!): Verification!
+  deleteVerification(id: ID!): Boolean!
+
+  # Numbers
+  purchaseNumber(input: PurchaseNumberInput!): PhoneNumber!
+  releaseNumber(number: String!): Boolean!
+  updateNumberFeatures(number: String!, features: [NumberCapability!]!): PhoneNumber!
+
+  # Templates
+  createMessageTemplate(input: CreateTemplateInput!): MessageTemplate!
+  deleteMessageTemplate(id: ID!): Boolean!
+
+  # Webhooks
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  updateWebhook(id: ID!, input: UpdateWebhookInput!): Webhook!
+  deleteWebhook(id: ID!): Boolean!
+}
