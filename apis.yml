@@ -281,6 +281,6 @@ common:
     sources:
       - https://bird.com/en/pricing
     updated: '2026-05-04'
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://bird.com/llms.txt
 description: Build powerful apps using the fastest and most reliable cloud communications APIs.
