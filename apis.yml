@@ -248,6 +248,12 @@ apis:
       programmatically manage the templates required for sending WhatsApp Business notifications and messages. The API
       handles template submission, approval status tracking, and lifecycle management.
 common:
+  - type: VulnerabilityDisclosure
+    url: security/messagebird-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/messagebird-domain-security.yml
+  - type: Authentication
+    url: authentication/messagebird-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/messagebird
   - type: LinkedIn

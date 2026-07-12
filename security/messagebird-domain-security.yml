@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: developers.messagebird.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 03:47:49 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: rest.messagebird.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 18:34:36 2026 GMT
+  hsts: null
+- host: voice.messagebird.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 18:34:36 2026 GMT
+  hsts: null
+domains:
+- domain: messagebird.com
+  dnssec: false
+  caa:
+  - 0 issue "trust-provider.com"
+  - 0 issue "usertrust.com"
+  - 0 issue "amazon.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "amazontrust.com"
+  - 0 issue "awstrust.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

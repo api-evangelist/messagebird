@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/messagebird-balance-openapi.yml, openapi/messagebird-contacts-openapi.yml, openapi/messagebird-conversations-openapi.yml,
+  openapi/messagebird-hlr-openapi.yml, openapi/messagebird-integrations-openapi.yml, openapi/messagebird-lookup-openapi.yml,
+  openapi/messagebird-numbers-openapi.yml, openapi/messagebird-sms-messaging-openapi.yml, openapi/messagebird-verify-openapi.yml,
+  openapi/messagebird-voice-calling-openapi.yml, openapi/messagebird-voice-messaging-openapi.yml,
+  openapi/messagebird-whatsapp-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: accessKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Access key authentication in the form of 'AccessKey {accessKey}'.
+  sources:
+  - openapi/messagebird-balance-openapi.yml
+  - openapi/messagebird-contacts-openapi.yml
+  - openapi/messagebird-conversations-openapi.yml
+  - openapi/messagebird-hlr-openapi.yml
+  - openapi/messagebird-integrations-openapi.yml
+  - openapi/messagebird-lookup-openapi.yml
+  - openapi/messagebird-numbers-openapi.yml
+  - openapi/messagebird-sms-messaging-openapi.yml
+  - openapi/messagebird-verify-openapi.yml
+  - openapi/messagebird-voice-calling-openapi.yml
+  - openapi/messagebird-voice-messaging-openapi.yml
+  - openapi/messagebird-whatsapp-openapi.yml
