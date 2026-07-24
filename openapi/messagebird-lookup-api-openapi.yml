@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers Lookup API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Lookup
+  description: Operations for looking up and validating phone numbers.
+paths:
+  /lookup/{phoneNumber}:
+    get:
+      operationId: lookupPhoneNumber
+      summary: Look up a phone number
+      description: Performs a phone number validation and returns formatting information, country details, and operator data for the specified number.
+      tags:
+      - Lookup
+      parameters:
+      - $ref: '#/components/parameters/phoneNumberParam'
+      - name: countryCode
+        in: query
+        required: false
+        description: The country code to use for parsing the phone number if it is provided in a local format.
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+      responses:
+        '200':
+          description: Lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lookup'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Phone number not found
+components:
+  schemas:
+    Lookup:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+          description: The URL of the lookup resource.
+        countryCode:
+          type: string
+          description: The two-letter ISO 3166-1 country code.
+        countryPrefix:
+          type: integer
+          description: The international dialing prefix for the country.
+        phoneNumber:
+          type: integer
+          format: int64
+          description: The phone number in E.164 format.
+        type:
+          type: string
+          description: The type of phone number.
+          enum:
+          - fixed line
+          - mobile
+          - fixed line or mobile
+          - toll free
+          - premium rate
+          - shared cost
+          - voip
+          - personal number
+          - pager
+          - universal access number
+          - unknown
+        formats:
+          type: object
+          description: Alternative formats for the phone number.
+          properties:
+            e164:
+              type: string
+              description: The phone number in E.164 format.
+            international:
+              type: string
+              description: The phone number in international format.
+            national:
+              type: string
+              description: The phone number in national format.
+            rfc3966:
+              type: string
+              description: The phone number in RFC 3966 format.
+        hlr:
+          $ref: '#/components/schemas/HlrLookup'
+    HlrLookup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the HLR lookup.
+        network:
+          type: integer
+          description: The MCC-MNC code of the mobile network operator.
+        reference:
+          type: string
+          description: The client reference.
+        status:
+          type: string
+          description: The status of the HLR lookup.
+          enum:
+          - sent
+          - absent
+          - active
+          - unknown
+          - failed
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the HLR lookup was created.
+        statusDatetime:
+          type: string
+          format: date-time
+          description: The date and time of the last status update.
+  parameters:
+    phoneNumberParam:
+      name: phoneNumber
+      in: path
+      required: true
+      description: The phone number to look up in international format.
+      schema:
+        type: string
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

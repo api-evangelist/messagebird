@@ -1,0 +1,675 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers Messages API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Messages
+  description: Operations for sending and retrieving messages within conversations.
+paths:
+  /conversations/{conversationId}/messages:
+    get:
+      operationId: listConversationMessages
+      summary: List messages in a conversation
+      description: Retrieves a paginated list of all messages within a specific conversation. Messages are returned with the newest first.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/conversationIdParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: A list of messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationMessageList'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Conversation not found
+    post:
+      operationId: sendConversationMessage
+      summary: Send a message in a conversation
+      description: Sends a new message within an existing conversation. The message will be delivered through the channel associated with the conversation.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/conversationIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationMessageSend'
+      responses:
+        '200':
+          description: Message sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationMessage'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Conversation not found
+  /send:
+    post:
+      operationId: sendMessage
+      summary: Send a message
+      description: Sends a message to a recipient without requiring an existing conversation. MessageBird will automatically match or create a conversation for the recipient.
+      tags:
+      - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageSend'
+      responses:
+        '200':
+          description: Message accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationMessage'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /messages/{messageId}:
+    get:
+      operationId: viewMessage
+      summary: View a message
+      description: Retrieves the details of a specific message by its unique identifier.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/messageIdParam'
+      responses:
+        '200':
+          description: Message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationMessage'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Message not found
+  /messages:
+    get:
+      operationId: listMessages
+      summary: List messages
+      description: Retrieves a list of SMS messages that have been sent or received. Messages are returned in reverse chronological order.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/offsetParam_2'
+      - $ref: '#/components/parameters/limitParam_2'
+      responses:
+        '200':
+          description: A list of messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createMessage
+      summary: Send a new message
+      description: Creates a new SMS message and sends it to the specified recipients. A single message can be sent to up to 50 recipients at a time. Messages longer than 160 characters are automatically split into multiple parts.
+      tags:
+      - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MessageCreate'
+      responses:
+        '201':
+          description: Message created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /messages/{id}:
+    get:
+      operationId: viewMessage
+      summary: View a message
+      description: Retrieves the information of an existing inbound or outbound SMS message. You only need to supply the unique message ID that was returned upon creation or receiving.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/messageIdParam_2'
+      responses:
+        '200':
+          description: Message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Message not found
+    delete:
+      operationId: deleteMessage
+      summary: Delete a message
+      description: Deletes an existing message. You only need to supply the unique message ID that was returned upon creation.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/messageIdParam_2'
+      responses:
+        '204':
+          description: Message deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Message not found
+components:
+  schemas:
+    ConversationMessageList:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: The offset of the result set.
+        limit:
+          type: integer
+          description: The limit applied to the result set.
+        count:
+          type: integer
+          description: The number of items returned.
+        totalCount:
+          type: integer
+          description: The total number of messages.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationMessage'
+    ConversationMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the message.
+        conversationId:
+          type: string
+          description: The conversation this message belongs to.
+        channelId:
+          type: string
+          description: The channel through which the message was sent or received.
+        platform:
+          type: string
+          description: The platform of the channel.
+        to:
+          type: string
+          description: The recipient identifier.
+        from:
+          type: string
+          description: The sender identifier.
+        direction:
+          type: string
+          description: The direction of the message.
+          enum:
+          - sent
+          - received
+        status:
+          type: string
+          description: The delivery status of the message.
+          enum:
+          - accepted
+          - pending
+          - sent
+          - delivered
+          - read
+          - failed
+          - deleted
+        type:
+          type: string
+          description: The type of message content.
+        content:
+          $ref: '#/components/schemas/MessageContent'
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the message was created.
+        updatedDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the message was last updated.
+    MessageSend:
+      type: object
+      required:
+      - to
+      - from
+      - type
+      - content
+      properties:
+        to:
+          type: string
+          description: The recipient identifier.
+        from:
+          type: string
+          description: The channel identifier to send from.
+        type:
+          type: string
+          description: The type of message content.
+          enum:
+          - text
+          - image
+          - video
+          - audio
+          - file
+          - location
+          - hsm
+        content:
+          $ref: '#/components/schemas/MessageContent'
+        reportUrl:
+          type: string
+          format: uri
+          description: The URL for delivery status callbacks.
+    MessageList:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: The offset of the result set.
+        limit:
+          type: integer
+          description: The limit applied to the result set.
+        count:
+          type: integer
+          description: The number of items in the current result set.
+        totalCount:
+          type: integer
+          description: The total number of items available.
+        links:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              description: Link to the first page of results.
+            previous:
+              type: string
+              format: uri
+              description: Link to the previous page of results.
+            next:
+              type: string
+              format: uri
+              description: Link to the next page of results.
+            last:
+              type: string
+              format: uri
+              description: Link to the last page of results.
+        items:
+          type: array
+          description: The list of messages.
+          items:
+            $ref: '#/components/schemas/Message'
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique random ID for the message, generated by the MessageBird platform.
+        href:
+          type: string
+          format: uri
+          description: The URL of the message resource.
+        direction:
+          type: string
+          description: The direction of the message. Can be mt (mobile terminated) for outbound or mo (mobile originated) for inbound.
+          enum:
+          - mt
+          - mo
+        type:
+          type: string
+          description: The type of message.
+          enum:
+          - sms
+          - binary
+          - flash
+        originator:
+          type: string
+          description: The sender of the message.
+        body:
+          type: string
+          description: The body of the SMS message.
+        reference:
+          type: string
+          description: The client reference for the message.
+        validity:
+          type: integer
+          description: The validity period of the message in seconds.
+        gateway:
+          type: integer
+          description: The SMS route used to send the message.
+        typeDetails:
+          type: object
+          description: Additional type-specific details.
+        datacoding:
+          type: string
+          description: The encoding used for the message body.
+        mclass:
+          type: integer
+          description: The message class.
+        scheduledDatetime:
+          type: string
+          format: date-time
+          description: The scheduled date and time of the message.
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the message was created.
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+    MessageContent:
+      type: object
+      description: The content of the message. The structure depends on the message type.
+      properties:
+        text:
+          type: string
+          description: The text content of the message, used when type is text.
+        image:
+          type: object
+          description: The image content, used when type is image.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the image.
+            caption:
+              type: string
+              description: An optional caption for the image.
+        video:
+          type: object
+          description: The video content, used when type is video.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the video.
+            caption:
+              type: string
+              description: An optional caption for the video.
+        audio:
+          type: object
+          description: The audio content, used when type is audio.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the audio file.
+        file:
+          type: object
+          description: The file content, used when type is file.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the file.
+            caption:
+              type: string
+              description: An optional caption for the file.
+        location:
+          type: object
+          description: The location content, used when type is location.
+          properties:
+            latitude:
+              type: number
+              format: double
+              description: The latitude coordinate.
+            longitude:
+              type: number
+              format: double
+              description: The longitude coordinate.
+        hsm:
+          type: object
+          description: The HSM (Highly Structured Message) template content, used for WhatsApp template messages.
+          properties:
+            namespace:
+              type: string
+              description: The namespace of the template.
+            templateName:
+              type: string
+              description: The name of the template.
+            language:
+              type: object
+              properties:
+                policy:
+                  type: string
+                  description: The language policy.
+                code:
+                  type: string
+                  description: The language code.
+            params:
+              type: array
+              description: The template parameters.
+              items:
+                type: object
+                properties:
+                  default:
+                    type: string
+                    description: The default value for the parameter.
+    Recipients:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of recipients.
+        totalSentCount:
+          type: integer
+          description: The number of messages sent.
+        totalDeliveredCount:
+          type: integer
+          description: The number of messages delivered.
+        totalDeliveryFailedCount:
+          type: integer
+          description: The number of messages that failed to deliver.
+        items:
+          type: array
+          description: The list of recipient details.
+          items:
+            $ref: '#/components/schemas/Recipient'
+    MessageCreate:
+      type: object
+      required:
+      - recipients
+      - originator
+      - body
+      properties:
+        recipients:
+          type: array
+          description: The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.
+          items:
+            type: string
+          minItems: 1
+          maxItems: 50
+        originator:
+          type: string
+          description: The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.
+          maxLength: 17
+        body:
+          type: string
+          description: The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.
+          maxLength: 1377
+        type:
+          type: string
+          description: The type of message. Can be sms, binary, or flash.
+          enum:
+          - sms
+          - binary
+          - flash
+          default: sms
+        reference:
+          type: string
+          description: A client reference for tracking purposes.
+        reportUrl:
+          type: string
+          format: uri
+          description: The URL for delivery report callbacks for this message.
+        validity:
+          type: integer
+          description: The validity period of the message in seconds.
+        gateway:
+          type: integer
+          description: The SMS route used to send the message.
+        typeDetails:
+          type: object
+          description: Additional type-specific details for the message.
+        datacoding:
+          type: string
+          description: The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.
+          enum:
+          - plain
+          - unicode
+          - auto
+          default: plain
+        mclass:
+          type: integer
+          description: The message class. Set to 1 for flash messages.
+          enum:
+          - 0
+          - 1
+        scheduledDatetime:
+          type: string
+          format: date-time
+          description: The scheduled date and time of the message in RFC 3339 format.
+    ConversationMessageSend:
+      type: object
+      required:
+      - type
+      - content
+      properties:
+        type:
+          type: string
+          description: The type of message content.
+          enum:
+          - text
+          - image
+          - video
+          - audio
+          - file
+          - location
+          - hsm
+        content:
+          $ref: '#/components/schemas/MessageContent'
+        channelId:
+          type: string
+          description: The channel to use for sending. If omitted, the last used channel in the conversation is used.
+        reportUrl:
+          type: string
+          format: uri
+          description: The URL for delivery status callbacks.
+    Recipient:
+      type: object
+      properties:
+        recipient:
+          type: integer
+          format: int64
+          description: The recipient phone number.
+        status:
+          type: string
+          description: The delivery status of the message.
+          enum:
+          - scheduled
+          - sent
+          - buffered
+          - delivered
+          - expired
+          - delivery_failed
+        statusDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the status was last updated.
+  parameters:
+    messageIdParam_2:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the message.
+      schema:
+        type: string
+    limitParam_2:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
+        maximum: 250
+    messageIdParam:
+      name: messageId
+      in: path
+      required: true
+      description: The unique identifier of the message.
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
+    offsetParam_2:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip before starting to collect the result set.
+      schema:
+        type: integer
+        default: 0
+    conversationIdParam:
+      name: conversationId
+      in: path
+      required: true
+      description: The unique identifier of the conversation.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip.
+      schema:
+        type: integer
+        default: 0
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

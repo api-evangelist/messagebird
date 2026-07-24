@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers HLR API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: HLR
+  description: Operations for creating and viewing HLR network queries.
+paths:
+  /hlr:
+    post:
+      operationId: createHlr
+      summary: Create an HLR
+      description: Creates a new HLR object and sends a network query for the specified phone number. MessageBird returns the created HLR object with each request.
+      tags:
+      - HLR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HlrCreate'
+      responses:
+        '201':
+          description: HLR created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hlr'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /hlr/{id}:
+    get:
+      operationId: viewHlr
+      summary: View an HLR
+      description: Retrieves the details of an existing HLR by its unique identifier. Use this to check the result of a previously submitted HLR query.
+      tags:
+      - HLR
+      parameters:
+      - $ref: '#/components/parameters/hlrIdParam'
+      responses:
+        '200':
+          description: HLR details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hlr'
+        '401':
+          description: Unauthorized
+        '404':
+          description: HLR not found
+  /lookup/{phoneNumber}/hlr:
+    post:
+      operationId: createHlrLookup
+      summary: Request an HLR lookup
+      description: Creates a new HLR lookup for the specified phone number. The lookup is performed asynchronously on the mobile network.
+      tags:
+      - HLR
+      parameters:
+      - $ref: '#/components/parameters/phoneNumberParam'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  description: A client reference for tracking purposes.
+                countryCode:
+                  type: string
+                  description: The country code for parsing the phone number.
+                  minLength: 2
+                  maxLength: 2
+      responses:
+        '201':
+          description: HLR lookup created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HlrLookup'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+    get:
+      operationId: viewHlrLookup
+      summary: View an HLR lookup
+      description: Retrieves the result of an HLR lookup for the specified phone number.
+      tags:
+      - HLR
+      parameters:
+      - $ref: '#/components/parameters/phoneNumberParam'
+      responses:
+        '200':
+          description: HLR lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HlrLookup'
+        '401':
+          description: Unauthorized
+        '404':
+          description: HLR lookup not found
+components:
+  schemas:
+    HlrCreate:
+      type: object
+      required:
+      - msisdn
+      properties:
+        msisdn:
+          type: integer
+          format: int64
+          description: The phone number to perform the HLR query on in international format.
+        reference:
+          type: string
+          description: A client reference for tracking purposes.
+    Hlr:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the HLR.
+        href:
+          type: string
+          format: uri
+          description: The URL of the HLR resource.
+        msisdn:
+          type: integer
+          format: int64
+          description: The phone number queried.
+        network:
+          type: integer
+          description: The MCC-MNC code of the mobile network operator.
+        reference:
+          type: string
+          description: The client reference.
+        status:
+          type: string
+          description: The status of the HLR query.
+          enum:
+          - sent
+          - absent
+          - active
+          - unknown
+          - failed
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the HLR was created.
+        statusDatetime:
+          type: string
+          format: date-time
+          description: The date and time of the last status update.
+    HlrLookup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the HLR lookup.
+        network:
+          type: integer
+          description: The MCC-MNC code of the mobile network operator.
+        reference:
+          type: string
+          description: The client reference.
+        status:
+          type: string
+          description: The status of the HLR lookup.
+          enum:
+          - sent
+          - absent
+          - active
+          - unknown
+          - failed
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the HLR lookup was created.
+        statusDatetime:
+          type: string
+          format: date-time
+          description: The date and time of the last status update.
+  parameters:
+    phoneNumberParam:
+      name: phoneNumber
+      in: path
+      required: true
+      description: The phone number to look up in international format.
+      schema:
+        type: string
+    hlrIdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the HLR.
+      schema:
+        type: string
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

@@ -1,0 +1,333 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers Voice Messages API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Voice Messages
+  description: Operations for sending and managing text-to-speech voice messages.
+paths:
+  /voicemessages:
+    get:
+      operationId: listVoiceMessages
+      summary: List voice messages
+      description: Retrieves a list of voice messages that have been sent. Messages are returned in reverse chronological order.
+      tags:
+      - Voice Messages
+      parameters:
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: A list of voice messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceMessageList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createVoiceMessage
+      summary: Send a voice message
+      description: Creates a new voice message and delivers it to the specified recipients using text-to-speech. A maximum of 50 recipients can be specified per request.
+      tags:
+      - Voice Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceMessageCreate'
+      responses:
+        '201':
+          description: Voice message created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceMessage'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /voicemessages/{id}:
+    get:
+      operationId: viewVoiceMessage
+      summary: View a voice message
+      description: Retrieves the details of an existing voice message by its unique identifier.
+      tags:
+      - Voice Messages
+      parameters:
+      - $ref: '#/components/parameters/voiceMessageIdParam'
+      responses:
+        '200':
+          description: Voice message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceMessage'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voice message not found
+    delete:
+      operationId: deleteVoiceMessage
+      summary: Delete a voice message
+      description: Deletes an existing voice message by its unique identifier.
+      tags:
+      - Voice Messages
+      parameters:
+      - $ref: '#/components/parameters/voiceMessageIdParam'
+      responses:
+        '204':
+          description: Voice message deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Voice message not found
+components:
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
+    voiceMessageIdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the voice message.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip before starting to collect the result set.
+      schema:
+        type: integer
+        default: 0
+  schemas:
+    VoiceMessageList:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: The offset of the result set.
+        limit:
+          type: integer
+          description: The limit applied to the result set.
+        count:
+          type: integer
+          description: The number of items returned.
+        totalCount:
+          type: integer
+          description: The total number of items available.
+        links:
+          type: object
+          properties:
+            first:
+              type: string
+              format: uri
+              description: Link to the first page.
+            previous:
+              type: string
+              format: uri
+              description: Link to the previous page.
+            next:
+              type: string
+              format: uri
+              description: Link to the next page.
+            last:
+              type: string
+              format: uri
+              description: Link to the last page.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceMessage'
+    VoiceMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the voice message.
+        href:
+          type: string
+          format: uri
+          description: The URL of the voice message resource.
+        body:
+          type: string
+          description: The text content of the voice message.
+        originator:
+          type: string
+          description: The caller ID displayed to the recipient.
+        reference:
+          type: string
+          description: The client reference for the voice message.
+        language:
+          type: string
+          description: The language used for text-to-speech.
+        voice:
+          type: string
+          description: The voice gender used for text-to-speech.
+        repeat:
+          type: integer
+          description: The number of times the message is repeated.
+        ifMachine:
+          type: string
+          description: The behavior when an answering machine is detected.
+        scheduledDatetime:
+          type: string
+          format: date-time
+          description: The scheduled date and time for the message.
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the voice message was created.
+        recipients:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: The total number of recipients.
+            totalSentCount:
+              type: integer
+              description: The number of messages sent.
+            totalDeliveredCount:
+              type: integer
+              description: The number of messages delivered.
+            totalDeliveryFailedCount:
+              type: integer
+              description: The number of messages that failed delivery.
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  recipient:
+                    type: integer
+                    format: int64
+                    description: The recipient phone number.
+                  status:
+                    type: string
+                    description: The delivery status.
+                  statusDatetime:
+                    type: string
+                    format: date-time
+                    description: The date and time of the last status update.
+    VoiceMessageCreate:
+      type: object
+      required:
+      - recipients
+      - body
+      properties:
+        recipients:
+          type: array
+          description: The phone numbers that will receive the voice message in international format. A maximum of 50 recipients per request.
+          items:
+            type: string
+          minItems: 1
+          maxItems: 50
+        body:
+          type: string
+          description: The text content to be converted to speech and delivered as a voice message.
+        originator:
+          type: string
+          description: The caller ID to display to the recipient.
+        reference:
+          type: string
+          description: A client reference for tracking purposes.
+        reportUrl:
+          type: string
+          format: uri
+          description: The URL for delivery report callbacks.
+        language:
+          type: string
+          description: The language of the text-to-speech voice. Supports 26 languages.
+          enum:
+          - cy-gb
+          - da-dk
+          - de-de
+          - el-gr
+          - en-au
+          - en-gb
+          - en-gb-wls
+          - en-in
+          - en-us
+          - es-es
+          - es-mx
+          - es-us
+          - fr-ca
+          - fr-fr
+          - id-id
+          - is-is
+          - it-it
+          - ja-jp
+          - ko-kr
+          - ms-my
+          - nb-no
+          - nl-nl
+          - pl-pl
+          - pt-br
+          - pt-pt
+          - ro-ro
+          - ru-ru
+          - sv-se
+          - ta-in
+          - th-th
+          - tr-tr
+          - vi-vn
+          - zh-cn
+          - zh-hk
+          default: en-gb
+        voice:
+          type: string
+          description: The voice gender for text-to-speech.
+          enum:
+          - male
+          - female
+          default: female
+        repeat:
+          type: integer
+          description: The number of times the message should be repeated.
+          minimum: 1
+          maximum: 10
+          default: 1
+        ifMachine:
+          type: string
+          description: What to do when an answering machine is detected.
+          enum:
+          - continue
+          - delay
+          - hangup
+          default: continue
+        machineTimeout:
+          type: integer
+          description: The timeout in milliseconds for answering machine detection.
+        scheduledDatetime:
+          type: string
+          format: date-time
+          description: The scheduled date and time for the voice message in RFC 3339 format.
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

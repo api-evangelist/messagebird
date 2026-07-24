@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Available Numbers Balance API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Balance
+  description: Operations for retrieving account balance information.
+paths:
+  /balance:
+    get:
+      operationId: getBalance
+      summary: Get account balance
+      description: Retrieves the current account balance, including the payment type, available amount, and currency.
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: Account balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Balance'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Balance:
+      type: object
+      properties:
+        payment:
+          type: string
+          description: The payment type for the account. Can be prepaid or postpaid.
+          enum:
+          - prepaid
+          - postpaid
+        type:
+          type: string
+          description: The type of balance.
+          enum:
+          - credits
+          - euros
+        amount:
+          type: number
+          format: double
+          description: The available balance amount.
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

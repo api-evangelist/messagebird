@@ -1,0 +1,270 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers Templates API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Templates
+  description: Operations for managing message templates on supported platforms.
+paths:
+  /v2/platforms/whatsapp/templates:
+    get:
+      operationId: listWhatsAppTemplates
+      summary: List WhatsApp templates
+      description: Retrieves a list of all WhatsApp message templates associated with the account.
+      tags:
+      - Templates
+      parameters:
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: A list of templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createWhatsAppTemplate
+      summary: Create a WhatsApp template
+      description: Creates a new WhatsApp message template and submits it for approval. Templates must be approved by WhatsApp before they can be used to send messages.
+      tags:
+      - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateCreate'
+      responses:
+        '201':
+          description: Template created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /v2/platforms/whatsapp/templates/{templateName}:
+    get:
+      operationId: viewWhatsAppTemplate
+      summary: View a WhatsApp template
+      description: Retrieves the details of a specific WhatsApp template by its name.
+      tags:
+      - Templates
+      parameters:
+      - $ref: '#/components/parameters/templateNameParam'
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Template not found
+    delete:
+      operationId: deleteWhatsAppTemplate
+      summary: Delete a WhatsApp template
+      description: Deletes a WhatsApp message template by its name. This removes all language versions of the template.
+      tags:
+      - Templates
+      parameters:
+      - $ref: '#/components/parameters/templateNameParam'
+      responses:
+        '204':
+          description: Template deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Template not found
+components:
+  schemas:
+    TemplateComponent:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: The type of template component.
+          enum:
+          - HEADER
+          - BODY
+          - FOOTER
+          - BUTTONS
+        format:
+          type: string
+          description: The format of the component, applicable to HEADER type.
+          enum:
+          - TEXT
+          - IMAGE
+          - DOCUMENT
+          - VIDEO
+        text:
+          type: string
+          description: The text content of the component. Use {{n}} for variables.
+        buttons:
+          type: array
+          description: Button definitions, applicable to BUTTONS type.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: The type of button.
+                enum:
+                - PHONE_NUMBER
+                - URL
+                - QUICK_REPLY
+              text:
+                type: string
+                description: The button label text.
+              phone_number:
+                type: string
+                description: The phone number for PHONE_NUMBER buttons.
+              url:
+                type: string
+                format: uri
+                description: The URL for URL buttons.
+    Template:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the template.
+        language:
+          type: string
+          description: The language code.
+        category:
+          type: string
+          description: The template category.
+        components:
+          type: array
+          description: The template components.
+          items:
+            $ref: '#/components/schemas/TemplateComponent'
+        status:
+          type: string
+          description: The approval status of the template.
+          enum:
+          - NEW
+          - PENDING
+          - APPROVED
+          - REJECTED
+        rejectedReason:
+          type: string
+          description: The reason for rejection, if applicable.
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time when the template was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time when the template was last updated.
+    TemplateCreate:
+      type: object
+      required:
+      - name
+      - language
+      - category
+      - components
+      properties:
+        name:
+          type: string
+          description: The name of the template. Must be unique within the account.
+          pattern: ^[a-z0-9_]+$
+          maxLength: 512
+        language:
+          type: string
+          description: The language code for the template.
+        category:
+          type: string
+          description: The category of the template.
+          enum:
+          - ACCOUNT_UPDATE
+          - PAYMENT_UPDATE
+          - PERSONAL_FINANCE_UPDATE
+          - SHIPPING_UPDATE
+          - RESERVATION_UPDATE
+          - ISSUE_RESOLUTION
+          - APPOINTMENT_UPDATE
+          - TRANSPORTATION_UPDATE
+          - TICKET_UPDATE
+          - ALERT_UPDATE
+          - AUTO_REPLY
+        components:
+          type: array
+          description: The components that make up the template content.
+          items:
+            $ref: '#/components/schemas/TemplateComponent'
+    TemplateList:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: The offset of the result set.
+        limit:
+          type: integer
+          description: The limit applied.
+        count:
+          type: integer
+          description: The number of items returned.
+        totalCount:
+          type: integer
+          description: The total number of templates.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
+    templateNameParam:
+      name: templateName
+      in: path
+      required: true
+      description: The name of the WhatsApp template.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip.
+      schema:
+        type: integer
+        default: 0
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

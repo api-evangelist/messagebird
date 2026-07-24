@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers Legs API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Legs
+  description: Operations for viewing and managing call legs. A leg represents a single voice connection within a call.
+paths:
+  /calls/{callId}/legs:
+    get:
+      operationId: listLegs
+      summary: List legs for a call
+      description: Retrieves a list of all legs associated with a specific call. Each leg represents a voice connection within the call.
+      tags:
+      - Legs
+      parameters:
+      - $ref: '#/components/parameters/callIdParam'
+      responses:
+        '200':
+          description: A list of legs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegList'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Call not found
+components:
+  schemas:
+    LegList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Leg'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of items available.
+        pageCount:
+          type: integer
+          description: The total number of pages.
+        currentPage:
+          type: integer
+          description: The current page number.
+        perPage:
+          type: integer
+          description: The number of items per page.
+    Leg:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the leg.
+        callId:
+          type: string
+          description: The unique identifier of the parent call.
+        source:
+          type: string
+          description: The source number or SIP URI.
+        destination:
+          type: string
+          description: The destination number or SIP URI.
+        status:
+          type: string
+          description: The status of the leg.
+          enum:
+          - starting
+          - ringing
+          - ongoing
+          - busy
+          - no_answer
+          - failed
+          - hangup
+        direction:
+          type: string
+          description: The direction of the leg.
+          enum:
+          - incoming
+          - outgoing
+        duration:
+          type: integer
+          description: The duration of the leg in seconds.
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time when the leg was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time when the leg was last updated.
+        answeredAt:
+          type: string
+          format: date-time
+          description: The date and time when the leg was answered.
+        endedAt:
+          type: string
+          format: date-time
+          description: The date and time when the leg ended.
+  parameters:
+    callIdParam:
+      name: callId
+      in: path
+      required: true
+      description: The unique identifier of the call.
+      schema:
+        type: string
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/

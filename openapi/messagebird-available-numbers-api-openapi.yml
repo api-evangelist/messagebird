@@ -1,0 +1,140 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Balance Available Numbers API
+  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+servers:
+- url: https://rest.messagebird.com
+  description: Production Server
+security:
+- accessKey: []
+tags:
+- name: Available Numbers
+  description: Operations for searching available phone numbers for purchase.
+paths:
+  /available-phone-numbers/{countryCode}:
+    get:
+      operationId: listAvailableNumbers
+      summary: Search available phone numbers
+      description: Searches for available phone numbers that can be purchased in the specified country. Results can be filtered by number type, features, and search pattern.
+      tags:
+      - Available Numbers
+      parameters:
+      - name: countryCode
+        in: path
+        required: true
+        description: The two-letter ISO 3166-1 country code to search in.
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+      - name: features
+        in: query
+        required: false
+        description: Filter by number features.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - sms
+            - voice
+            - mms
+      - name: type
+        in: query
+        required: false
+        description: Filter by number type.
+        schema:
+          type: string
+          enum:
+          - landline
+          - mobile
+          - premium_rate
+          - toll_free
+      - name: searchPattern
+        in: query
+        required: false
+        description: A pattern to search for in available numbers.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of results to return.
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: A list of available numbers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableNumberList'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    AvailableNumberList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableNumber'
+        count:
+          type: integer
+          description: The number of items returned.
+        limit:
+          type: integer
+          description: The limit applied.
+    AvailableNumber:
+      type: object
+      properties:
+        number:
+          type: string
+          description: The available phone number in E.164 format.
+        country:
+          type: string
+          description: The two-letter country code.
+        region:
+          type: string
+          description: The region or city for the number.
+        locality:
+          type: string
+          description: The locality for the number.
+        features:
+          type: array
+          description: The features supported by the number.
+          items:
+            type: string
+            enum:
+            - sms
+            - voice
+            - mms
+        type:
+          type: string
+          description: The type of phone number.
+          enum:
+          - landline
+          - mobile
+          - premium_rate
+          - toll_free
+        initialContractDuration:
+          type: integer
+          description: The initial contract duration in months.
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Access key authentication in the form of 'AccessKey {accessKey}'.
+externalDocs:
+  description: Balance API Documentation
+  url: https://developers.messagebird.com/api/balance/
