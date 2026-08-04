@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Verify API
+  description: >-
+    The MessageBird Verify API provides a simple way to implement two-factor
+    authentication and phone number verification. It generates and validates
+    one-time passwords delivered via SMS or voice call, handling token
+    generation, delivery, and verification in a single workflow. The API
+    supports configurable token length, expiration time, and delivery
+    channel selection for flexible integration into sign-up and login flows.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+externalDocs:
+  description: Verify API Documentation
+  url: https://developers.messagebird.com/api/verify/
+servers:
+  - url: https://rest.messagebird.com
+    description: Production Server
+tags:
+  - name: Verify
+    description: >-
+      Operations for creating, verifying, and managing verification tokens.
+security:
+  - accessKey: []
+paths:
+  /verify:
+    post:
+      operationId: createVerify
+      summary: Create a verification
+      description: >-
+        Creates a new Verify object and sends a verification token to the
+        specified recipient via SMS or voice call. The token is generated
+        automatically by the platform.
+      tags:
+        - Verify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyCreate'
+      responses:
+        '201':
+          description: Verification created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Verify'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /verify/{id}:
+    get:
+      operationId: viewVerify
+      summary: View a verification
+      description: >-
+        Retrieves the details of an existing verification by its unique
+        identifier.
+      tags:
+        - Verify
+      parameters:
+        - $ref: '#/components/parameters/verifyIdParam'
+      responses:
+        '200':
+          description: Verification details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Verify'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Verification not found
+    delete:
+      operationId: deleteVerify
+      summary: Delete a verification
+      description: >-
+        Deletes an existing verification by its unique identifier,
+        invalidating any pending token.
+      tags:
+        - Verify
+      parameters:
+        - $ref: '#/components/parameters/verifyIdParam'
+      responses:
+        '204':
+          description: Verification deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Verification not found
+  /verify/{id}/verify:
+    get:
+      operationId: verifyToken
+      summary: Verify a token
+      description: >-
+        Verifies a token that was sent to the recipient. The token
+        parameter must match the token that was delivered.
+      tags:
+        - Verify
+      parameters:
+        - $ref: '#/components/parameters/verifyIdParam'
+        - name: token
+          in: query
+          required: true
+          description: >-
+            The verification token to validate.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Token verified successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Verify'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Verification not found
+        '422':
+          description: Token is invalid or expired
+components:
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Access key authentication in the form of 'AccessKey {accessKey}'.
+  parameters:
+    verifyIdParam:
+      name: id
+      in: path
+      required: true
+      description: >-
+        The unique identifier of the verification.
+      schema:
+        type: string
+  schemas:
+    VerifyCreate:
+      type: object
+      required:
+        - recipient
+      properties:
+        recipient:
+          type: string
+          description: >-
+            The phone number to verify in international format.
+        originator:
+          type: string
+          description: >-
+            The sender ID for the verification message.
+        reference:
+          type: string
+          description: >-
+            A client reference for tracking purposes.
+        type:
+          type: string
+          description: >-
+            The delivery channel for the verification token.
+          enum:
+            - sms
+            - tts
+          default: sms
+        template:
+          type: string
+          description: >-
+            A custom message template. Use %token to indicate where the
+            token should be placed.
+        datacoding:
+          type: string
+          description: >-
+            The encoding for the SMS message body.
+          enum:
+            - plain
+            - unicode
+            - auto
+        timeout:
+          type: integer
+          description: >-
+            The expiration time of the token in seconds.
+          minimum: 30
+          maximum: 259200
+          default: 30
+        tokenLength:
+          type: integer
+          description: >-
+            The number of digits in the verification token.
+          minimum: 4
+          maximum: 10
+          default: 6
+        voice:
+          type: string
+          description: >-
+            The voice gender for text-to-speech delivery.
+          enum:
+            - male
+            - female
+        language:
+          type: string
+          description: >-
+            The language for text-to-speech delivery.
+    Verify:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The unique identifier of the verification.
+        href:
+          type: string
+          format: uri
+          description: >-
+            The URL of the verification resource.
+        recipient:
+          type: string
+          description: >-
+            The phone number being verified.
+        reference:
+          type: string
+          description: >-
+            The client reference.
+        status:
+          type: string
+          description: >-
+            The status of the verification.
+          enum:
+            - sent
+            - expired
+            - failed
+            - verified
+            - deleted
+        messages:
+          type: object
+          description: >-
+            Links to the associated message objects.
+          properties:
+            href:
+              type: string
+              format: uri
+              description: >-
+                The URL of the associated messages.
+        createdDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the verification was created.
+        validUntilDatetime:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the verification token expires.

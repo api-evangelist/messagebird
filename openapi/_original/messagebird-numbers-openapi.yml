@@ -1,0 +1,412 @@
+openapi: 3.1.0
+info:
+  title: MessageBird Numbers API
+  description: >-
+    The MessageBird Numbers API enables developers to search for, purchase,
+    and manage phone numbers programmatically. It supports local, toll-free,
+    and mobile number types across multiple countries, with the ability to
+    filter by pattern, type, and region. Purchased numbers can be configured
+    for SMS and voice capabilities and assigned to specific messaging or
+    calling workflows.
+  version: '1.0'
+  contact:
+    name: MessageBird Support
+    url: https://support.messagebird.com
+  termsOfService: https://www.messagebird.com/en/terms
+externalDocs:
+  description: Numbers API Documentation
+  url: https://developers.messagebird.com/api/numbers/
+servers:
+  - url: https://numbers.messagebird.com/v1
+    description: Production Server
+tags:
+  - name: Available Numbers
+    description: >-
+      Operations for searching available phone numbers for purchase.
+  - name: Purchased Numbers
+    description: >-
+      Operations for managing purchased phone numbers.
+security:
+  - accessKey: []
+paths:
+  /available-phone-numbers/{countryCode}:
+    get:
+      operationId: listAvailableNumbers
+      summary: Search available phone numbers
+      description: >-
+        Searches for available phone numbers that can be purchased in the
+        specified country. Results can be filtered by number type, features,
+        and search pattern.
+      tags:
+        - Available Numbers
+      parameters:
+        - name: countryCode
+          in: path
+          required: true
+          description: >-
+            The two-letter ISO 3166-1 country code to search in.
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: features
+          in: query
+          required: false
+          description: >-
+            Filter by number features.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - sms
+                - voice
+                - mms
+        - name: type
+          in: query
+          required: false
+          description: >-
+            Filter by number type.
+          schema:
+            type: string
+            enum:
+              - landline
+              - mobile
+              - premium_rate
+              - toll_free
+        - name: searchPattern
+          in: query
+          required: false
+          description: >-
+            A pattern to search for in available numbers.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            The maximum number of results to return.
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: A list of available numbers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableNumberList'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /phone-numbers:
+    get:
+      operationId: listPurchasedNumbers
+      summary: List purchased phone numbers
+      description: >-
+        Retrieves a paginated list of all phone numbers purchased on the
+        account.
+      tags:
+        - Purchased Numbers
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            The maximum number of items to return.
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          required: false
+          description: >-
+            The number of items to skip.
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: A list of purchased numbers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchasedNumberList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: purchaseNumber
+      summary: Purchase a phone number
+      description: >-
+        Purchases an available phone number and adds it to the account.
+      tags:
+        - Purchased Numbers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumberPurchase'
+      responses:
+        '201':
+          description: Number purchased
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchasedNumber'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable entity
+  /phone-numbers/{number}:
+    get:
+      operationId: viewPurchasedNumber
+      summary: View a purchased phone number
+      description: >-
+        Retrieves the details of a specific purchased phone number.
+      tags:
+        - Purchased Numbers
+      parameters:
+        - $ref: '#/components/parameters/numberParam'
+      responses:
+        '200':
+          description: Number details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchasedNumber'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Number not found
+    patch:
+      operationId: updatePurchasedNumber
+      summary: Update a purchased phone number
+      description: >-
+        Updates the configuration of a purchased phone number, such as
+        assigning tags or enabling features.
+      tags:
+        - Purchased Numbers
+      parameters:
+        - $ref: '#/components/parameters/numberParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumberUpdate'
+      responses:
+        '200':
+          description: Number updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchasedNumber'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Number not found
+    delete:
+      operationId: cancelPurchasedNumber
+      summary: Cancel a purchased phone number
+      description: >-
+        Cancels a purchased phone number, releasing it from the account.
+      tags:
+        - Purchased Numbers
+      parameters:
+        - $ref: '#/components/parameters/numberParam'
+      responses:
+        '204':
+          description: Number cancelled
+        '401':
+          description: Unauthorized
+        '404':
+          description: Number not found
+components:
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Access key authentication in the form of 'AccessKey {accessKey}'.
+  parameters:
+    numberParam:
+      name: number
+      in: path
+      required: true
+      description: >-
+        The phone number in E.164 format.
+      schema:
+        type: string
+  schemas:
+    NumberPurchase:
+      type: object
+      required:
+        - number
+        - countryCode
+      properties:
+        number:
+          type: string
+          description: >-
+            The phone number to purchase in E.164 format.
+        countryCode:
+          type: string
+          description: >-
+            The two-letter ISO 3166-1 country code.
+          minLength: 2
+          maxLength: 2
+        billingIntervalMonths:
+          type: integer
+          description: >-
+            The billing interval in months.
+          enum:
+            - 1
+            - 12
+          default: 1
+    NumberUpdate:
+      type: object
+      properties:
+        tags:
+          type: array
+          description: >-
+            Tags to assign to the number.
+          items:
+            type: string
+    AvailableNumber:
+      type: object
+      properties:
+        number:
+          type: string
+          description: >-
+            The available phone number in E.164 format.
+        country:
+          type: string
+          description: >-
+            The two-letter country code.
+        region:
+          type: string
+          description: >-
+            The region or city for the number.
+        locality:
+          type: string
+          description: >-
+            The locality for the number.
+        features:
+          type: array
+          description: >-
+            The features supported by the number.
+          items:
+            type: string
+            enum:
+              - sms
+              - voice
+              - mms
+        type:
+          type: string
+          description: >-
+            The type of phone number.
+          enum:
+            - landline
+            - mobile
+            - premium_rate
+            - toll_free
+        initialContractDuration:
+          type: integer
+          description: >-
+            The initial contract duration in months.
+    AvailableNumberList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableNumber'
+        count:
+          type: integer
+          description: >-
+            The number of items returned.
+        limit:
+          type: integer
+          description: >-
+            The limit applied.
+    PurchasedNumber:
+      type: object
+      properties:
+        number:
+          type: string
+          description: >-
+            The phone number in E.164 format.
+        country:
+          type: string
+          description: >-
+            The two-letter country code.
+        region:
+          type: string
+          description: >-
+            The region for the number.
+        locality:
+          type: string
+          description: >-
+            The locality for the number.
+        features:
+          type: array
+          description: >-
+            The features enabled for the number.
+          items:
+            type: string
+        tags:
+          type: array
+          description: >-
+            Tags assigned to the number.
+          items:
+            type: string
+        type:
+          type: string
+          description: >-
+            The type of phone number.
+        status:
+          type: string
+          description: >-
+            The status of the number.
+          enum:
+            - active
+            - cancelled
+        createdAt:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the number was purchased.
+        renewalAt:
+          type: string
+          format: date-time
+          description: >-
+            The date and time of the next renewal.
+    PurchasedNumberList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchasedNumber'
+        count:
+          type: integer
+          description: >-
+            The number of items returned.
+        totalCount:
+          type: integer
+          description: >-
+            The total number of purchased numbers.
+        offset:
+          type: integer
+          description: >-
+            The offset applied.
+        limit:
+          type: integer
+          description: >-
+            The limit applied.
