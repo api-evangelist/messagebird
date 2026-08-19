@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "13cc21a1-f3aa-49df-b1d2-cb0ca79fb9ce",
+      "name": "Transcriptions",
+      "description": {
+        "content": "Operations for creating and viewing transcriptions of call recordings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebd18ca5-098c-4e06-be55-f55483c4174f",
+          "name": "List transcriptions for a recording",
+          "request": {
+            "name": "List transcriptions for a recording",
+            "description": {
+              "content": "Retrieves all transcriptions associated with a specific recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                ":recordingId",
+                "transcriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordingId",
+                  "description": "(Required) The unique identifier of the recording."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15731074-e055-4e38-a797-a4a97fbe6990",
+              "name": "A list of transcriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"recordingId\": \"string\",\n      \"status\": \"failed\",\n      \"createdAt\": \"1993-12-18T17:59:39.010Z\",\n      \"updatedAt\": \"1971-10-09T06:08:16.078Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"recordingId\": \"string\",\n      \"status\": \"created\",\n      \"createdAt\": \"2022-09-15T23:07:56.399Z\",\n      \"updatedAt\": \"2010-05-01T17:43:54.043Z\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 8785,\n    \"pageCount\": 5440,\n    \"currentPage\": 7959,\n    \"perPage\": 2082\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d25b240-8b03-4d61-b76f-d9f690917287",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99efb0b1-d223-4676-92f1-f8d04d855b06",
+              "name": "Recording not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51dfe267-f326-4b50-b388-bbbf2e970e49",
+          "name": "Create a transcription",
+          "request": {
+            "name": "Create a transcription",
+            "description": {
+              "content": "Creates a new transcription request for a recording. Transcriptions are generated asynchronously.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                ":recordingId",
+                "transcriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordingId",
+                  "description": "(Required) The unique identifier of the recording."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"language\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74e54d3e-7871-43c6-a26d-4314402b8018",
+              "name": "Transcription request created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"recordingId\": \"string\",\n      \"status\": \"transcribing\",\n      \"createdAt\": \"1971-04-23T23:49:03.562Z\",\n      \"updatedAt\": \"1986-03-05T09:48:44.733Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"recordingId\": \"string\",\n      \"status\": \"created\",\n      \"createdAt\": \"1969-01-14T02:28:10.337Z\",\n      \"updatedAt\": \"2020-10-17T17:23:58.346Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84f8cf2f-6f96-495c-99e8-10b16cbc0d0f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47288283-9d7e-4da9-bcf8-3f35171ab751",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28ef6eb7-c898-422b-aa9a-79235d4f345c",
+              "name": "Recording not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId",
+                    "transcriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The unique identifier of the recording."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6b626ff4-6613-4ef6-ba8c-9df4470d77f9",
+    "name": "MessageBird Balance Available Numbers Transcriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

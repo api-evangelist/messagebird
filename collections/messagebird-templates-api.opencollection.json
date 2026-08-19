@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Templates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List WhatsApp templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/v2/platforms/whatsapp/templates",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all WhatsApp message templates associated with the account."
+        },
+        {
+          "info": {
+            "name": "Create a WhatsApp template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/v2/platforms/whatsapp/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new WhatsApp message template and submits it for approval. Templates must be approved by WhatsApp before they can be used to send messages."
+        },
+        {
+          "info": {
+            "name": "View a WhatsApp template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/v2/platforms/whatsapp/templates/:templateName",
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the WhatsApp template."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific WhatsApp template by its name."
+        },
+        {
+          "info": {
+            "name": "Delete a WhatsApp template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/v2/platforms/whatsapp/templates/:templateName",
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the WhatsApp template."
+              }
+            ]
+          },
+          "docs": "Deletes a WhatsApp message template by its name. This removes all language versions of the template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

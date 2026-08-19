@@ -1,0 +1,885 @@
+{
+  "item": [
+    {
+      "id": "6e20b2a6-2c00-4ee7-83bf-5e8df4db4846",
+      "name": "Conversations",
+      "description": {
+        "content": "Operations for listing and managing conversations across channels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "19475392-f6f6-496c-a0c8-97b071f58aa9",
+          "name": "List conversations",
+          "request": {
+            "name": "List conversations",
+            "description": {
+              "content": "Retrieves a paginated list of all conversations. Conversations are returned in reverse chronological order based on the last received message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter conversations by status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e232d0b5-1d22-4024-bb24-8549d53e9025",
+              "name": "A list of conversations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 2705,\n  \"limit\": 5134,\n  \"count\": 1500,\n  \"totalCount\": 1409,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"contactId\": \"string\",\n      \"contact\": {\n        \"id\": \"string\",\n        \"href\": \"http://jGcAoPAqpyQFdCsLBoJvEXPYYzUuKbG.afpeoche0FNh8A6QZ4r9x4ttEoiqPlmBqKw\",\n        \"msisdn\": \"string\",\n        \"displayName\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"customDetails\": {},\n        \"createdDatetime\": \"1992-08-11T08:25:13.961Z\",\n        \"updatedDatetime\": \"1996-07-28T01:20:11.216Z\"\n      },\n      \"channels\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"platformId\": \"wechat\",\n          \"status\": \"active\",\n          \"createdDatetime\": \"1970-08-08T21:54:51.286Z\",\n          \"updatedDatetime\": \"1977-02-06T04:45:44.144Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"platformId\": \"line\",\n          \"status\": \"inactive\",\n          \"createdDatetime\": \"1948-05-07T23:09:29.337Z\",\n          \"updatedDatetime\": \"1951-03-06T17:40:56.395Z\"\n        }\n      ],\n      \"status\": \"archived\",\n      \"createdDatetime\": \"1962-04-29T15:20:03.753Z\",\n      \"updatedDatetime\": \"2023-02-03T07:58:02.901Z\",\n      \"lastReceivedDatetime\": \"1969-08-26T08:37:51.167Z\",\n      \"lastUsedChannelId\": \"string\",\n      \"messages\": {\n        \"offset\": 3193,\n        \"limit\": 9590,\n        \"count\": 7391,\n        \"totalCount\": 7051,\n        \"items\": [\n          {\n            \"id\": \"string\",\n            \"conversationId\": \"string\",\n            \"channelId\": \"string\",\n            \"platform\": \"string\",\n            \"to\": \"string\",\n            \"from\": \"string\",\n            \"direction\": \"sent\",\n            \"status\": \"sent\",\n            \"type\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdDatetime\": \"1982-10-12T07:16:11.891Z\",\n            \"updatedDatetime\": \"2006-01-29T22:22:57.414Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"conversationId\": \"string\",\n            \"channelId\": \"string\",\n            \"platform\": \"string\",\n            \"to\": \"string\",\n            \"from\": \"string\",\n            \"direction\": \"sent\",\n            \"status\": \"delivered\",\n            \"type\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdDatetime\": \"2001-06-03T17:31:42.274Z\",\n            \"updatedDatetime\": \"2014-06-19T12:54:38.072Z\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"contactId\": \"string\",\n      \"contact\": {\n        \"id\": \"string\",\n        \"href\": \"https://IiXoXLpHaEpedNAc.ubwdbNlbK1B1LXZ7aXtvgwlaxfasCzEXjQ-I5aamOkujkNdYGCzeBMp2D-287SXT\",\n        \"msisdn\": \"string\",\n        \"displayName\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"customDetails\": {},\n        \"createdDatetime\": \"1948-04-20T09:16:14.264Z\",\n        \"updatedDatetime\": \"1984-11-17T17:04:29.387Z\"\n      },\n      \"channels\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"platformId\": \"whatsapp\",\n          \"status\": \"active\",\n          \"createdDatetime\": \"1965-09-18T06:00:44.857Z\",\n          \"updatedDatetime\": \"2003-09-24T03:11:10.581Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"platformId\": \"facebook\",\n          \"status\": \"pending\",\n          \"createdDatetime\": \"1959-05-20T06:28:48.789Z\",\n          \"updatedDatetime\": \"1973-03-12T15:15:51.104Z\"\n        }\n      ],\n      \"status\": \"active\",\n      \"createdDatetime\": \"2019-08-26T04:46:00.512Z\",\n      \"updatedDatetime\": \"2020-08-15T08:31:33.090Z\",\n      \"lastReceivedDatetime\": \"1955-08-13T04:35:10.421Z\",\n      \"lastUsedChannelId\": \"string\",\n      \"messages\": {\n        \"offset\": 1184,\n        \"limit\": 1509,\n        \"count\": 9186,\n        \"totalCount\": 7044,\n        \"items\": [\n          {\n            \"id\": \"string\",\n            \"conversationId\": \"string\",\n            \"channelId\": \"string\",\n            \"platform\": \"string\",\n            \"to\": \"string\",\n            \"from\": \"string\",\n            \"direction\": \"received\",\n            \"status\": \"sent\",\n            \"type\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdDatetime\": \"1995-08-24T01:52:54.871Z\",\n            \"updatedDatetime\": \"1990-10-15T09:03:22.195Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"conversationId\": \"string\",\n            \"channelId\": \"string\",\n            \"platform\": \"string\",\n            \"to\": \"string\",\n            \"from\": \"string\",\n            \"direction\": \"received\",\n            \"status\": \"pending\",\n            \"type\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdDatetime\": \"2014-05-25T23:33:30.257Z\",\n            \"updatedDatetime\": \"1994-04-11T07:28:35.899Z\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62d6eee1-5648-4e99-afb0-7b464ef164f9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f51545a-2156-4891-bcf9-01ccaeba965e",
+          "name": "Start a conversation",
+          "request": {
+            "name": "Start a conversation",
+            "description": {
+              "content": "Starts a new conversation by sending a message to a contact. If a conversation already exists with the contact, the message is added to the existing conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"image\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"video\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"audio\": {\n      \"url\": \"<uri>\"\n    },\n    \"file\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"hsm\": {\n      \"namespace\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"language\": {\n        \"policy\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      \"params\": [\n        {\n          \"default\": \"<string>\"\n        },\n        {\n          \"default\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40558c8e-5684-4505-b157-0dd1b0c11e53",
+              "name": "Conversation started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://DoqDbjZFxjPBYGLJwbyQfynnDQyS.agmOIIeovP-.+jbvZEJQF6j,I8wXC6E-6qF+oshQa8EJGlafvLI,mub9X+\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://EeZUT.wgUIjF3\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://ZjlXYVsSlhFRdYymiBAWePFYwDdwjJ.bohsdJPcxErqHPM2DJDpm0AkPAUTjgSwsjuw5ohMGzTA9\"\n    },\n    \"file\": {\n      \"url\": \"http://ajdPMxnIRCSpBrTS.keodrINrIrctz,4fhLT8P,XMnTZt3kZpnTYjJBZnSY4yH7mzYSc.hqW6HsAnRiiEEH\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6376.214560024639,\n      \"longitude\": 9193.486966798095\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"contactId\": \"string\",\n  \"contact\": {\n    \"id\": \"string\",\n    \"href\": \"http://THbdWaxDtxkgxWjMDBazQelptetX.awdjX-PxkrwtONR3eY\",\n    \"msisdn\": \"string\",\n    \"displayName\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"customDetails\": {},\n    \"createdDatetime\": \"1984-10-25T22:27:15.394Z\",\n    \"updatedDatetime\": \"1984-01-26T01:20:17.233Z\"\n  },\n  \"channels\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"platformId\": \"wechat\",\n      \"status\": \"active\",\n      \"createdDatetime\": \"1981-11-19T11:21:05.372Z\",\n      \"updatedDatetime\": \"1979-11-18T09:05:12.104Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"platformId\": \"email\",\n      \"status\": \"active\",\n      \"createdDatetime\": \"2003-06-13T20:31:06.256Z\",\n      \"updatedDatetime\": \"1970-07-11T15:58:58.977Z\"\n    }\n  ],\n  \"status\": \"active\",\n  \"createdDatetime\": \"1993-04-16T05:12:35.238Z\",\n  \"updatedDatetime\": \"1965-03-05T17:04:41.245Z\",\n  \"lastReceivedDatetime\": \"1979-08-05T20:37:51.453Z\",\n  \"lastUsedChannelId\": \"string\",\n  \"messages\": {\n    \"offset\": 3995,\n    \"limit\": 1129,\n    \"count\": 4267,\n    \"totalCount\": 6489,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"conversationId\": \"string\",\n        \"channelId\": \"string\",\n        \"platform\": \"string\",\n        \"to\": \"string\",\n        \"from\": \"string\",\n        \"direction\": \"received\",\n        \"status\": \"accepted\",\n        \"type\": \"string\",\n        \"content\": {\n          \"text\": \"string\",\n          \"image\": {\n            \"url\": \"http://lKqNkbWMctmVykFFnfYiSq.plhDziKYSKqAdktLDVnrbBoFcfQlUYO\",\n            \"caption\": \"string\"\n          },\n          \"video\": {\n            \"url\": \"https://rAWvdhLcVwRNdRLMMpF.mwrfgTnaBq7mAdqQwf\",\n            \"caption\": \"string\"\n          },\n          \"audio\": {\n            \"url\": \"http://hXwuOBqDLzdslccqJdUCarQdNfJDOwBwL.idYwT8rbH8Eek+RHCK0ThcRK-,S7ozwyw-h9ezojTVFL-92eRDMsFSfvyDf5g6\"\n          },\n          \"file\": {\n            \"url\": \"http://ElPgNr.zolfIdlZ6obXK6+JW3EQJRP08Rn6JLOgMR-iqNmnOKxyC5q.481fkj0xjpQX2NSKG4hCJb\",\n            \"caption\": \"string\"\n          },\n          \"location\": {\n            \"latitude\": 6455.782052780785,\n            \"longitude\": 5409.1023624138015\n          },\n          \"hsm\": {\n            \"namespace\": \"string\",\n            \"templateName\": \"string\",\n            \"language\": {\n              \"policy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"createdDatetime\": \"1989-02-17T11:38:18.999Z\",\n        \"updatedDatetime\": \"1962-07-19T20:33:50.392Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"conversationId\": \"string\",\n        \"channelId\": \"string\",\n        \"platform\": \"string\",\n        \"to\": \"string\",\n        \"from\": \"string\",\n        \"direction\": \"sent\",\n        \"status\": \"pending\",\n        \"type\": \"string\",\n        \"content\": {\n          \"text\": \"string\",\n          \"image\": {\n            \"url\": \"http://hjBYfoMqcNjsIGUqJeaXXcneg.dqfrKQPtLdL.q5IsRX\",\n            \"caption\": \"string\"\n          },\n          \"video\": {\n            \"url\": \"https://HVLRWFcWpjosAGUt.udffm.Y70Mu7RQ\",\n            \"caption\": \"string\"\n          },\n          \"audio\": {\n            \"url\": \"http://maHaXaWIAOEPjDltYmmEnlXkyWkSB.qcFWLoZFNF+g.ZAwiDDSrN3AYsZE1evUDnyXCOc-IS.L6Q1\"\n          },\n          \"file\": {\n            \"url\": \"http://tKkHIbVDLORGTdbvEJpyzfGXC.ssJ7xf+w1pERTv24J-jGoKFxnNzWs8gYRCgRxwKtUPhGiWz7edyu5,6z1U2FBsBavf.\",\n            \"caption\": \"string\"\n          },\n          \"location\": {\n            \"latitude\": 9357.318468743473,\n            \"longitude\": 9295.38204910281\n          },\n          \"hsm\": {\n            \"namespace\": \"string\",\n            \"templateName\": \"string\",\n            \"language\": {\n              \"policy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"createdDatetime\": \"1951-09-05T20:32:26.848Z\",\n        \"updatedDatetime\": \"1985-07-28T01:23:47.538Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfd57431-c9ca-4af3-bebf-5fd466f2ac83",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://DoqDbjZFxjPBYGLJwbyQfynnDQyS.agmOIIeovP-.+jbvZEJQF6j,I8wXC6E-6qF+oshQa8EJGlafvLI,mub9X+\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://EeZUT.wgUIjF3\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://ZjlXYVsSlhFRdYymiBAWePFYwDdwjJ.bohsdJPcxErqHPM2DJDpm0AkPAUTjgSwsjuw5ohMGzTA9\"\n    },\n    \"file\": {\n      \"url\": \"http://ajdPMxnIRCSpBrTS.keodrINrIrctz,4fhLT8P,XMnTZt3kZpnTYjJBZnSY4yH7mzYSc.hqW6HsAnRiiEEH\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6376.214560024639,\n      \"longitude\": 9193.486966798095\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5186bc4c-04d0-4c87-98fe-7ff1940b790b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"http://DoqDbjZFxjPBYGLJwbyQfynnDQyS.agmOIIeovP-.+jbvZEJQF6j,I8wXC6E-6qF+oshQa8EJGlafvLI,mub9X+\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://EeZUT.wgUIjF3\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://ZjlXYVsSlhFRdYymiBAWePFYwDdwjJ.bohsdJPcxErqHPM2DJDpm0AkPAUTjgSwsjuw5ohMGzTA9\"\n    },\n    \"file\": {\n      \"url\": \"http://ajdPMxnIRCSpBrTS.keodrINrIrctz,4fhLT8P,XMnTZt3kZpnTYjJBZnSY4yH7mzYSc.hqW6HsAnRiiEEH\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6376.214560024639,\n      \"longitude\": 9193.486966798095\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16075640-f6f4-48b9-a31d-06de642dab37",
+          "name": "View a conversation",
+          "request": {
+            "name": "View a conversation",
+            "description": {
+              "content": "Retrieves the details of a specific conversation by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The unique identifier of the conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a185ffb7-188c-49e2-9bed-14aa925105a4",
+              "name": "Conversation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"contactId\": \"string\",\n  \"contact\": {\n    \"id\": \"string\",\n    \"href\": \"http://THbdWaxDtxkgxWjMDBazQelptetX.awdjX-PxkrwtONR3eY\",\n    \"msisdn\": \"string\",\n    \"displayName\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"customDetails\": {},\n    \"createdDatetime\": \"1984-10-25T22:27:15.394Z\",\n    \"updatedDatetime\": \"1984-01-26T01:20:17.233Z\"\n  },\n  \"channels\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"platformId\": \"wechat\",\n      \"status\": \"active\",\n      \"createdDatetime\": \"1981-11-19T11:21:05.372Z\",\n      \"updatedDatetime\": \"1979-11-18T09:05:12.104Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"platformId\": \"email\",\n      \"status\": \"active\",\n      \"createdDatetime\": \"2003-06-13T20:31:06.256Z\",\n      \"updatedDatetime\": \"1970-07-11T15:58:58.977Z\"\n    }\n  ],\n  \"status\": \"active\",\n  \"createdDatetime\": \"1993-04-16T05:12:35.238Z\",\n  \"updatedDatetime\": \"1965-03-05T17:04:41.245Z\",\n  \"lastReceivedDatetime\": \"1979-08-05T20:37:51.453Z\",\n  \"lastUsedChannelId\": \"string\",\n  \"messages\": {\n    \"offset\": 3995,\n    \"limit\": 1129,\n    \"count\": 4267,\n    \"totalCount\": 6489,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"conversationId\": \"string\",\n        \"channelId\": \"string\",\n        \"platform\": \"string\",\n        \"to\": \"string\",\n        \"from\": \"string\",\n        \"direction\": \"received\",\n        \"status\": \"accepted\",\n        \"type\": \"string\",\n        \"content\": {\n          \"text\": \"string\",\n          \"image\": {\n            \"url\": \"http://lKqNkbWMctmVykFFnfYiSq.plhDziKYSKqAdktLDVnrbBoFcfQlUYO\",\n            \"caption\": \"string\"\n          },\n          \"video\": {\n            \"url\": \"https://rAWvdhLcVwRNdRLMMpF.mwrfgTnaBq7mAdqQwf\",\n            \"caption\": \"string\"\n          },\n          \"audio\": {\n            \"url\": \"http://hXwuOBqDLzdslccqJdUCarQdNfJDOwBwL.idYwT8rbH8Eek+RHCK0ThcRK-,S7ozwyw-h9ezojTVFL-92eRDMsFSfvyDf5g6\"\n          },\n          \"file\": {\n            \"url\": \"http://ElPgNr.zolfIdlZ6obXK6+JW3EQJRP08Rn6JLOgMR-iqNmnOKxyC5q.481fkj0xjpQX2NSKG4hCJb\",\n            \"caption\": \"string\"\n          },\n          \"location\": {\n            \"latitude\": 6455.782052780785,\n            \"longitude\": 5409.1023624138015\n          },\n          \"hsm\": {\n            \"namespace\": \"string\",\n            \"templateName\": \"string\",\n            \"language\": {\n              \"policy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"createdDatetime\": \"1989-02-17T11:38:18.999Z\",\n        \"updatedDatetime\": \"1962-07-19T20:33:50.392Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"conversationId\": \"string\",\n        \"channelId\": \"string\",\n        \"platform\": \"string\",\n        \"to\": \"string\",\n        \"from\": \"string\",\n        \"direction\": \"sent\",\n        \"status\": \"pending\",\n        \"type\": \"string\",\n        \"content\": {\n          \"text\": \"string\",\n          \"image\": {\n            \"url\": \"http://hjBYfoMqcNjsIGUqJeaXXcneg.dqfrKQPtLdL.q5IsRX\",\n            \"caption\": \"string\"\n          },\n          \"video\": {\n            \"url\": \"https://HVLRWFcWpjosAGUt.udffm.Y70Mu7RQ\",\n            \"caption\": \"string\"\n          },\n          \"audio\": {\n            \"url\": \"http://maHaXaWIAOEPjDltYmmEnlXkyWkSB.qcFWLoZFNF+g.ZAwiDDSrN3AYsZE1evUDnyXCOc-IS.L6Q1\"\n          },\n          \"file\": {\n            \"url\": \"http://tKkHIbVDLORGTdbvEJpyzfGXC.ssJ7xf+w1pERTv24J-jGoKFxnNzWs8gYRCgRxwKtUPhGiWz7edyu5,6z1U2FBsBavf.\",\n            \"caption\": \"string\"\n          },\n          \"location\": {\n            \"latitude\": 9357.318468743473,\n            \"longitude\": 9295.38204910281\n          },\n          \"hsm\": {\n            \"namespace\": \"string\",\n            \"templateName\": \"string\",\n            \"language\": {\n              \"policy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"createdDatetime\": \"1951-09-05T20:32:26.848Z\",\n        \"updatedDatetime\": \"1985-07-28T01:23:47.538Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da665bc7-53e2-41d8-8ec5-52bb1f7a9f96",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56580cf1-cf18-4c0a-bd50-5eea2f3e2189",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64b90b6b-07d3-400f-a1d6-c5aaee917a30",
+          "name": "Update a conversation",
+          "request": {
+            "name": "Update a conversation",
+            "description": {
+              "content": "Updates the status of an existing conversation, such as archiving or reactivating it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The unique identifier of the conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e75e5614-a6f4-4653-899f-15eaecca16a0",
+              "name": "Conversation updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"contactId\": \"string\",\n  \"contact\": {\n    \"id\": \"string\",\n    \"href\": \"http://THbdWaxDtxkgxWjMDBazQelptetX.awdjX-PxkrwtONR3eY\",\n    \"msisdn\": \"string\",\n    \"displayName\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"customDetails\": {},\n    \"createdDatetime\": \"1984-10-25T22:27:15.394Z\",\n    \"updatedDatetime\": \"1984-01-26T01:20:17.233Z\"\n  },\n  \"channels\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"platformId\": \"wechat\",\n      \"status\": \"active\",\n      \"createdDatetime\": \"1981-11-19T11:21:05.372Z\",\n      \"updatedDatetime\": \"1979-11-18T09:05:12.104Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"platformId\": \"email\",\n      \"status\": \"active\",\n      \"createdDatetime\": \"2003-06-13T20:31:06.256Z\",\n      \"updatedDatetime\": \"1970-07-11T15:58:58.977Z\"\n    }\n  ],\n  \"status\": \"active\",\n  \"createdDatetime\": \"1993-04-16T05:12:35.238Z\",\n  \"updatedDatetime\": \"1965-03-05T17:04:41.245Z\",\n  \"lastReceivedDatetime\": \"1979-08-05T20:37:51.453Z\",\n  \"lastUsedChannelId\": \"string\",\n  \"messages\": {\n    \"offset\": 3995,\n    \"limit\": 1129,\n    \"count\": 4267,\n    \"totalCount\": 6489,\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"conversationId\": \"string\",\n        \"channelId\": \"string\",\n        \"platform\": \"string\",\n        \"to\": \"string\",\n        \"from\": \"string\",\n        \"direction\": \"received\",\n        \"status\": \"accepted\",\n        \"type\": \"string\",\n        \"content\": {\n          \"text\": \"string\",\n          \"image\": {\n            \"url\": \"http://lKqNkbWMctmVykFFnfYiSq.plhDziKYSKqAdktLDVnrbBoFcfQlUYO\",\n            \"caption\": \"string\"\n          },\n          \"video\": {\n            \"url\": \"https://rAWvdhLcVwRNdRLMMpF.mwrfgTnaBq7mAdqQwf\",\n            \"caption\": \"string\"\n          },\n          \"audio\": {\n            \"url\": \"http://hXwuOBqDLzdslccqJdUCarQdNfJDOwBwL.idYwT8rbH8Eek+RHCK0ThcRK-,S7ozwyw-h9ezojTVFL-92eRDMsFSfvyDf5g6\"\n          },\n          \"file\": {\n            \"url\": \"http://ElPgNr.zolfIdlZ6obXK6+JW3EQJRP08Rn6JLOgMR-iqNmnOKxyC5q.481fkj0xjpQX2NSKG4hCJb\",\n            \"caption\": \"string\"\n          },\n          \"location\": {\n            \"latitude\": 6455.782052780785,\n            \"longitude\": 5409.1023624138015\n          },\n          \"hsm\": {\n            \"namespace\": \"string\",\n            \"templateName\": \"string\",\n            \"language\": {\n              \"policy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"createdDatetime\": \"1989-02-17T11:38:18.999Z\",\n        \"updatedDatetime\": \"1962-07-19T20:33:50.392Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"conversationId\": \"string\",\n        \"channelId\": \"string\",\n        \"platform\": \"string\",\n        \"to\": \"string\",\n        \"from\": \"string\",\n        \"direction\": \"sent\",\n        \"status\": \"pending\",\n        \"type\": \"string\",\n        \"content\": {\n          \"text\": \"string\",\n          \"image\": {\n            \"url\": \"http://hjBYfoMqcNjsIGUqJeaXXcneg.dqfrKQPtLdL.q5IsRX\",\n            \"caption\": \"string\"\n          },\n          \"video\": {\n            \"url\": \"https://HVLRWFcWpjosAGUt.udffm.Y70Mu7RQ\",\n            \"caption\": \"string\"\n          },\n          \"audio\": {\n            \"url\": \"http://maHaXaWIAOEPjDltYmmEnlXkyWkSB.qcFWLoZFNF+g.ZAwiDDSrN3AYsZE1evUDnyXCOc-IS.L6Q1\"\n          },\n          \"file\": {\n            \"url\": \"http://tKkHIbVDLORGTdbvEJpyzfGXC.ssJ7xf+w1pERTv24J-jGoKFxnNzWs8gYRCgRxwKtUPhGiWz7edyu5,6z1U2FBsBavf.\",\n            \"caption\": \"string\"\n          },\n          \"location\": {\n            \"latitude\": 9357.318468743473,\n            \"longitude\": 9295.38204910281\n          },\n          \"hsm\": {\n            \"namespace\": \"string\",\n            \"templateName\": \"string\",\n            \"language\": {\n              \"policy\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"createdDatetime\": \"1951-09-05T20:32:26.848Z\",\n        \"updatedDatetime\": \"1985-07-28T01:23:47.538Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3812079-2269-43b0-bb67-715fd97f1e1f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2db5538-a614-4c41-93ca-b1e2b0a90345",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de493480-dd9a-475a-aedf-c6aee613c55a",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "90758a76-ee02-4cb1-be9d-1866262b0945",
+    "name": "MessageBird Balance Available Numbers Conversations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

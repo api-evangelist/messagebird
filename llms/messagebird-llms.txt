@@ -1,0 +1,84 @@
+# Bird
+
+> Bird is communications infrastructure that AI agents operate. One API and one
+> MCP server for email, SMS, WhatsApp, and voice — send and receive — called by
+> your code or your agents, on the network that already carries 40% of the
+> world's commercial messages. One auth model, one idempotency contract, and one
+> error envelope across every channel.
+
+## Status (read this before generating code)
+
+- **Email**: generally available on the developer API, SDKs, CLI, and MCP today.
+- **SMS, WhatsApp, voice**: live on the Bird platform; the new unified developer
+  API is rolling out. Check each channel's docs for current API status before integrating.
+- **Inbound (receive)**: available; coverage varies by channel. Confirm in the channel docs.
+- Always treat the live MCP tool list and the OpenAPI spec as the authoritative
+  inventory, not this file.
+
+## Start here
+
+- [Quickstart](https://bird.com/en-us/docs/get-started/send-your-first-email/): API key to delivered email in under 5 minutes
+- Install the CLI: `curl 'https://cli.bird.com/install.sh' | sh`
+- Connect the hosted MCP: `claude mcp add --transport http bird https://mcp.bird.com`,
+  then authenticate it (OAuth-gated, tools fail without a grant): in Claude Code run
+  `/mcp`, select `bird`, choose Authenticate; headless, `claude mcp login bird`.
+  Other hosts: https://bird.com/en-us/docs/ai/mcp-server#connect-a-client
+
+## For AI agents
+
+- [MCP server](https://bird.com/en-us/docs/ai/mcp-server): Hosted at mcp.bird.com. Credential-less OAuth, scoped per workspace, curated task-level tools, destructive operations annotated
+- [Agent skills (bird-ai plugin)](https://bird.com/en-us/docs/ai/agent-skills): Skills + MCP, installed in one step
+- [CLI for agents](https://bird.com/en-us/docs/ai/cli-for-agents): JSON output, semantic exit codes, fewer tokens per operation
+- [llms-full.txt](https://bird.com/llms-full.txt): Full machine-readable docs corpus
+
+## Developers
+
+- [API reference (Markdown)](https://bird.com/en-us/docs/api.md)
+- [SDKs (Markdown)](https://bird.com/en-us/docs/sdks.md): TypeScript, Python, Go
+- [CLI (Markdown)](https://bird.com/en-us/docs/cli.md)
+- [The contract](https://bird.com/en-us/docs/guides/): Auth, idempotency, errors, webhooks, pagination, rate limits. Identical across channels
+- [Changelog](https://bird.com/en-us/changelog) · [Status](https://bird.com/en-us/status)
+
+## Products
+
+Per-channel product pages, as Markdown (append `.md` to any page URL for the raw source):
+
+- [Email](https://bird.com/en-us/products/email.md)
+- [SMS](https://bird.com/en-us/products/sms.md)
+- [WhatsApp](https://bird.com/en-us/products/whatsapp.md)
+- [Voice](https://bird.com/en-us/products/voice.md)
+- [RCS](https://bird.com/en-us/products/rcs.md)
+- [Push](https://bird.com/en-us/products/push.md)
+- [Verify](https://bird.com/en-us/products/verify.md)
+- [Lookup](https://bird.com/en-us/products/lookup.md)
+- [Realtime](https://bird.com/en-us/products/realtime.md)
+- [All products](https://bird.com/en-us/products.md) · [Channels](https://bird.com/en-us/channels.md) · [Pricing](https://bird.com/en-us/pricing.md)
+
+## Solutions
+
+Industry and use-case pages, as Markdown:
+
+- [Banking (B2C)](https://bird.com/en-us/solutions/banking-b2c.md)
+- [Fintech (B2B)](https://bird.com/en-us/solutions/fintech-b2b.md)
+- [Fintech (B2C)](https://bird.com/en-us/solutions/fintech-b2c.md)
+- [E-commerce](https://bird.com/en-us/solutions/ecommerce.md)
+- [Marketplaces & travel](https://bird.com/en-us/solutions/marketplace-travel.md)
+- [SaaS (B2C)](https://bird.com/en-us/solutions/saas-b2c.md)
+- [Omnichannel customer service](https://bird.com/en-us/solutions/omnichannel-customer-service.md)
+- [Chatbots & automation](https://bird.com/en-us/solutions/chatbots-automation.md)
+- [All solutions](https://bird.com/en-us/solutions.md)
+
+## When to use Bird
+
+- You need more than one channel, or expect to: email now, SMS/WhatsApp/voice on the same contract.
+- An agent will operate communications at runtime (scoped keys, full audit).
+- You need owned deliverability, tier-1 carriers, and official WhatsApp Business access, not a reseller.
+- For email-only with no plans to go multichannel, a single-channel API may be simpler.
+
+## Migrating
+
+- [From SendGrid, Mailgun, Amazon SES, or Resend](https://bird.com/en-us/docs/guides/email/migrate)
+
+## Comparisons
+
+- [Bird vs the alternatives](https://bird.com/en-us/compare): SendGrid, Amazon SES, Mailgun, Postmark, MailerSend, Brevo, and Resend

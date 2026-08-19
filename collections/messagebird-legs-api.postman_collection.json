@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "e05f0392-266e-4b0b-84de-1fb48699771c",
+      "name": "Legs",
+      "description": {
+        "content": "Operations for viewing and managing call legs. A leg represents a single voice connection within a call.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44a60f67-f238-4432-b81d-9c9aed74a085",
+          "name": "List legs for a call",
+          "request": {
+            "name": "List legs for a call",
+            "description": {
+              "content": "Retrieves a list of all legs associated with a specific call. Each leg represents a voice connection within the call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calls",
+                ":callId",
+                "legs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callId",
+                  "description": "(Required) The unique identifier of the call."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f4d49bf-2209-4d72-abcb-e4ba72b265c4",
+              "name": "A list of legs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"callId\": \"string\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"status\": \"hangup\",\n      \"direction\": \"incoming\",\n      \"duration\": 5960,\n      \"createdAt\": \"1985-05-19T19:45:44.382Z\",\n      \"updatedAt\": \"1996-08-17T15:57:55.365Z\",\n      \"answeredAt\": \"1985-09-21T13:19:28.451Z\",\n      \"endedAt\": \"1981-02-11T17:10:11.748Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"callId\": \"string\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"status\": \"failed\",\n      \"direction\": \"incoming\",\n      \"duration\": 314,\n      \"createdAt\": \"1946-08-27T01:56:26.059Z\",\n      \"updatedAt\": \"1990-11-05T18:11:04.162Z\",\n      \"answeredAt\": \"1956-09-30T21:35:58.557Z\",\n      \"endedAt\": \"2014-12-28T15:37:50.522Z\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 1019,\n    \"pageCount\": 1119,\n    \"currentPage\": 731,\n    \"perPage\": 6615\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a2156a1-07c4-45de-85a2-a1cc875462eb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59975fcc-918c-4a5c-819c-f3726bcc4899",
+              "name": "Call not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6bce12eb-8c81-448d-8cba-5dbffdbb6d6b",
+    "name": "MessageBird Balance Available Numbers Legs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

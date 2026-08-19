@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Lookup API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look up a phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/lookup/:phoneNumber",
+            "params": [
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "path",
+                "description": "The phone number to look up in international format."
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query",
+                "description": "The country code to use for parsing the phone number if it is provided in a local format."
+              }
+            ]
+          },
+          "docs": "Performs a phone number validation and returns formatting information, country details, and operator data for the specified number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Conversations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/conversations",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter conversations by status."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all conversations. Conversations are returned in reverse chronological order based on the last received message."
+        },
+        {
+          "info": {
+            "name": "Start a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/conversations/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new conversation by sending a message to a contact. If a conversation already exists with the contact, the message is added to the existing conversation."
+        },
+        {
+          "info": {
+            "name": "View a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific conversation by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://rest.messagebird.com/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status of an existing conversation, such as archiving or reactivating it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Messages API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List messages in a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all messages within a specific conversation. Messages are returned with the newest first."
+        },
+        {
+          "info": {
+            "name": "Send a message in a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a new message within an existing conversation. The message will be delivered through the channel associated with the conversation."
+        },
+        {
+          "info": {
+            "name": "Send a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message to a recipient without requiring an existing conversation. MessageBird will automatically match or create a conversation for the recipient."
+        },
+        {
+          "info": {
+            "name": "View a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/messages/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the message."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific message by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "List messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/messages",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of SMS messages that have been sent or received. Messages are returned in reverse chronological order."
+        },
+        {
+          "info": {
+            "name": "Send a new message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new SMS message and sends it to the specified recipients. A single message can be sent to up to 50 recipients at a time. Messages longer than 160 characters are automatically split into multiple parts."
+        },
+        {
+          "info": {
+            "name": "View a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the message."
+              }
+            ]
+          },
+          "docs": "Retrieves the information of an existing inbound or outbound SMS message. You only need to supply the unique message ID that was returned upon creation or receiving."
+        },
+        {
+          "info": {
+            "name": "Delete a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the message."
+              }
+            ]
+          },
+          "docs": "Deletes an existing message. You only need to supply the unique message ID that was returned upon creation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

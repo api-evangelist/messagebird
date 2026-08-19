@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Call Flows API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Call Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all call flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/call-flows",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all call flows configured on the account."
+        },
+        {
+          "info": {
+            "name": "Create a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/call-flows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new call flow with a sequence of steps that define the interactive voice response behavior."
+        },
+        {
+          "info": {
+            "name": "View a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/call-flows/:callFlowId",
+            "params": [
+              {
+                "name": "callFlowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call flow."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific call flow by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://rest.messagebird.com/call-flows/:callFlowId",
+            "params": [
+              {
+                "name": "callFlowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call flow."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing call flow with new step definitions."
+        },
+        {
+          "info": {
+            "name": "Delete a call flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/call-flows/:callFlowId",
+            "params": [
+              {
+                "name": "callFlowId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call flow."
+              }
+            ]
+          },
+          "docs": "Deletes an existing call flow by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

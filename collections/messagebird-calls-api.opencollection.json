@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Calls API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/calls",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all calls made or received on the account."
+        },
+        {
+          "info": {
+            "name": "Create a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/calls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new outbound call. The call will be placed from the specified source to the destination number, and the call flow will be executed."
+        },
+        {
+          "info": {
+            "name": "View a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/calls/:callId",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of an existing call by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/calls/:callId",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              }
+            ]
+          },
+          "docs": "Deletes an existing call by hanging up all active legs and removing the call resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

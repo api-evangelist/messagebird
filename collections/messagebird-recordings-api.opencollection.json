@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Recordings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recordings for a leg",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/calls/:callId/legs/:legId/recordings",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              },
+              {
+                "name": "legId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the leg."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all recordings associated with a specific call leg."
+        },
+        {
+          "info": {
+            "name": "View a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific recording by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ]
+          },
+          "docs": "Deletes an existing recording by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

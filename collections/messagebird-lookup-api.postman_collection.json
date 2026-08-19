@@ -1,0 +1,316 @@
+{
+  "item": [
+    {
+      "id": "86c1fb20-c600-45df-b479-46f95bc8d0a9",
+      "name": "Lookup",
+      "description": {
+        "content": "Operations for looking up and validating phone numbers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f717683a-1541-45f4-899a-50cf04802c3e",
+          "name": "Look up a phone number",
+          "request": {
+            "name": "Look up a phone number",
+            "description": {
+              "content": "Performs a phone number validation and returns formatting information, country details, and operator data for the specified number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                ":phoneNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "The country code to use for parsing the phone number if it is provided in a local format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phoneNumber",
+                  "description": "(Required) The phone number to look up in international format."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf912c6e-9bf8-47bb-ba7e-c6bf0996d936",
+              "name": "Lookup result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) The phone number to look up in international format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"href\": \"http://BZlmrLwJKtX.kabn6dGyA13ZFD6mrzGPDLynEcH0JhNNRQ8-07OqcbVw0ztkn8yUuVxuyj8FCdDaP5w\",\n  \"countryCode\": \"string\",\n  \"countryPrefix\": 8531,\n  \"phoneNumber\": 3876,\n  \"type\": \"toll free\",\n  \"formats\": {\n    \"e164\": \"string\",\n    \"international\": \"string\",\n    \"national\": \"string\",\n    \"rfc3966\": \"string\"\n  },\n  \"hlr\": {\n    \"id\": \"string\",\n    \"network\": 8871,\n    \"reference\": \"string\",\n    \"status\": \"sent\",\n    \"createdDatetime\": \"2012-12-02T15:25:43.784Z\",\n    \"statusDatetime\": \"1959-12-06T13:13:44.756Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6bb6b66-a9a1-4bbe-b740-95d476da5bfa",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) The phone number to look up in international format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92f5ca24-c794-4719-a1de-2aadd7badef9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) The phone number to look up in international format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "802ef202-ed9e-4157-b43c-67eee351a09c",
+              "name": "Phone number not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    ":phoneNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneNumber",
+                      "description": "(Required) The phone number to look up in international format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a7cb3e22-6f80-41bd-9db9-f2124a64ba23",
+    "name": "MessageBird Balance Available Numbers Lookup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

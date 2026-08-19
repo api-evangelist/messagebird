@@ -1,0 +1,811 @@
+{
+  "item": [
+    {
+      "id": "00912935-3078-40aa-9674-a80a36907aa9",
+      "name": "Voice Messages",
+      "description": {
+        "content": "Operations for sending and managing text-to-speech voice messages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02fe6bbb-2fa2-499a-ad6f-4fe8086984de",
+          "name": "List voice messages",
+          "request": {
+            "name": "List voice messages",
+            "description": {
+              "content": "Retrieves a list of voice messages that have been sent. Messages are returned in reverse chronological order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voicemessages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip before starting to collect the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebb05957-d68b-40fa-9308-6b530c6277a8",
+              "name": "A list of voice messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 7352,\n  \"limit\": 2557,\n  \"count\": 1586,\n  \"totalCount\": 6384,\n  \"links\": {\n    \"first\": \"https://nvBtoRDnSSSxVexTrYGdZwJiJJqTpE.fwjhDNbv.Nu.qM1XY7SsY19fuFVRzEo2u7OJJ,ebFYx12HxqCysVm\",\n    \"previous\": \"http://movlsbKqangSMYaFHAudvmsaLz.ivrwJuMMUQhgoMfGWpAs.\",\n    \"next\": \"https://rXQdTNAKKpfcziyJLWevltfqbpBI.wdhiErzvHGCCMdBiOfoUyZqsUkV4EwVGUxoBv9A6Ev\",\n    \"last\": \"https://dDECnQdELozNebroCjUFuCqRYHRyGDH.eoAdoLKJaHVVUnqkYOviLn2hxkQPwer5H+,xeOnFlaCke-\"\n  },\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"href\": \"https://OhVFImokBwzxFOwxA.feoqOgzMhoh7xqfxdHq8mJJQd2zdhihFd2lQg1g5Aol\",\n      \"body\": \"string\",\n      \"originator\": \"string\",\n      \"reference\": \"string\",\n      \"language\": \"string\",\n      \"voice\": \"string\",\n      \"repeat\": 7051,\n      \"ifMachine\": \"string\",\n      \"scheduledDatetime\": \"1979-12-21T07:26:52.706Z\",\n      \"createdDatetime\": \"1991-12-10T22:09:49.731Z\",\n      \"recipients\": {\n        \"totalCount\": 7385,\n        \"totalSentCount\": 4069,\n        \"totalDeliveredCount\": 9489,\n        \"totalDeliveryFailedCount\": 8808,\n        \"items\": [\n          {\n            \"recipient\": 8599,\n            \"status\": \"string\",\n            \"statusDatetime\": \"2001-10-23T13:42:58.788Z\"\n          },\n          {\n            \"recipient\": 4736,\n            \"status\": \"string\",\n            \"statusDatetime\": \"1988-05-11T06:18:44.789Z\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"href\": \"http://cqqkhcjjqVxMnyzBpBAsIi.vsEyYlRtWFGhPiQktP7cqzXnQyd6Fha+KBLN52JIlQeUxgabB+NDXar+2aklncgcxOSeBv\",\n      \"body\": \"string\",\n      \"originator\": \"string\",\n      \"reference\": \"string\",\n      \"language\": \"string\",\n      \"voice\": \"string\",\n      \"repeat\": 5597,\n      \"ifMachine\": \"string\",\n      \"scheduledDatetime\": \"1988-06-30T01:30:14.109Z\",\n      \"createdDatetime\": \"1992-12-06T07:20:15.205Z\",\n      \"recipients\": {\n        \"totalCount\": 9070,\n        \"totalSentCount\": 6751,\n        \"totalDeliveredCount\": 7899,\n        \"totalDeliveryFailedCount\": 6168,\n        \"items\": [\n          {\n            \"recipient\": 9031,\n            \"status\": \"string\",\n            \"statusDatetime\": \"2008-12-11T09:48:12.298Z\"\n          },\n          {\n            \"recipient\": 6047,\n            \"status\": \"string\",\n            \"statusDatetime\": \"1956-03-29T17:14:39.417Z\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c764708d-ff35-4cf4-8a47-cc05606acb7a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c32833f5-90e2-493a-b881-ab331e6fa38f",
+          "name": "Send a voice message",
+          "request": {
+            "name": "Send a voice message",
+            "description": {
+              "content": "Creates a new voice message and delivers it to the specified recipients using text-to-speech. A maximum of 50 recipients can be specified per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voicemessages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"originator\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"reportUrl\": \"<uri>\",\n  \"language\": \"en-gb\",\n  \"voice\": \"female\",\n  \"repeat\": 1,\n  \"ifMachine\": \"continue\",\n  \"machineTimeout\": \"<integer>\",\n  \"scheduledDatetime\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d003d0f1-be72-4b99-98c9-ea85264e673e",
+              "name": "Voice message created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"originator\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"reportUrl\": \"<uri>\",\n  \"language\": \"en-gb\",\n  \"voice\": \"female\",\n  \"repeat\": 1,\n  \"ifMachine\": \"continue\",\n  \"machineTimeout\": \"<integer>\",\n  \"scheduledDatetime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"href\": \"https://FUcTPfQxUpMVKUoasFjqTBK.rnfiF0AgmskpysydCX-ELLXBPomqgryGgLfOmk\",\n  \"body\": \"string\",\n  \"originator\": \"string\",\n  \"reference\": \"string\",\n  \"language\": \"string\",\n  \"voice\": \"string\",\n  \"repeat\": 352,\n  \"ifMachine\": \"string\",\n  \"scheduledDatetime\": \"2012-12-13T13:36:18.091Z\",\n  \"createdDatetime\": \"1994-03-04T22:32:42.619Z\",\n  \"recipients\": {\n    \"totalCount\": 9734,\n    \"totalSentCount\": 7499,\n    \"totalDeliveredCount\": 4855,\n    \"totalDeliveryFailedCount\": 7846,\n    \"items\": [\n      {\n        \"recipient\": 6049,\n        \"status\": \"string\",\n        \"statusDatetime\": \"2023-12-27T02:38:50.500Z\"\n      },\n      {\n        \"recipient\": 1704,\n        \"status\": \"string\",\n        \"statusDatetime\": \"1975-08-01T01:42:53.403Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eb661d9-b89a-4393-a5c0-a1df2a453f23",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"originator\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"reportUrl\": \"<uri>\",\n  \"language\": \"en-gb\",\n  \"voice\": \"female\",\n  \"repeat\": 1,\n  \"ifMachine\": \"continue\",\n  \"machineTimeout\": \"<integer>\",\n  \"scheduledDatetime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab2c291b-b2a8-4068-b4d5-0dbb502df98c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"originator\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"reportUrl\": \"<uri>\",\n  \"language\": \"en-gb\",\n  \"voice\": \"female\",\n  \"repeat\": 1,\n  \"ifMachine\": \"continue\",\n  \"machineTimeout\": \"<integer>\",\n  \"scheduledDatetime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2ce263c-fe1c-4071-8344-e4497d41e14c",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": [\n    \"<string>\"\n  ],\n  \"body\": \"<string>\",\n  \"originator\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"reportUrl\": \"<uri>\",\n  \"language\": \"en-gb\",\n  \"voice\": \"female\",\n  \"repeat\": 1,\n  \"ifMachine\": \"continue\",\n  \"machineTimeout\": \"<integer>\",\n  \"scheduledDatetime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3f7dd9b-06a3-4e63-92cf-a4820fe8b71b",
+          "name": "View a voice message",
+          "request": {
+            "name": "View a voice message",
+            "description": {
+              "content": "Retrieves the details of an existing voice message by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voicemessages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the voice message."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c446700-a486-4ac8-b69e-9111ffafa35e",
+              "name": "Voice message details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the voice message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"href\": \"https://FUcTPfQxUpMVKUoasFjqTBK.rnfiF0AgmskpysydCX-ELLXBPomqgryGgLfOmk\",\n  \"body\": \"string\",\n  \"originator\": \"string\",\n  \"reference\": \"string\",\n  \"language\": \"string\",\n  \"voice\": \"string\",\n  \"repeat\": 352,\n  \"ifMachine\": \"string\",\n  \"scheduledDatetime\": \"2012-12-13T13:36:18.091Z\",\n  \"createdDatetime\": \"1994-03-04T22:32:42.619Z\",\n  \"recipients\": {\n    \"totalCount\": 9734,\n    \"totalSentCount\": 7499,\n    \"totalDeliveredCount\": 4855,\n    \"totalDeliveryFailedCount\": 7846,\n    \"items\": [\n      {\n        \"recipient\": 6049,\n        \"status\": \"string\",\n        \"statusDatetime\": \"2023-12-27T02:38:50.500Z\"\n      },\n      {\n        \"recipient\": 1704,\n        \"status\": \"string\",\n        \"statusDatetime\": \"1975-08-01T01:42:53.403Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97e1e6f5-7d78-49be-b091-d46e63d8931b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the voice message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a380675-b750-4e07-9d81-c978a317fde0",
+              "name": "Voice message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the voice message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00090e86-2e45-40a3-8923-65d1d36e21b7",
+          "name": "Delete a voice message",
+          "request": {
+            "name": "Delete a voice message",
+            "description": {
+              "content": "Deletes an existing voice message by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voicemessages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the voice message."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d7e7100-95a2-48cb-8d55-6582003be585",
+              "name": "Voice message deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the voice message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "281b0880-13bf-45e2-b5db-5ed6a1f9e1c8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the voice message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c7abc77-5197-46e4-beae-252dc8b33e71",
+              "name": "Voice message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voicemessages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the voice message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24ac26a4-4b4e-442a-8ea9-359e1a9350e9",
+    "name": "MessageBird Balance Available Numbers Voice Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

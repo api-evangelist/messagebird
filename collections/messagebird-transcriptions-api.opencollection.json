@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Transcriptions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transcriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transcriptions for a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/recordings/:recordingId/transcriptions",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ]
+          },
+          "docs": "Retrieves all transcriptions associated with a specific recording."
+        },
+        {
+          "info": {
+            "name": "Create a transcription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/recordings/:recordingId/transcriptions",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recording."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new transcription request for a recording. Transcriptions are generated asynchronously."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

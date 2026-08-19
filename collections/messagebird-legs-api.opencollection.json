@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Legs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Legs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List legs for a call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/calls/:callId/legs",
+            "params": [
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the call."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all legs associated with a specific call. Each leg represents a voice connection within the call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,764 @@
+{
+  "item": [
+    {
+      "id": "ebd9c993-e962-4207-83e0-bd82e9626de5",
+      "name": "Calls",
+      "description": {
+        "content": "Operations for creating, listing, and managing voice calls.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8dea3a5c-52d0-48c6-ae2b-8fe1bd96c56f",
+          "name": "List all calls",
+          "request": {
+            "name": "List all calls",
+            "description": {
+              "content": "Retrieves a paginated list of all calls made or received on the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10",
+                  "description": "The number of items per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d7d2400-69b7-4709-89c7-8b27d10253bb",
+              "name": "A list of calls",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"ended\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"createdAt\": \"2023-01-09T15:06:34.514Z\",\n      \"updatedAt\": \"2018-09-24T16:09:05.089Z\",\n      \"endedAt\": \"1993-03-07T13:20:53.494Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"starting\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"createdAt\": \"1967-01-20T05:17:06.730Z\",\n      \"updatedAt\": \"2026-04-04T14:36:05.342Z\",\n      \"endedAt\": \"1958-04-09T09:49:23.527Z\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 1613,\n    \"pageCount\": 2241,\n    \"currentPage\": 2165,\n    \"perPage\": 2767\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bace270a-2f02-4633-b4a7-208a9bf05767",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "616aaa11-3f1e-48a3-901a-c1c36aee4095",
+          "name": "Create a call",
+          "request": {
+            "name": "Create a call",
+            "description": {
+              "content": "Creates a new outbound call. The call will be placed from the specified source to the destination number, and the call flow will be executed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"callFlow\": {\n    \"steps\": [\n      {\n        \"action\": \"<string>\",\n        \"id\": \"<string>\",\n        \"options\": \"<object>\"\n      },\n      {\n        \"action\": \"<string>\",\n        \"id\": \"<string>\",\n        \"options\": \"<object>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"record\": \"<boolean>\"\n  },\n  \"webhook\": {\n    \"url\": \"<uri>\",\n    \"token\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08803808-9681-4324-a31a-e35825170d9b",
+              "name": "Call created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"callFlow\": {\n    \"steps\": [\n      {\n        \"action\": \"pause\",\n        \"id\": \"string\",\n        \"options\": {}\n      },\n      {\n        \"action\": \"pause\",\n        \"id\": \"string\",\n        \"options\": {}\n      }\n    ],\n    \"title\": \"string\",\n    \"record\": false\n  },\n  \"webhook\": {\n    \"url\": \"http://kIvECeDuywHuJVTSMZmheMREiI.mbnHydXZBDB5+neOWhu51t8KDc\",\n    \"token\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"ongoing\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"createdAt\": \"1992-01-22T02:49:55.606Z\",\n      \"updatedAt\": \"1979-04-13T14:41:27.667Z\",\n      \"endedAt\": \"1955-04-25T11:42:51.165Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"starting\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"createdAt\": \"1995-10-07T21:56:25.124Z\",\n      \"updatedAt\": \"1971-01-23T18:23:29.045Z\",\n      \"endedAt\": \"1990-01-26T11:16:50.105Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be39f743-5fea-430c-b6d8-15aa52a42383",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"callFlow\": {\n    \"steps\": [\n      {\n        \"action\": \"pause\",\n        \"id\": \"string\",\n        \"options\": {}\n      },\n      {\n        \"action\": \"pause\",\n        \"id\": \"string\",\n        \"options\": {}\n      }\n    ],\n    \"title\": \"string\",\n    \"record\": false\n  },\n  \"webhook\": {\n    \"url\": \"http://kIvECeDuywHuJVTSMZmheMREiI.mbnHydXZBDB5+neOWhu51t8KDc\",\n    \"token\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94a9ca10-8602-4173-b2e6-6f4fdba6edea",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"callFlow\": {\n    \"steps\": [\n      {\n        \"action\": \"pause\",\n        \"id\": \"string\",\n        \"options\": {}\n      },\n      {\n        \"action\": \"pause\",\n        \"id\": \"string\",\n        \"options\": {}\n      }\n    ],\n    \"title\": \"string\",\n    \"record\": false\n  },\n  \"webhook\": {\n    \"url\": \"http://kIvECeDuywHuJVTSMZmheMREiI.mbnHydXZBDB5+neOWhu51t8KDc\",\n    \"token\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "598ef080-ca73-402d-9a85-19c1e6e5e1c2",
+          "name": "View a call",
+          "request": {
+            "name": "View a call",
+            "description": {
+              "content": "Retrieves the details of an existing call by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calls",
+                ":callId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callId",
+                  "description": "(Required) The unique identifier of the call."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f490867a-01fa-40b9-921d-ecb2fa802ac7",
+              "name": "Call details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"ongoing\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"createdAt\": \"1992-01-22T02:49:55.606Z\",\n      \"updatedAt\": \"1979-04-13T14:41:27.667Z\",\n      \"endedAt\": \"1955-04-25T11:42:51.165Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"starting\",\n      \"source\": \"string\",\n      \"destination\": \"string\",\n      \"createdAt\": \"1995-10-07T21:56:25.124Z\",\n      \"updatedAt\": \"1971-01-23T18:23:29.045Z\",\n      \"endedAt\": \"1990-01-26T11:16:50.105Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "439a2ba8-905d-4e1f-849f-5e2d240db24a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf98dd35-d3ed-4d22-9609-766fb2532d8b",
+              "name": "Call not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6b23cb6-a17e-41e6-93b8-96d1d04dec27",
+          "name": "Delete a call",
+          "request": {
+            "name": "Delete a call",
+            "description": {
+              "content": "Deletes an existing call by hanging up all active legs and removing the call resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calls",
+                ":callId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callId",
+                  "description": "(Required) The unique identifier of the call."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf594d64-fa1d-4090-ae64-4e5931142e75",
+              "name": "Call deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7c5610a-133d-43ca-9c14-035b3d85af57",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6bdbd26d-28eb-49ec-a756-062b12ea1059",
+              "name": "Call not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calls",
+                    ":callId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callId",
+                      "description": "(Required) The unique identifier of the call."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d6b01f4-e5eb-4878-a79e-161a4935fd3c",
+    "name": "MessageBird Balance Available Numbers Calls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

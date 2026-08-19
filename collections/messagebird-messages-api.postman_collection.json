@@ -1,0 +1,2206 @@
+{
+  "item": [
+    {
+      "id": "6e429e62-9fe8-470a-a397-232246221a2c",
+      "name": "Messages",
+      "description": {
+        "content": "Operations for sending and retrieving messages within conversations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1d987de-ad5d-4951-9e4b-5d05a3007643",
+          "name": "List messages in a conversation",
+          "request": {
+            "name": "List messages in a conversation",
+            "description": {
+              "content": "Retrieves a paginated list of all messages within a specific conversation. Messages are returned with the newest first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversationId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The unique identifier of the conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21fce3fc-2122-4013-87af-a22b31e4fc7e",
+              "name": "A list of messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 6797,\n  \"limit\": 4234,\n  \"count\": 9052,\n  \"totalCount\": 1629,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"conversationId\": \"string\",\n      \"channelId\": \"string\",\n      \"platform\": \"string\",\n      \"to\": \"string\",\n      \"from\": \"string\",\n      \"direction\": \"received\",\n      \"status\": \"failed\",\n      \"type\": \"string\",\n      \"content\": {\n        \"text\": \"string\",\n        \"image\": {\n          \"url\": \"https://RVyknWdtJSmC.axmpQMRPcBynCVlzuHk5yFVAWOuTUT\",\n          \"caption\": \"string\"\n        },\n        \"video\": {\n          \"url\": \"https://wHsImECMIcFHOBQNPY.ieelOyaeLhjOJ2fMP8UiO-C1vV-dVj2AeHePZOB+Zn4ceoXqv\",\n          \"caption\": \"string\"\n        },\n        \"audio\": {\n          \"url\": \"http://oPxwDZxArHtqseDPhrkegLkufyfhYiY.dahhMGmyG6qz5eMoUTXqPWudPFfIJMZ64g\"\n        },\n        \"file\": {\n          \"url\": \"http://fBSSiFWnysCeQdFBUpuIrPWs.rorYuyJ7DwrHl4vr6O2ILVCi6gFA+lioXxdl,0BuW.MkJBeZZqmyxMZipZVig7\",\n          \"caption\": \"string\"\n        },\n        \"location\": {\n          \"latitude\": 280.7109776007555,\n          \"longitude\": 2217.4297509693097\n        },\n        \"hsm\": {\n          \"namespace\": \"string\",\n          \"templateName\": \"string\",\n          \"language\": {\n            \"policy\": \"string\",\n            \"code\": \"string\"\n          },\n          \"params\": [\n            {\n              \"default\": \"string\"\n            },\n            {\n              \"default\": \"string\"\n            }\n          ]\n        }\n      },\n      \"createdDatetime\": \"2019-01-18T10:03:14.149Z\",\n      \"updatedDatetime\": \"1963-06-20T15:04:38.691Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"conversationId\": \"string\",\n      \"channelId\": \"string\",\n      \"platform\": \"string\",\n      \"to\": \"string\",\n      \"from\": \"string\",\n      \"direction\": \"sent\",\n      \"status\": \"accepted\",\n      \"type\": \"string\",\n      \"content\": {\n        \"text\": \"string\",\n        \"image\": {\n          \"url\": \"https://HPQnmnJjeUFqEOGcvyDJBmLXmszS.nzthnreBxaUb0BXecqM+dXqq6JNXDYJGgcVusGhIYbPuJRP0n9QD6Yo\",\n          \"caption\": \"string\"\n        },\n        \"video\": {\n          \"url\": \"http://QhgWAdoBuSYfpOiMwjtvLDLXrBrnVTXoS.sbgQzXTeAc7lat9M+ic+dGTfcWeC1VB7+tpJSreoxs0Id3SoNLz\",\n          \"caption\": \"string\"\n        },\n        \"audio\": {\n          \"url\": \"http://DDsdzGX.whugV1nEBEp+rujma5Erzi-goGFMm2UTUcqqycZofcq+IBv\"\n        },\n        \"file\": {\n          \"url\": \"https://XGPT.nylfvClCVPB4V5ShGfA15VGo2kV.yoK5pNnCvTNUqNrdgRTJ46iZ1FKraFwh+za19KX\",\n          \"caption\": \"string\"\n        },\n        \"location\": {\n          \"latitude\": 7363.797100840583,\n          \"longitude\": 9902.47858261991\n        },\n        \"hsm\": {\n          \"namespace\": \"string\",\n          \"templateName\": \"string\",\n          \"language\": {\n            \"policy\": \"string\",\n            \"code\": \"string\"\n          },\n          \"params\": [\n            {\n              \"default\": \"string\"\n            },\n            {\n              \"default\": \"string\"\n            }\n          ]\n        }\n      },\n      \"createdDatetime\": \"2005-04-05T22:36:01.942Z\",\n      \"updatedDatetime\": \"1968-06-28T21:50:09.990Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1d8c54c-ff6e-48a2-97ca-4182aa2c6c0d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3248a13a-e1b6-4b80-b359-5b2fb3dda3e2",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "092e0815-102c-4f85-96d1-09bb87ca4194",
+          "name": "Send a message in a conversation",
+          "request": {
+            "name": "Send a message in a conversation",
+            "description": {
+              "content": "Sends a new message within an existing conversation. The message will be delivered through the channel associated with the conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations",
+                ":conversationId",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "conversationId",
+                  "description": "(Required) The unique identifier of the conversation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"image\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"video\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"audio\": {\n      \"url\": \"<uri>\"\n    },\n    \"file\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"hsm\": {\n      \"namespace\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"language\": {\n        \"policy\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      \"params\": [\n        {\n          \"default\": \"<string>\"\n        },\n        {\n          \"default\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2a8b3bb-b78b-4e8c-839c-91f92b72146e",
+              "name": "Message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://QLerdtOgsIldncGzyIBnkicGsFnDD.eldHU0kmSKQsCtSB7lD9fvgU8iYa6X3c\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://QcEMx.hrgraBRn7qy-Vfw6IDwoPpdhc8tJw5NelZZZ0io4-XQTOldeJg6\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://MIaCISTxQi.jfe+-OY7J-XEb2Qa8\"\n    },\n    \"file\": {\n      \"url\": \"http://yDVtPkDWSdAZhBKYGzNLDkIpRscW.mreqt0p6KKLJ5CL24v4CmD1V0sg\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 7302.689964630502,\n      \"longitude\": 8798.380018836573\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"conversationId\": \"string\",\n  \"channelId\": \"string\",\n  \"platform\": \"string\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"received\",\n  \"status\": \"failed\",\n  \"type\": \"string\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://Uav.zoS.dSn8qNvaXYFN8ALQZnPePDVpzp5lwOAYw1+dPyaCHvUlRHdzK5rZbqi2.sXrZ-mddkbIoLUL0cK\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://YytXcKQmOfUHR.oorZtwN3NUW8lC7rhRGE\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://eHBMxfgyvYXJkJnFNqpEHyTjQFE.fjiYNOeG.CF0nzQAtlM6yOTi17bcNCIyWphXSTi+iYn7LV,QjTHguWT\"\n    },\n    \"file\": {\n      \"url\": \"https://TMtpQEtsqQzNXsPBld.kmht3AeG+1IERxcMOrFs0AIzJ7CXJF2ozmTiNA5L8GaUYEvzkj9BK2tyQf+g,S1J.Ufu\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 2908.5267025258254,\n      \"longitude\": 3665.798765443904\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"createdDatetime\": \"1974-03-30T13:42:56.576Z\",\n  \"updatedDatetime\": \"2005-12-05T10:22:02.531Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a308f51e-af3a-41d1-9215-1289f6a6e502",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://QLerdtOgsIldncGzyIBnkicGsFnDD.eldHU0kmSKQsCtSB7lD9fvgU8iYa6X3c\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://QcEMx.hrgraBRn7qy-Vfw6IDwoPpdhc8tJw5NelZZZ0io4-XQTOldeJg6\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://MIaCISTxQi.jfe+-OY7J-XEb2Qa8\"\n    },\n    \"file\": {\n      \"url\": \"http://yDVtPkDWSdAZhBKYGzNLDkIpRscW.mreqt0p6KKLJ5CL24v4CmD1V0sg\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 7302.689964630502,\n      \"longitude\": 8798.380018836573\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fe8e100-1da0-4299-a3e5-e90f38a4ea40",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://QLerdtOgsIldncGzyIBnkicGsFnDD.eldHU0kmSKQsCtSB7lD9fvgU8iYa6X3c\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://QcEMx.hrgraBRn7qy-Vfw6IDwoPpdhc8tJw5NelZZZ0io4-XQTOldeJg6\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://MIaCISTxQi.jfe+-OY7J-XEb2Qa8\"\n    },\n    \"file\": {\n      \"url\": \"http://yDVtPkDWSdAZhBKYGzNLDkIpRscW.mreqt0p6KKLJ5CL24v4CmD1V0sg\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 7302.689964630502,\n      \"longitude\": 8798.380018836573\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d4337f1-ee47-4806-9a3f-fa98c8eca687",
+              "name": "Conversation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations",
+                    ":conversationId",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "conversationId",
+                      "description": "(Required) The unique identifier of the conversation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://QLerdtOgsIldncGzyIBnkicGsFnDD.eldHU0kmSKQsCtSB7lD9fvgU8iYa6X3c\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://QcEMx.hrgraBRn7qy-Vfw6IDwoPpdhc8tJw5NelZZZ0io4-XQTOldeJg6\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"http://MIaCISTxQi.jfe+-OY7J-XEb2Qa8\"\n    },\n    \"file\": {\n      \"url\": \"http://yDVtPkDWSdAZhBKYGzNLDkIpRscW.mreqt0p6KKLJ5CL24v4CmD1V0sg\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 7302.689964630502,\n      \"longitude\": 8798.380018836573\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"channelId\": \"<string>\",\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a536090-4272-4d12-8f8f-54931b973f1c",
+          "name": "Send a message",
+          "request": {
+            "name": "Send a message",
+            "description": {
+              "content": "Sends a message to a recipient without requiring an existing conversation. MessageBird will automatically match or create a conversation for the recipient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"<string>\",\n    \"image\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"video\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"audio\": {\n      \"url\": \"<uri>\"\n    },\n    \"file\": {\n      \"url\": \"<uri>\",\n      \"caption\": \"<string>\"\n    },\n    \"location\": {\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\"\n    },\n    \"hsm\": {\n      \"namespace\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"language\": {\n        \"policy\": \"<string>\",\n        \"code\": \"<string>\"\n      },\n      \"params\": [\n        {\n          \"default\": \"<string>\"\n        },\n        {\n          \"default\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f796aebc-f183-48cd-a7b8-45e871eb445b",
+              "name": "Message accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://asHcaet.fmqpcfl0Cb1TXhlwdN6HJrSRM7.gQo10kRkPJyZdu-3v,ziy0YAcj\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://RyVaSXQNwbwvTKWEaihVcWnPdVjLtwGWt.ijwkexCzst29k-MsAYdffLPHc9RamW9iGjANTcH7vmq47IUe2kkftcIcsUy0P\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://LnUJzoaVniHmzcalP.xxmuy6yIesanNLfhO+N8,Z71AIoszPcwb7j9tn\"\n    },\n    \"file\": {\n      \"url\": \"http://ILDse.mrdhYIiCV.VTuEoaJLLJNz2J6qKFB0NE\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6418.073292481044,\n      \"longitude\": 7544.549699500281\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"conversationId\": \"string\",\n  \"channelId\": \"string\",\n  \"platform\": \"string\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"received\",\n  \"status\": \"failed\",\n  \"type\": \"string\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://Uav.zoS.dSn8qNvaXYFN8ALQZnPePDVpzp5lwOAYw1+dPyaCHvUlRHdzK5rZbqi2.sXrZ-mddkbIoLUL0cK\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://YytXcKQmOfUHR.oorZtwN3NUW8lC7rhRGE\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://eHBMxfgyvYXJkJnFNqpEHyTjQFE.fjiYNOeG.CF0nzQAtlM6yOTi17bcNCIyWphXSTi+iYn7LV,QjTHguWT\"\n    },\n    \"file\": {\n      \"url\": \"https://TMtpQEtsqQzNXsPBld.kmht3AeG+1IERxcMOrFs0AIzJ7CXJF2ozmTiNA5L8GaUYEvzkj9BK2tyQf+g,S1J.Ufu\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 2908.5267025258254,\n      \"longitude\": 3665.798765443904\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"createdDatetime\": \"1974-03-30T13:42:56.576Z\",\n  \"updatedDatetime\": \"2005-12-05T10:22:02.531Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5f7bcee-15e2-4b65-96fb-e0debbfb92be",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://asHcaet.fmqpcfl0Cb1TXhlwdN6HJrSRM7.gQo10kRkPJyZdu-3v,ziy0YAcj\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://RyVaSXQNwbwvTKWEaihVcWnPdVjLtwGWt.ijwkexCzst29k-MsAYdffLPHc9RamW9iGjANTcH7vmq47IUe2kkftcIcsUy0P\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://LnUJzoaVniHmzcalP.xxmuy6yIesanNLfhO+N8,Z71AIoszPcwb7j9tn\"\n    },\n    \"file\": {\n      \"url\": \"http://ILDse.mrdhYIiCV.VTuEoaJLLJNz2J6qKFB0NE\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6418.073292481044,\n      \"longitude\": 7544.549699500281\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83f274ad-16f6-42ab-afa3-b8648cc78bb9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": \"<string>\",\n  \"from\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://asHcaet.fmqpcfl0Cb1TXhlwdN6HJrSRM7.gQo10kRkPJyZdu-3v,ziy0YAcj\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"http://RyVaSXQNwbwvTKWEaihVcWnPdVjLtwGWt.ijwkexCzst29k-MsAYdffLPHc9RamW9iGjANTcH7vmq47IUe2kkftcIcsUy0P\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://LnUJzoaVniHmzcalP.xxmuy6yIesanNLfhO+N8,Z71AIoszPcwb7j9tn\"\n    },\n    \"file\": {\n      \"url\": \"http://ILDse.mrdhYIiCV.VTuEoaJLLJNz2J6qKFB0NE\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 6418.073292481044,\n      \"longitude\": 7544.549699500281\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"reportUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "864018af-1df0-4c34-94f2-1837aa3b03ca",
+          "name": "View a message",
+          "request": {
+            "name": "View a message",
+            "description": {
+              "content": "Retrieves the details of a specific message by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":messageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "messageId",
+                  "description": "(Required) The unique identifier of the message."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c88864ab-7986-4c00-9abf-e66707fc39e8",
+              "name": "Message details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"conversationId\": \"string\",\n  \"channelId\": \"string\",\n  \"platform\": \"string\",\n  \"to\": \"string\",\n  \"from\": \"string\",\n  \"direction\": \"received\",\n  \"status\": \"failed\",\n  \"type\": \"string\",\n  \"content\": {\n    \"text\": \"string\",\n    \"image\": {\n      \"url\": \"https://Uav.zoS.dSn8qNvaXYFN8ALQZnPePDVpzp5lwOAYw1+dPyaCHvUlRHdzK5rZbqi2.sXrZ-mddkbIoLUL0cK\",\n      \"caption\": \"string\"\n    },\n    \"video\": {\n      \"url\": \"https://YytXcKQmOfUHR.oorZtwN3NUW8lC7rhRGE\",\n      \"caption\": \"string\"\n    },\n    \"audio\": {\n      \"url\": \"https://eHBMxfgyvYXJkJnFNqpEHyTjQFE.fjiYNOeG.CF0nzQAtlM6yOTi17bcNCIyWphXSTi+iYn7LV,QjTHguWT\"\n    },\n    \"file\": {\n      \"url\": \"https://TMtpQEtsqQzNXsPBld.kmht3AeG+1IERxcMOrFs0AIzJ7CXJF2ozmTiNA5L8GaUYEvzkj9BK2tyQf+g,S1J.Ufu\",\n      \"caption\": \"string\"\n    },\n    \"location\": {\n      \"latitude\": 2908.5267025258254,\n      \"longitude\": 3665.798765443904\n    },\n    \"hsm\": {\n      \"namespace\": \"string\",\n      \"templateName\": \"string\",\n      \"language\": {\n        \"policy\": \"string\",\n        \"code\": \"string\"\n      },\n      \"params\": [\n        {\n          \"default\": \"string\"\n        },\n        {\n          \"default\": \"string\"\n        }\n      ]\n    }\n  },\n  \"createdDatetime\": \"1974-03-30T13:42:56.576Z\",\n  \"updatedDatetime\": \"2005-12-05T10:22:02.531Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f417689e-588d-41fa-9a0a-f46ff3392606",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c09647ac-1df5-4e6e-b6e7-66ba6671bcd8",
+              "name": "Message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":messageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "messageId",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e9cd20b-e5d9-4d15-9090-5222f763aebe",
+          "name": "List messages",
+          "request": {
+            "name": "List messages",
+            "description": {
+              "content": "Retrieves a list of SMS messages that have been sent or received. Messages are returned in reverse chronological order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip before starting to collect the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1514b497-aa31-444e-be60-2338c31cd200",
+              "name": "A list of messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offset\": 90,\n  \"limit\": 5865,\n  \"count\": 9136,\n  \"totalCount\": 9898,\n  \"links\": {\n    \"first\": \"http://QJo.qecMNm6Iqys-HxZuuh5Z4fEwGzREkCqSQoNHKgk5mJF7+NEP-SdytdGx8DTymT3UOPmC4R\",\n    \"previous\": \"http://FDItTVZFppAF.lwaZ134Xk5Hg6NwHP4dhB8SjFE3PZfDrWLa.U8xMvyFIGwT-.ftJ0,Cgq-ke6Hj28apQ\",\n    \"next\": \"http://MBudBFYEkIqlQPRylXYhLvvGU.umvsSuARFMC.GSglSnCRzDbFm2gRCxPu9yCPIL-wmlbGVHXJ26bZ\",\n    \"last\": \"http://HkwKurrWaGvGQKfaw.ojfujN9fxpR4dzvQ3jUuq1O5y+q-04BzGdnTomb+32nPa9\"\n  },\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"href\": \"http://kGPTHEICrOjKFkcNejYc.uxeJlfaXqw\",\n      \"direction\": \"mt\",\n      \"type\": \"binary\",\n      \"originator\": \"string\",\n      \"body\": \"string\",\n      \"reference\": \"string\",\n      \"validity\": 813,\n      \"gateway\": 5181,\n      \"typeDetails\": {},\n      \"datacoding\": \"string\",\n      \"mclass\": 9465,\n      \"scheduledDatetime\": \"2015-04-21T14:40:21.454Z\",\n      \"createdDatetime\": \"2018-05-01T03:25:53.116Z\",\n      \"recipients\": {\n        \"totalCount\": 9439,\n        \"totalSentCount\": 8137,\n        \"totalDeliveredCount\": 4744,\n        \"totalDeliveryFailedCount\": 6207,\n        \"items\": [\n          {\n            \"recipient\": 4096,\n            \"status\": \"buffered\",\n            \"statusDatetime\": \"1991-04-14T04:37:22.388Z\"\n          },\n          {\n            \"recipient\": 6522,\n            \"status\": \"delivery_failed\",\n            \"statusDatetime\": \"1988-01-11T09:29:31.070Z\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"href\": \"https://mbBeZAnTWeNi.swddlr3YsE70N55vZNA1DZG7dfWBLFX4dy-thqmPNdfcixgOYfEb62thsHrXY4ch.kbiPWZK-cBt29261bv\",\n      \"direction\": \"mo\",\n      \"type\": \"flash\",\n      \"originator\": \"string\",\n      \"body\": \"string\",\n      \"reference\": \"string\",\n      \"validity\": 4580,\n      \"gateway\": 1066,\n      \"typeDetails\": {},\n      \"datacoding\": \"string\",\n      \"mclass\": 2606,\n      \"scheduledDatetime\": \"2001-08-21T11:20:49.720Z\",\n      \"createdDatetime\": \"2022-06-28T01:48:57.774Z\",\n      \"recipients\": {\n        \"totalCount\": 7580,\n        \"totalSentCount\": 7029,\n        \"totalDeliveredCount\": 1775,\n        \"totalDeliveryFailedCount\": 5693,\n        \"items\": [\n          {\n            \"recipient\": 295,\n            \"status\": \"delivery_failed\",\n            \"statusDatetime\": \"2005-04-26T10:00:34.809Z\"\n          },\n          {\n            \"recipient\": 9499,\n            \"status\": \"sent\",\n            \"statusDatetime\": \"1963-02-17T14:01:25.840Z\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c46c2e8b-0a1e-44b7-9583-31586c6743e8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa1d629a-c541-4458-9289-f0078e125dcd",
+          "name": "Send a new message",
+          "request": {
+            "name": "Send a new message",
+            "description": {
+              "content": "Creates a new SMS message and sends it to the specified recipients. A single message can be sent to up to 50 recipients at a time. Messages longer than 160 characters are automatically split into multiple parts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "recipients",
+                  "value": "<string>",
+                  "description": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "originator",
+                  "value": "<string>",
+                  "description": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "body",
+                  "value": "<string>",
+                  "description": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "sms",
+                  "description": "The type of message. Can be sms, binary, or flash."
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "A client reference for tracking purposes."
+                },
+                {
+                  "disabled": false,
+                  "key": "reportUrl",
+                  "value": "<uri>",
+                  "description": "The URL for delivery report callbacks for this message."
+                },
+                {
+                  "disabled": false,
+                  "key": "validity",
+                  "value": "<integer>",
+                  "description": "The validity period of the message in seconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "gateway",
+                  "value": "<integer>",
+                  "description": "The SMS route used to send the message."
+                },
+                {
+                  "disabled": false,
+                  "key": "typeDetails",
+                  "value": "<object>",
+                  "description": "Additional type-specific details for the message."
+                },
+                {
+                  "disabled": false,
+                  "key": "datacoding",
+                  "value": "plain",
+                  "description": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding."
+                },
+                {
+                  "disabled": false,
+                  "key": "mclass",
+                  "value": "<integer>",
+                  "description": "The message class. Set to 1 for flash messages."
+                },
+                {
+                  "disabled": false,
+                  "key": "scheduledDatetime",
+                  "value": "<dateTime>",
+                  "description": "The scheduled date and time of the message in RFC 3339 format."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5261cdcb-743b-42a6-ac0e-5486009260cf",
+              "name": "Message created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"href\": \"https://kGcQEikoMviHcwG.ysizKIxespyG6ax\",\n  \"direction\": \"mt\",\n  \"type\": \"flash\",\n  \"originator\": \"string\",\n  \"body\": \"string\",\n  \"reference\": \"string\",\n  \"validity\": 4460,\n  \"gateway\": 4106,\n  \"typeDetails\": {},\n  \"datacoding\": \"string\",\n  \"mclass\": 7030,\n  \"scheduledDatetime\": \"1988-12-12T22:55:13.506Z\",\n  \"createdDatetime\": \"1993-02-26T18:49:20.961Z\",\n  \"recipients\": {\n    \"totalCount\": 5233,\n    \"totalSentCount\": 1567,\n    \"totalDeliveredCount\": 7771,\n    \"totalDeliveryFailedCount\": 1712,\n    \"items\": [\n      {\n        \"recipient\": 9274,\n        \"status\": \"delivery_failed\",\n        \"statusDatetime\": \"1959-10-05T22:50:25.016Z\"\n      },\n      {\n        \"recipient\": 1849,\n        \"status\": \"buffered\",\n        \"statusDatetime\": \"2023-10-27T06:59:37.550Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e40ce03-1062-4014-98bc-635d0a93c345",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87dbb84a-e50f-4995-9b87-f518581d521a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8dc32fbd-fa60-4260-aff8-2fe494a9cdcb",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The phone numbers that will receive the message in international format. A maximum of 50 recipients can be specified per request.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipients",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The sender of the message. Can be a telephone number including country code or an alphanumeric string with a maximum length of 11 characters.",
+                        "type": "text/plain"
+                      },
+                      "key": "originator",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The body of the SMS message. Messages longer than 160 characters will be split into multiple parts.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of message. Can be sms, binary, or flash.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "sms"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A client reference for tracking purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The URL for delivery report callbacks for this message.",
+                        "type": "text/plain"
+                      },
+                      "key": "reportUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The validity period of the message in seconds.",
+                        "type": "text/plain"
+                      },
+                      "key": "validity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SMS route used to send the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "gateway",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Additional type-specific details for the message.",
+                        "type": "text/plain"
+                      },
+                      "key": "typeDetails",
+                      "value": "<object>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The encoding used for the message body. Use auto for automatic detection, unicode for Unicode, or plain for GSM encoding.",
+                        "type": "text/plain"
+                      },
+                      "key": "datacoding",
+                      "value": "plain"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The message class. Set to 1 for flash messages.",
+                        "type": "text/plain"
+                      },
+                      "key": "mclass",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The scheduled date and time of the message in RFC 3339 format.",
+                        "type": "text/plain"
+                      },
+                      "key": "scheduledDatetime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "583f06f0-e806-44cd-b57f-0ed9d088a94e",
+          "name": "View a message",
+          "request": {
+            "name": "View a message",
+            "description": {
+              "content": "Retrieves the information of an existing inbound or outbound SMS message. You only need to supply the unique message ID that was returned upon creation or receiving.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the message."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2183e5e-1733-449c-968b-d0bf31a25fe2",
+              "name": "Message details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"href\": \"https://kGcQEikoMviHcwG.ysizKIxespyG6ax\",\n  \"direction\": \"mt\",\n  \"type\": \"flash\",\n  \"originator\": \"string\",\n  \"body\": \"string\",\n  \"reference\": \"string\",\n  \"validity\": 4460,\n  \"gateway\": 4106,\n  \"typeDetails\": {},\n  \"datacoding\": \"string\",\n  \"mclass\": 7030,\n  \"scheduledDatetime\": \"1988-12-12T22:55:13.506Z\",\n  \"createdDatetime\": \"1993-02-26T18:49:20.961Z\",\n  \"recipients\": {\n    \"totalCount\": 5233,\n    \"totalSentCount\": 1567,\n    \"totalDeliveredCount\": 7771,\n    \"totalDeliveryFailedCount\": 1712,\n    \"items\": [\n      {\n        \"recipient\": 9274,\n        \"status\": \"delivery_failed\",\n        \"statusDatetime\": \"1959-10-05T22:50:25.016Z\"\n      },\n      {\n        \"recipient\": 1849,\n        \"status\": \"buffered\",\n        \"statusDatetime\": \"2023-10-27T06:59:37.550Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac77bd9a-f220-4f40-abc4-35fd84d34c38",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f67c16ec-72fa-4c74-84e0-1ec24d354419",
+              "name": "Message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46058eb7-1c77-4407-ab25-7edd1490533d",
+          "name": "Delete a message",
+          "request": {
+            "name": "Delete a message",
+            "description": {
+              "content": "Deletes an existing message. You only need to supply the unique message ID that was returned upon creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the message."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2a96d29-f873-4bef-9655-1015fb82b01c",
+              "name": "Message deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d437d3ae-2445-4a88-a844-cef8b63b38c4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68c11ef5-3cba-49ad-9338-49f0b1d53f5a",
+              "name": "Message not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the message."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c7ed4d75-a60d-44ef-bbdf-7a6aafe0bec9",
+    "name": "MessageBird Balance Available Numbers Messages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}

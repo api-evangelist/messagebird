@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MessageBird Balance Available Numbers Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/webhooks",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all configured conversation webhooks. The platform supports up to 10 channel-specific webhooks and 5 generic webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.messagebird.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook to receive real-time notifications for conversation events. Webhooks can be channel-specific or generic."
+        },
+        {
+          "info": {
+            "name": "View a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific webhook by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update a voice webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://rest.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing voice webhook configuration."
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://rest.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.messagebird.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "Deletes an existing webhook by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1049 @@
+{
+  "item": [
+    {
+      "id": "1cc8ff0a-0017-4f8a-8d69-13897aea70e6",
+      "name": "Call Flows",
+      "description": {
+        "content": "Operations for managing call flows that define interactive voice response sequences.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc723b4c-a220-4a1e-8ef2-24f429f89d13",
+          "name": "List all call flows",
+          "request": {
+            "name": "List all call flows",
+            "description": {
+              "content": "Retrieves a paginated list of all call flows configured on the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call-flows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10",
+                  "description": "The number of items per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ad86876-a361-4e4f-8821-e40a492eaaa7",
+              "name": "A list of call flows",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": true,\n      \"steps\": [\n        {\n          \"action\": \"record\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"record\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2021-05-08T03:21:36.361Z\",\n      \"updatedAt\": \"1947-07-04T22:29:36.801Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": true,\n      \"steps\": [\n        {\n          \"action\": \"hangup\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"1973-10-11T04:25:53.486Z\",\n      \"updatedAt\": \"2000-08-13T14:23:21.843Z\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 1592,\n    \"pageCount\": 803,\n    \"currentPage\": 3809,\n    \"perPage\": 3799\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c183e6a4-cc4f-470d-a193-ccd6c8c36d0b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fc7a6e0-f2fd-413c-b211-c86e444dc1a5",
+          "name": "Create a call flow",
+          "request": {
+            "name": "Create a call flow",
+            "description": {
+              "content": "Creates a new call flow with a sequence of steps that define the interactive voice response behavior.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call-flows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"<string>\",\n      \"id\": \"<string>\",\n      \"options\": \"<object>\"\n    },\n    {\n      \"action\": \"<string>\",\n      \"id\": \"<string>\",\n      \"options\": \"<object>\"\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56ae6b4c-f2f2-4f95-943e-9c18f3ead842",
+              "name": "Call flow created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": false,\n      \"steps\": [\n        {\n          \"action\": \"hangup\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"play\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2006-11-05T13:12:31.620Z\",\n      \"updatedAt\": \"2010-10-24T22:14:20.601Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": false,\n      \"steps\": [\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2009-11-13T14:35:33.583Z\",\n      \"updatedAt\": \"1958-11-08T00:25:44.052Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "271a312f-707c-4fa8-bc0e-e93c046f6dfc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47682c5f-c448-40e1-bb80-15baaf5da96d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f51c335-6753-4ad0-a7c1-94944642f724",
+          "name": "View a call flow",
+          "request": {
+            "name": "View a call flow",
+            "description": {
+              "content": "Retrieves the details of a specific call flow by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call-flows",
+                ":callFlowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callFlowId",
+                  "description": "(Required) The unique identifier of the call flow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11eaa09e-65b0-4e69-8ae0-352f831aad3a",
+              "name": "Call flow details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": false,\n      \"steps\": [\n        {\n          \"action\": \"hangup\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"play\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2006-11-05T13:12:31.620Z\",\n      \"updatedAt\": \"2010-10-24T22:14:20.601Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": false,\n      \"steps\": [\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2009-11-13T14:35:33.583Z\",\n      \"updatedAt\": \"1958-11-08T00:25:44.052Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5c8be3e-7d4d-4bce-8dd4-1b731a5b2ab9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "504a53af-f114-48e1-be9a-5af4c84667f8",
+              "name": "Call flow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f963d52-bb09-47b5-9281-e732f7c252cf",
+          "name": "Update a call flow",
+          "request": {
+            "name": "Update a call flow",
+            "description": {
+              "content": "Updates an existing call flow with new step definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call-flows",
+                ":callFlowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callFlowId",
+                  "description": "(Required) The unique identifier of the call flow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"<string>\",\n      \"id\": \"<string>\",\n      \"options\": \"<object>\"\n    },\n    {\n      \"action\": \"<string>\",\n      \"id\": \"<string>\",\n      \"options\": \"<object>\"\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edb9f851-ebf2-414b-8760-3d298f0403ca",
+              "name": "Call flow updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": false,\n      \"steps\": [\n        {\n          \"action\": \"hangup\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"play\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2006-11-05T13:12:31.620Z\",\n      \"updatedAt\": \"2010-10-24T22:14:20.601Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"record\": false,\n      \"steps\": [\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        },\n        {\n          \"action\": \"say\",\n          \"id\": \"string\",\n          \"options\": {}\n        }\n      ],\n      \"createdAt\": \"2009-11-13T14:35:33.583Z\",\n      \"updatedAt\": \"1958-11-08T00:25:44.052Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7e7ba30-5baf-4c71-8d32-1b3dd2fbbb3e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80105fc4-2b0b-46ee-9237-0c6eae0f8a44",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e03bdfa0-a3f9-48c3-a1a6-6b86a5c99a20",
+              "name": "Call flow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"steps\": [\n    {\n      \"action\": \"hangup\",\n      \"id\": \"string\",\n      \"options\": {}\n    },\n    {\n      \"action\": \"fetchCallFlow\",\n      \"id\": \"string\",\n      \"options\": {}\n    }\n  ],\n  \"title\": \"<string>\",\n  \"record\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8feced47-c9d6-407c-972d-02aed7993807",
+          "name": "Delete a call flow",
+          "request": {
+            "name": "Delete a call flow",
+            "description": {
+              "content": "Deletes an existing call flow by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call-flows",
+                ":callFlowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callFlowId",
+                  "description": "(Required) The unique identifier of the call flow."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "984b4ebf-3185-4284-b420-049d4cbfc9a6",
+              "name": "Call flow deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ec3db42-1de8-498d-8380-bb36bf1f4c73",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6c320ee-2acc-4dc4-87d2-46996b3bdfbe",
+              "name": "Call flow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call-flows",
+                    ":callFlowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callFlowId",
+                      "description": "(Required) The unique identifier of the call flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.messagebird.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "670d9d0b-76ed-40fd-b4ab-b28eee6407ae",
+    "name": "MessageBird Balance Available Numbers Call Flows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.\n\nContact Support:\n Name: MessageBird Support",
+      "type": "text/plain"
+    }
+  }
+}
