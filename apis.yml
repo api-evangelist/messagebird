@@ -61,6 +61,8 @@ apis:
   humanURL: https://developers.messagebird.com/api/sms-messaging/
   baseURL: https://rest.messagebird.com
   tags:
+  - Balances
+  tags_raw:
   - Balance
   properties:
   - type: OpenAPI
@@ -251,6 +253,8 @@ apis:
   humanURL: https://developers.messagebird.com/api/sms-messaging/
   baseURL: https://rest.messagebird.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -405,6 +409,8 @@ apis:
   humanURL: https://developers.messagebird.com/api/sms-messaging/
   baseURL: https://rest.messagebird.com
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -672,6 +678,8 @@ apis:
   humanURL: https://developers.messagebird.com/api/sms-messaging/
   baseURL: https://rest.messagebird.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
