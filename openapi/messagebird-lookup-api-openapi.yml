@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: MessageBird Balance Available Numbers Lookup API
-  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  title: MessageBird Lookup API
+  description: The MessageBird Lookup API enables developers to validate and look up mobile phone numbers. It performs HLR lookups on the mobile network to identify number format, country, operator, and availability in real-time. The API is useful for cleaning contact lists, validating user-provided phone numbers, and determining the correct format before sending messages.
   version: '1.0'
   contact:
     name: MessageBird Support
@@ -142,5 +142,5 @@ components:
       name: Authorization
       description: Access key authentication in the form of 'AccessKey {accessKey}'.
 externalDocs:
-  description: Balance API Documentation
-  url: https://developers.messagebird.com/api/balance/
+  description: Lookup API Documentation
+  url: https://developers.messagebird.com/api/lookup/

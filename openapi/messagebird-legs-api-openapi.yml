@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: MessageBird Balance Available Numbers Legs API
-  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  title: MessageBird Voice Calling Legs API
+  description: The MessageBird Voice Calling API enables developers to make, receive, and control phone calls programmatically. It supports call flows for building interactive voice response systems, call recording, call transfers, and real-time webhooks for call events. The API provides global coverage and can be used to build contact center solutions, automated calling systems, and voice-enabled applications.
   version: '1.0'
   contact:
     name: MessageBird Support
     url: https://support.messagebird.com
   termsOfService: https://www.messagebird.com/en/terms
 servers:
-- url: https://rest.messagebird.com
+- url: https://voice.messagebird.com
   description: Production Server
 security:
 - accessKey: []
@@ -47,21 +47,6 @@ components:
             $ref: '#/components/schemas/Leg'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of items available.
-        pageCount:
-          type: integer
-          description: The total number of pages.
-        currentPage:
-          type: integer
-          description: The current page number.
-        perPage:
-          type: integer
-          description: The number of items per page.
     Leg:
       type: object
       properties:
@@ -113,6 +98,21 @@ components:
           type: string
           format: date-time
           description: The date and time when the leg ended.
+    Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of items available.
+        pageCount:
+          type: integer
+          description: The total number of pages.
+        currentPage:
+          type: integer
+          description: The current page number.
+        perPage:
+          type: integer
+          description: The number of items per page.
   parameters:
     callIdParam:
       name: callId
@@ -128,5 +128,5 @@ components:
       name: Authorization
       description: Access key authentication in the form of 'AccessKey {accessKey}'.
 externalDocs:
-  description: Balance API Documentation
-  url: https://developers.messagebird.com/api/balance/
+  description: Voice Calling API Documentation
+  url: https://developers.messagebird.com/api/voice-calling/

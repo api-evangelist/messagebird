@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: MessageBird Balance Available Numbers API
-  description: The MessageBird Balance API provides developers with access to their account balance information. It returns the current payment type, available amount, and currency for the account associated with the API key. This API is useful for monitoring credit usage, building billing dashboards, and setting up automated alerts when account balances fall below a threshold.
+  title: MessageBird Numbers Available Numbers API
+  description: The MessageBird Numbers API enables developers to search for, purchase, and manage phone numbers programmatically. It supports local, toll-free, and mobile number types across multiple countries, with the ability to filter by pattern, type, and region. Purchased numbers can be configured for SMS and voice capabilities and assigned to specific messaging or calling workflows.
   version: '1.0'
   contact:
     name: MessageBird Support
     url: https://support.messagebird.com
   termsOfService: https://www.messagebird.com/en/terms
 servers:
-- url: https://rest.messagebird.com
+- url: https://numbers.messagebird.com/v1
   description: Production Server
 security:
 - accessKey: []
@@ -136,5 +136,5 @@ components:
       name: Authorization
       description: Access key authentication in the form of 'AccessKey {accessKey}'.
 externalDocs:
-  description: Balance API Documentation
-  url: https://developers.messagebird.com/api/balance/
+  description: Numbers API Documentation
+  url: https://developers.messagebird.com/api/numbers/
