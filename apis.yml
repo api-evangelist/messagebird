@@ -28,7 +28,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/messagebird.png
 url: https://raw.githubusercontent.com/api-evangelist/messagebird/refs/heads/main/apis.yml
-modified: '2026-05-19'
+modified: '2026-09-16'
 apis:
 - aid: messagebird:messagebird-available-numbers-api
   name: messagebird Available Numbers API
@@ -340,9 +340,8 @@ apis:
     url: https://developers.messagebird.com/api/integrations/
 - aid: messagebird:messagebird-legs-api
   name: messagebird Legs API
-  description: >-
-    Operations for viewing and managing call legs. A leg represents a single voice connection within a
-    call.
+  description: Operations for viewing and managing call legs. A leg represents a single voice connection
+    within a call.
   humanURL: https://developers.messagebird.com/api/sms-messaging/
   baseURL: https://rest.messagebird.com
   tags:
@@ -686,8 +685,7 @@ apis:
     url: https://developers.messagebird.com/api/integrations/
 - aid: messagebird:messagebird-webhooks-api
   name: messagebird Webhooks API
-  description: >-
-    Operations for managing conversation webhooks that receive real-time event notifications.
+  description: Operations for managing conversation webhooks that receive real-time event notifications.
   humanURL: https://developers.messagebird.com/api/sms-messaging/
   baseURL: https://rest.messagebird.com
   tags:
@@ -725,87 +723,50 @@ apis:
     url: https://developers.messagebird.com/api/balance/
   - type: Documentation
     url: https://developers.messagebird.com/api/integrations/
-- aid: messagebird:messagebird-whatsapp-messages-api
-  name: messagebird WhatsApp Messages API
-  description: >-
-    Operations for sending and receiving WhatsApp messages through the Conversations API interface.
-  humanURL: https://developers.messagebird.com/api/sms-messaging/
-  baseURL: https://rest.messagebird.com
-  tags:
-  - WhatsApp Messages
-  properties:
-  - type: OpenAPI
-    url: openapi/messagebird-whatsapp-messages-api-openapi.yml
-  - type: Documentation
-    url: https://developers.messagebird.com/api/sms-messaging/
-  - type: GraphQL
-    url: graphql/messagebird-graphql.md
-  - type: Documentation
-    url: https://developers.messagebird.com/api/voice-calling/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/voice-messaging/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/conversations/
-  - type: AsyncAPI
-    url: asyncapi/messagebird-conversations-asyncapi.yml
-  - type: Documentation
-    url: https://developers.messagebird.com/api/whatsapp
-  - type: Documentation
-    url: https://developers.messagebird.com/api/verify/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/lookup/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/hlr/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/contacts/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/numbers/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/balance/
-  - type: Documentation
-    url: https://developers.messagebird.com/api/integrations/
 common:
-  - type: AgenticAccess
-    url: agentic-access/messagebird-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/messagebird-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/messagebird-domain-security.yml
-  - type: Authentication
-    url: authentication/messagebird-authentication.yml
-  - type: GitHubOrganization
-    url: https://github.com/messagebird
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/birdhq
-  - type: JSONLD
-    url: json-ld/messagebird-context.jsonld
-  - type: JSONSchema
-    url: json-schema/messagebird-message-schema.json
-  - type: JSONSchema
-    url: json-schema/messagebird-conversation-schema.json
-  - type: JSONSchema
-    url: json-schema/messagebird-contact-schema.json
-  - type: Features
-    data:
-      - 'Email: starts $1.50 per 1,000 messages'
-      - 'SMS: per-country rates with Bundle discounts'
-      - 'WhatsApp: $0.005/msg + Meta passthrough'
-      - 'Push: $0.0005/notification'
-      - 'RCS: $0.005/msg + carrier passthrough'
-      - 'Voice API: custom pricing'
-      - REST API at api.bird.com
-      - Default 50 req/sec/workspace
-      - OAuth 2.0 + API keys
-      - Webhooks for delivery, status, inbound events
-      - 200+ countries supported
-      - Inbox for omnichannel customer messaging
-      - Flow Builder for no-code journey orchestration
-      - Conversations API
-      - Numbers (rental for phone numbers)
-      - Verify API for OTP
-    sources:
-      - https://bird.com/en/pricing
-    updated: '2026-05-04'
-  - type: LlmsText
-    url: https://bird.com/llms.txt
+- type: Website
+  url: https://messagebird.com
+- type: AgenticAccess
+  url: agentic-access/messagebird-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/messagebird-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/messagebird-domain-security.yml
+- type: Authentication
+  url: authentication/messagebird-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/messagebird
+- type: LinkedIn
+  url: https://www.linkedin.com/company/birdhq
+- type: JSONLD
+  url: json-ld/messagebird-context.jsonld
+- type: JSONSchema
+  url: json-schema/messagebird-message-schema.json
+- type: JSONSchema
+  url: json-schema/messagebird-conversation-schema.json
+- type: JSONSchema
+  url: json-schema/messagebird-contact-schema.json
+- type: Features
+  data:
+  - 'Email: starts $1.50 per 1,000 messages'
+  - 'SMS: per-country rates with Bundle discounts'
+  - 'WhatsApp: $0.005/msg + Meta passthrough'
+  - 'Push: $0.0005/notification'
+  - 'RCS: $0.005/msg + carrier passthrough'
+  - 'Voice API: custom pricing'
+  - REST API at api.bird.com
+  - Default 50 req/sec/workspace
+  - OAuth 2.0 + API keys
+  - Webhooks for delivery, status, inbound events
+  - 200+ countries supported
+  - Inbox for omnichannel customer messaging
+  - Flow Builder for no-code journey orchestration
+  - Conversations API
+  - Numbers (rental for phone numbers)
+  - Verify API for OTP
+  sources:
+  - https://bird.com/en/pricing
+  updated: '2026-05-04'
+- type: LlmsText
+  url: https://bird.com/llms.txt
 description: Build powerful apps using the fastest and most reliable cloud communications APIs.
