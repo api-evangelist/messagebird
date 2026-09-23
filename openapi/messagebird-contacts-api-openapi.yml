@@ -158,6 +158,30 @@ paths:
         '404':
           description: Contact not found
 components:
+  parameters:
+    contactIdParam:
+      name: contactId
+      in: path
+      required: true
+      description: The unique identifier of the contact.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip.
+      schema:
+        type: integer
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
   schemas:
     Contact:
       type: object
@@ -235,30 +259,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
-    ContactUpdate:
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: The first name of the contact.
-        lastName:
-          type: string
-          description: The last name of the contact.
-        msisdn:
-          type: string
-          description: The phone number of the contact.
-        custom1:
-          type: string
-          description: Custom field 1.
-        custom2:
-          type: string
-          description: Custom field 2.
-        custom3:
-          type: string
-          description: Custom field 3.
-        custom4:
-          type: string
-          description: Custom field 4.
     ContactCreate:
       type: object
       required:
@@ -285,30 +285,30 @@ components:
         custom4:
           type: string
           description: Custom field 4.
-  parameters:
-    offsetParam:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip.
-      schema:
-        type: integer
-        default: 0
-    limitParam:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return.
-      schema:
-        type: integer
-        default: 20
-    contactIdParam:
-      name: contactId
-      in: path
-      required: true
-      description: The unique identifier of the contact.
-      schema:
-        type: string
+    ContactUpdate:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: The first name of the contact.
+        lastName:
+          type: string
+          description: The last name of the contact.
+        msisdn:
+          type: string
+          description: The phone number of the contact.
+        custom1:
+          type: string
+          description: Custom field 1.
+        custom2:
+          type: string
+          description: Custom field 2.
+        custom3:
+          type: string
+          description: Custom field 3.
+        custom4:
+          type: string
+          description: Custom field 4.
   securitySchemes:
     accessKey:
       type: apiKey

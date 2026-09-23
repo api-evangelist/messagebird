@@ -1,0 +1,9 @@
+# Bird security contact information (RFC 9116)
+# https://bird.com/.well-known/security.txt
+
+Contact: mailto:security@bird.com
+Contact: https://hackerone.com/messagebird
+Policy: https://hackerone.com/messagebird
+Expires: 2027-06-17T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://bird.com/.well-known/security.txt

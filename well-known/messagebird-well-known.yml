@@ -1,0 +1,218 @@
+generated: '2026-09-17'
+method: searched
+source: probed live on every host in apis.yml plus the hosts named by bird.com's RFC 9727 api-catalog
+note: >-
+  MessageBird trades as Bird (bird.com). The discovery surface lives on the bird.com
+  and platform.bird.com hosts; the legacy messagebird.com host still serves an RFC 9116
+  security.txt and an OpenAI ai-plugin manifest. A negative-control path
+  (/.well-known/messagebird-negative-control-7f3ab91c.json) was probed on every host and
+  404'd everywhere, so no host is path-echoing and every 200 below is a real document.
+path_echo_control: passed
+hit_count: 8
+hosts:
+- host: https://bird.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: messagebird-security.txt
+  - path: /.well-known/api-catalog
+    status: 200
+    file: messagebird-api-catalog.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: messagebird-oauth-authorization-server.json
+  - path: /.well-known/ard.json
+    status: 200
+    file: messagebird-ard.json
+  - path: /.well-known/mcp/server-card.json
+    status: 200
+    file: messagebird-mcp-server-card.json
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 404
+- host: https://platform.bird.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: messagebird-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: messagebird-oauth-protected-resource.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 404
+- host: https://mcp.bird.com
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: messagebird-mcp-oauth-protected-resource.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 404
+- host: https://messagebird.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: messagebird-legacy-security.txt
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: messagebird-ai-plugin.json
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/aauth-resource.json
+    status: 403
+  - path: /.well-known/apis.json
+    status: 403
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 403
+- host: https://api.bird.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/ai-plugin.json
+    status: 401
+  - path: /.well-known/aauth-resource.json
+    status: 401
+  - path: /.well-known/apis.json
+    status: 401
+  - path: /apis.json
+    status: 401
+  - path: /apis.yml
+    status: 401
+  - path: /.well-known/agent-card.json
+    status: 401
+  - path: /.well-known/agent.json
+    status: 401
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 401
+- host: https://rest.messagebird.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 404
+- host: https://developers.messagebird.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/messagebird-negative-control-7f3ab91c.json
+    status: 404

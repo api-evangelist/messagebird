@@ -1,0 +1,114 @@
+generated: '2026-09-17'
+method: searched
+source: live probes of bird.com / platform.bird.com / mcp.bird.com plus https://bird.com/docs/guides/ and openapi/messagebird-bird-api-openapi.yml
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: 'https://bird.com/openapi.json — openapi 3.1.0, 216 paths, 277 operations, 3708 component schemas, all operationIds unique'
+- id: oauth2
+  conforms: true
+  evidence: 'https://platform.bird.com/.well-known/oauth-authorization-server — authorization_code, device_code and refresh_token grants'
+- id: oidc
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns 404 on bird.com and platform.bird.com; Bird is an OAuth 2.0 authorization server, not an OpenID Provider'
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: 'https://platform.bird.com/.well-known/oauth-authorization-server (HTTP 200), issuer https://platform.bird.com, mirrored at https://bird.com/.well-known/oauth-authorization-server'
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: 'https://platform.bird.com/.well-known/oauth-protected-resource and https://mcp.bird.com/.well-known/oauth-protected-resource (both HTTP 200); a 401 from the API names the document in WWW-Authenticate'
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: 'registration_endpoint https://platform.bird.com/v1/oauth/register, documented at https://bird.com/auth.md'
+- id: rfc7636-pkce
+  conforms: true
+  evidence: 'code_challenge_methods_supported ["S256"]; plain explicitly not supported'
+- id: rfc8252-native-app-oauth
+  conforms: true
+  evidence: 'https://bird.com/auth.md — loopback redirect (127.0.0.1, [::1], localhost) accepted for native clients'
+- id: rfc8628-device-authorization-grant
+  conforms: true
+  evidence: 'device_authorization_endpoint https://platform.bird.com/v1/oauth/device'
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: 'https://bird.com/.well-known/security.txt (HTTP 200) with Contact, Policy, Expires, Preferred-Languages and Canonical'
+- id: rfc9727-api-catalog
+  conforms: true
+  evidence: 'https://bird.com/.well-known/api-catalog (HTTP 200) served as application/linkset+json with profile="https://www.rfc-editor.org/info/rfc9727"; carries service-desc, service-doc and service-meta links'
+- id: rfc9651-structured-field-values
+  conforms: true
+  evidence: 'RateLimit and RateLimit-Policy response headers are Structured Fields, per https://bird.com/docs/guides/rate-limits'
+- id: draft-ietf-httpapi-ratelimit-headers
+  conforms: true
+  evidence: 'openapi info.description names draft-ietf-httpapi-ratelimit-headers-11; RateLimit-Policy header form "email_send";q=1000;w=60'
+- id: standard-webhooks
+  conforms: true
+  evidence: 'https://bird.com/docs/guides/webhooks — webhook-id / webhook-timestamp / webhook-signature headers, whsec_ secret, HMAC-SHA256 over id.timestamp.body'
+- id: model-context-protocol
+  conforms: true
+  evidence: 'https://bird.com/.well-known/mcp/server-card.json declares streamable-http remote https://mcp.bird.com supporting protocol versions 2025-11-25 and 2026-07-28'
+- id: llms-txt
+  conforms: true
+  evidence: 'https://bird.com/llms.txt (HTTP 200), 7.5KB curated agent index; llms-full.txt also published'
+- id: agentic-resource-discovery
+  conforms: true
+  evidence: 'https://bird.com/.well-known/ard.json (HTTP 200), specVersion 1.0, 4 entries with urn:air: identifiers'
+- id: agent-plugins
+  conforms: true
+  evidence: 'https://bird.com/docs/ai/agent-skills — the bird-ai marketplace plugin follows https://agent-plugins.org/specification'
+- id: a2a-agent-card
+  conforms: false
+  evidence: '/.well-known/agent-card.json and /.well-known/agent.json both 404 on bird.com, platform.bird.com, mcp.bird.com, messagebird.com, rest.messagebird.com and developers.messagebird.com'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'Bird uses its own error envelope nested under an "error" key with type/code/name/message/doc_url/request_id; no application/problem+json media type appears in the spec'
+- id: idempotency-key
+  conforms: true
+  evidence: 'Idempotency-Key request header on POST/PATCH/PUT/DELETE, 3-hour retention, Idempotency-Replay response header — https://bird.com/docs/guides/idempotency'
+- id: cursor-pagination
+  conforms: true
+  evidence: 'limit/after/before request params and a {"data": [...], "next_cursor": ...} envelope'
+- id: aauth
+  conforms: false
+  evidence: '/.well-known/aauth-resource.json returns 404 on bird.com and platform.bird.com'
+- id: apis-json
+  conforms: false
+  evidence: '/apis.json, /apis.yml and /.well-known/apis.json all 404 on every probed host'
+- id: graphql
+  conforms: false
+  evidence: 'Bird publishes no GraphQL endpoint; the repo''s graphql/ files are a derived conceptual model, not a served schema'
+domain_standards:
+- id: smtp
+  conforms: true
+  evidence: 'SMTP submission is a first-class send path sharing the email_send rate-limit policy; DATA submission consumes one unit and a denied submission returns SMTP 452 4.3.1 — https://bird.com/docs/guides/rate-limits'
+  spec_location: 'openapi/messagebird-bird-api-openapi.yml tag email-smtp-configs (3 operations)'
+- id: dmarc-spf-dkim-bimi
+  conforms: true
+  evidence: >-
+    The contract exposes email-authentication posture as an API surface, not only as prose —
+    `bird email tools audit <domain>` / MCP `email_tools_audit` resolve and grade live DMARC,
+    SPF (with recursive RFC 7208 10-lookup counting), DKIM selectors, BIMI and MX, returning
+    severity-graded findings.
+  spec_location: 'https://github.com/messagebird/bird-ai plugins/bird/skills/email-audit/SKILL.md'
+- id: rfc8058-list-unsubscribe
+  conforms: true
+  evidence: 'email.unsubscribed and email.list_unsubscribed are first-class webhook event types and a hosted unsubscribe page is configurable — https://bird.com/docs/guides/email/unsubscribe-links'
+- id: us-10dlc-a2p
+  conforms: true
+  evidence: >-
+    10DLC brand registration and submissions are an API/CLI surface (bird sms 10dlc brands
+    create / brands submissions create), and US toll-free carrier verification is modelled as
+    bird sms tfn verifications — the US carrier-registration regime for A2P SMS.
+  spec_location: 'https://github.com/messagebird/bird-ai plugins/bird/skills/bird-cli/SKILL.md'
+- id: whatsapp-business-platform
+  conforms: true
+  evidence: 'openapi tags whatsapp-business-accounts, whatsapp-numbers, whatsapp-templates, whatsapp-messages, whatsapp-stats — 34 operations against Meta''s official WhatsApp Business Platform'
+compliance:
+  published: true
+  trust_center: https://trust.bird.com/
+  certifications:
+  - SOC 2
+  - ISO 27001
+  - HIPAA
+  - GDPR
+  evidence: 'security/messagebird-trust-center.yml (probed 2026-09-17)'

@@ -126,21 +126,6 @@ paths:
     - url: https://rest.messagebird.com
       description: Production Server
 components:
-  parameters:
-    hlrIdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the HLR.
-      schema:
-        type: string
-    phoneNumberParam:
-      name: phoneNumber
-      in: path
-      required: true
-      description: The phone number to look up in international format.
-      schema:
-        type: string
   schemas:
     Hlr:
       type: object
@@ -220,6 +205,21 @@ components:
           type: string
           format: date-time
           description: The date and time of the last status update.
+  parameters:
+    hlrIdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the HLR.
+      schema:
+        type: string
+    phoneNumberParam:
+      name: phoneNumber
+      in: path
+      required: true
+      description: The phone number to look up in international format.
+      schema:
+        type: string
   securitySchemes:
     accessKey:
       type: apiKey

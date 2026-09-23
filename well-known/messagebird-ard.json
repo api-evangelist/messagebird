@@ -1,0 +1,59 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Bird",
+    "identifier": "bird.com",
+    "documentationUrl": "https://bird.com/en-us/docs",
+    "logoUrl": "https://bird.com/favicon.svg"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:bird.com:api:openapi",
+      "displayName": "Bird API",
+      "description": "The OpenAPI 3.1 description of every public Bird endpoint: email, SMS, WhatsApp, voice, verify, lookup, contacts, and webhooks.",
+      "type": "application/vnd.oai.openapi+json",
+      "url": "https://bird.com/openapi.json",
+      "tags": [
+        "api",
+        "messaging",
+        "email",
+        "sms",
+        "whatsapp",
+        "voice"
+      ]
+    },
+    {
+      "identifier": "urn:air:bird.com:agent:llms-txt",
+      "displayName": "Bird for agents",
+      "description": "The curated index of Bird's agent-facing surfaces: the API, the MCP server, the CLI, and the docs corpus.",
+      "type": "text/markdown",
+      "url": "https://bird.com/llms.txt",
+      "tags": [
+        "llms-txt",
+        "documentation"
+      ]
+    },
+    {
+      "identifier": "urn:air:bird.com:skill:bird-cli",
+      "displayName": "bird-cli",
+      "description": "Use when operating Bird through the bird CLI to preview or send messages, inspect or manage API resources, or onboard an account; excludes client development.",
+      "type": "application/ai-skill+md",
+      "url": "https://bird.com/en-us/docs/ai/agent-skills",
+      "tags": [
+        "skill",
+        "cli"
+      ]
+    },
+    {
+      "identifier": "urn:air:bird.com:skill:email-audit",
+      "displayName": "email-audit",
+      "description": "Use when auditing a live domain's email authentication or spam-delivery problems involving DMARC, SPF, DKIM, BIMI, or MX; single-record drafts use bird validators.",
+      "type": "application/ai-skill+md",
+      "url": "https://bird.com/en-us/docs/ai/agent-skills",
+      "tags": [
+        "skill",
+        "cli"
+      ]
+    }
+  ]
+}

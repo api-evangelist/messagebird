@@ -1,0 +1,79 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bird (MessageBird)
+  version: 1.0.0
+x-generated: '2026-09-17'
+x-method: generated
+x-source: openapi/messagebird-bird-api-openapi.yml harvested verbatim from https://bird.com/openapi.json on 2026-09-17
+extends: openapi/messagebird-bird-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: messagebird
+    x-apievangelist-brand: Bird
+    x-apievangelist-harvested: '2026-09-17'
+    x-apievangelist-source: https://bird.com/openapi.json
+    x-apievangelist-discovery: https://bird.com/.well-known/api-catalog
+    x-apievangelist-llms-txt: https://bird.com/llms.txt
+    x-apievangelist-mcp-server: https://mcp.bird.com
+    x-apievangelist-oauth-metadata: https://platform.bird.com/.well-known/oauth-authorization-server
+- target: $.info
+  update:
+    x-idempotency:
+      header: Idempotency-Key
+      coverage: full
+      methods: [POST, PATCH, PUT, DELETE]
+      retention: 3h
+      replay_header: Idempotency-Replay
+      docs: https://bird.com/docs/guides/idempotency
+    x-rate-limit-headers:
+      policy: RateLimit-Policy
+      state: RateLimit
+      retry_after: Retry-After
+      format: RFC 9651 Structured Fields
+      docs: https://bird.com/docs/guides/rate-limits
+    x-error-envelope:
+      root: error
+      branch_on: [type, code]
+      never_parse: message
+      catalog: https://bird.com/docs/api/errors
+      artifact: errors/messagebird-error-codes.yml
+    x-pagination:
+      style: cursor
+      params: [limit, after, before]
+      response: next_cursor
+- target: $.info
+  update:
+    x-agent-surfaces:
+      mcp: https://mcp.bird.com
+      mcp_dynamic: https://mcp.bird.com/dynamic
+      mcp_server_card: https://bird.com/.well-known/mcp/server-card.json
+      cli: https://bird.com/docs/cli
+      agent_skills: https://github.com/messagebird/bird-ai
+      ard: https://bird.com/.well-known/ard.json
+      auth_md: https://bird.com/auth.md
+      markdown_twin: append .md to any bird.com URL, or send Accept text/markdown
+- target: $.components.securitySchemes.BearerAuth
+  update:
+    x-oauth-alternative:
+      issuer: https://platform.bird.com
+      metadata: https://platform.bird.com/.well-known/oauth-authorization-server
+      scopes_artifact: scopes/messagebird-scopes.yml
+      scope_count: 44
+      token_prefix: bt_{region}_
+- target: $.paths['/v1/email/messages/{message_id}/cancel'].post
+  update:
+    x-reversal-of: createEmailMessage
+    x-reversal-window: before the message starts sending
+- target: $.paths['/v1/email/broadcasts/{broadcast_id}/cancel'].post
+  update:
+    x-reversal-of: sendEmailBroadcast
+    x-reversal-window: while scheduled, accepted or sending; messages already in flight are not recalled
+- target: $.paths['/v1/email/mailboxes/{mailbox_id}/restore'].post
+  update:
+    x-reversal-of: deleteMailbox
+    x-reversal-window: 30 days
+- target: $.paths['/v1/email/templates/{template_ref}/versions/{version_id}/rollback'].post
+  update:
+    x-reversal-of: submitEmailTemplateVersion
+    x-reversal-window: any published version, indefinitely

@@ -1,0 +1,26 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "MessageBird",
+  "name_for_model": "messagebird",
+  "description_for_human": "Plugin for communicating with your customers, for marketing and customer service.",
+  "description_for_model": "Communicate with your customers",
+  "auth": {
+    "type": "oauth",
+    "instructions": "",
+    "client_url": "https://app.messagebird.com/oauth2/auth",
+    "scope": "",
+    "authorization_url": "https://nest.messagebird.com/auth/oauth2/token",
+    "authorization_content_type": "application/x-www-form-urlencoded",
+    "verification_tokens": {
+      "openai": "aed5c44f02824921a9098dec3a46496f"
+    }
+},
+  "api": {
+    "type": "openapi",
+    "url": "https://messagebird.com/.well-known/openapi.yaml",
+    "is_user_authenticated": true
+  },
+  "logo_url": "https://messagebird.com/.well-known/logomark.png",
+  "contact_email": "support@messagebird.com",
+  "legal_info_url": "https://messagebird.com/legal"
+}

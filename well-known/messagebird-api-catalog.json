@@ -1,0 +1,69 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://bird.com/.well-known/api-catalog",
+      "item": [
+        {
+          "href": "https://bird.com/docs/api",
+          "type": "text/html",
+          "title": "Bird API"
+        },
+        {
+          "href": "https://mcp.bird.com",
+          "title": "Bird MCP server"
+        }
+      ]
+    },
+    {
+      "anchor": "https://bird.com/docs/api",
+      "service-desc": [
+        {
+          "href": "https://bird.com/openapi.json",
+          "type": "application/vnd.oai.openapi+json",
+          "title": "OpenAPI 3.1 description (JSON)"
+        },
+        {
+          "href": "https://bird.com/openapi.yaml",
+          "type": "application/yaml",
+          "title": "OpenAPI 3.1 description (YAML)"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://bird.com/docs/api",
+          "type": "text/html",
+          "title": "API reference"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://bird.com/llms.txt",
+          "type": "text/plain",
+          "title": "Agent-facing index of Bird's surfaces"
+        },
+        {
+          "href": "https://bird.com/.well-known/ard.json",
+          "type": "application/json",
+          "title": "Agentic Resource Discovery catalog"
+        }
+      ]
+    },
+    {
+      "anchor": "https://mcp.bird.com",
+      "service-desc": [
+        {
+          "href": "https://bird.com/.well-known/mcp/server-card.json",
+          "type": "application/json",
+          "title": "MCP server card"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://bird.com/docs/ai/mcp-server",
+          "type": "text/html",
+          "title": "Connect an MCP client to Bird"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "bird.com/bird",
+  "version": "0.83.0",
+  "description": "Send and receive across email, SMS, WhatsApp, and voice. One API, one contract.",
+  "title": "Bird",
+  "websiteUrl": "https://bird.com/docs/ai/mcp-server",
+  "repository": {
+    "url": "https://github.com/messagebird/bird-ai",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.bird.com",
+      "supportedProtocolVersions": ["2025-11-25", "2026-07-28"]
+    }
+  ]
+}

@@ -81,18 +81,18 @@ components:
       description: The unique identifier of the recording.
       schema:
         type: string
-    legIdParam:
-      name: legId
-      in: path
-      required: true
-      description: The unique identifier of the leg.
-      schema:
-        type: string
     callIdParam:
       name: callId
       in: path
       required: true
       description: The unique identifier of the call.
+      schema:
+        type: string
+    legIdParam:
+      name: legId
+      in: path
+      required: true
+      description: The unique identifier of the leg.
       schema:
         type: string
   schemas:
@@ -105,13 +105,6 @@ components:
             $ref: '#/components/schemas/Recording'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    RecordingResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recording'
     Pagination:
       type: object
       properties:
@@ -160,6 +153,13 @@ components:
           type: string
           format: date-time
           description: The date and time when the recording was last updated.
+    RecordingResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recording'
   securitySchemes:
     accessKey:
       type: apiKey

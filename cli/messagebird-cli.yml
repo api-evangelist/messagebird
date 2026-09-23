@@ -1,0 +1,102 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/docs/cli + https://bird.com/docs/ai/cli-for-agents + https://github.com/messagebird/homebrew-tap
+name: bird
+version: 0.83.0
+description: >-
+  A single binary that is the Bird API as a command line, built for a human at a terminal and
+  an agent driving it in a loop at the same time. JSON to stdout by default, structured error
+  envelope on stderr, semantic exit codes.
+repository: https://github.com/messagebird/homebrew-tap
+install:
+- method: homebrew
+  command: brew install messagebird/tap/bird
+- method: script
+  command: curl -fsSL https://cli.bird.com/install.sh | sh
+  pinnable: 'curl -fsSL https://cli.bird.com/install.sh | sh -s -- --version 1.2.3 --install-dir /opt/bird/bin'
+- method: powershell
+  command: irm https://cli.bird.com/install.ps1 | iex
+  install_dir: '%LOCALAPPDATA%\bird\bin'
+authentication:
+  command: bird auth login --scope emails:write
+  device_flow: bird auth login --device
+  status: bird auth status
+  logout: bird auth logout
+  storage: ~/.config/bird/credentials.json
+  note: Browser OAuth consent, workspace-bound token, auto-refreshed. No API key is created or copied. `auth status` always exits 0 — branch on the JSON `valid` field.
+commands:
+- group: auth
+  covers: [login, status, logout, whoami]
+- group: email
+  covers: [send, send-batch, get, list, templates, domains, stats, inbox-insights, competitive, unsubscribe-page, dedicated-ips, ip-pools, inbound-addresses, inbound-messages, tools audit]
+- group: sms
+  covers: [send, get, list, templates, senders, tfn verifications, 10dlc brands]
+- group: whatsapp
+  covers: [preview, send, get, list, templates, numbers, business accounts, stats]
+- group: voice
+  covers: [calls, sip trunks, inbound numbers, country enablement, test call]
+- group: verify
+  covers: [verifications send, verifications check]
+- group: lookup
+  covers: [phone number, email address]
+- group: contacts
+  covers: [contacts, audiences, contact-properties]
+- group: preferences
+  covers: [record consent grants, record opt-outs, look up]
+- group: realtime
+  covers: [apps, keys rotate]
+- group: webhooks
+  covers: [create, list, get, update, delete]
+- group: api-keys
+  covers: [create, rotate]
+- group: trust
+  covers: [organization-level requirements behind refused numbers or senders]
+- group: compliance
+  covers: [identities list, attachments]
+- group: support
+  covers: [open ticket, reply, wait for agent reply]
+- group: config
+  covers: [show]
+- group: mcp
+  covers: [run the Bird MCP server locally over stdio]
+- group: docs
+  covers: [search the published documentation]
+output_contract:
+  default_format: json
+  stdout: data only
+  stderr: diagnostics and the error envelope
+  list_envelope: '{"data": [...], "next_cursor": ...}'
+  human_format: --format text (-f text), single-record reads only
+  error_envelope_fields: [code, type, retryable, retry_after, param, details, next]
+exit_codes:
+- code: 0
+  meaning: Success
+- code: 1
+  meaning: Unexpected / unrecognized error. Surface and stop.
+- code: 2
+  meaning: Invalid flags, arguments or body.
+- code: 3
+  meaning: Resource not found.
+- code: 4
+  meaning: Authentication or authorization failure.
+- code: 5
+  meaning: Conflict or failed precondition.
+- code: 6
+  meaning: Rate limit or server error; retry after retry_after.
+safety_flags:
+- flag: --dry-run
+  effect: Prints the resolved request body that would be sent and exits without sending.
+- flag: --idempotency-key <key>
+  effect: Server replays the original response for a duplicate request with the same key.
+- flag: --example
+  effect: Prints a complete valid request body generated from the API schema; no credentials needed.
+- flag: --yes
+  effect: Required, with an explicit ID, on every destructive (delete) command.
+configuration:
+  paths: XDG (~/.config/bird, ~/.cache/bird, ~/.local/state/bird)
+  env: [BIRD_API_URL, BIRD_CONFIG_DIR]
+  base_url_resolution: --base-url flag, then BIRD_API_URL, then the region recorded at login ({region}.platform.bird.com)
+agent_notes:
+- Commands never prompt interactively, so an agent or CI job cannot hang; missing input fails fast with exit 2.
+- The one blocking command is `bird auth login`, which waits for browser or device approval and then times out.
+- The CLI never reads stdin it was not pointed at (--body-file -).

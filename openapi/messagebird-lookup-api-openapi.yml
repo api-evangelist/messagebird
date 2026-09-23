@@ -48,6 +48,35 @@ paths:
           description: Phone number not found
 components:
   schemas:
+    HlrLookup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the HLR lookup.
+        network:
+          type: integer
+          description: The MCC-MNC code of the mobile network operator.
+        reference:
+          type: string
+          description: The client reference.
+        status:
+          type: string
+          description: The status of the HLR lookup.
+          enum:
+          - sent
+          - absent
+          - active
+          - unknown
+          - failed
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The date and time when the HLR lookup was created.
+        statusDatetime:
+          type: string
+          format: date-time
+          description: The date and time of the last status update.
     Lookup:
       type: object
       properties:
@@ -98,35 +127,6 @@ components:
               description: The phone number in RFC 3966 format.
         hlr:
           $ref: '#/components/schemas/HlrLookup'
-    HlrLookup:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the HLR lookup.
-        network:
-          type: integer
-          description: The MCC-MNC code of the mobile network operator.
-        reference:
-          type: string
-          description: The client reference.
-        status:
-          type: string
-          description: The status of the HLR lookup.
-          enum:
-          - sent
-          - absent
-          - active
-          - unknown
-          - failed
-        createdDatetime:
-          type: string
-          format: date-time
-          description: The date and time when the HLR lookup was created.
-        statusDatetime:
-          type: string
-          format: date-time
-          description: The date and time of the last status update.
   parameters:
     phoneNumberParam:
       name: phoneNumber

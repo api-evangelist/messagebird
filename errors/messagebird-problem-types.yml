@@ -1,0 +1,68 @@
+generated: '2026-09-17'
+method: derived
+source: openapi/messagebird-bird-api-openapi.yml (https://bird.com/openapi.json)
+format: bird-error-envelope
+rfc9457: false
+catalog_url: https://bird.com/docs/api/errors
+note: >-
+  Derived from every 4xx/5xx response declared in the Bird OpenAPI 3.1 description, with
+  $ref'd shared responses resolved. Bird does not serve application/problem+json; its
+  envelope is documented in errors/messagebird-error-codes.yml and every response below
+  carries it as application/json. Titles are the spec's own response descriptions, verbatim.
+problems:
+- status: 400
+  title: "Bad request"
+  operations: 140
+  source_operations: [getDocsSearch, getDocsPage, listRealtimeRegions]
+- status: 401
+  title: "Authentication required"
+  operations: 275
+  source_operations: [getCurrentWorkspace, listRealtimeRegions, createRealtimeApp]
+- status: 402
+  title: "Insufficient balance"
+  operations: 18
+  source_operations: [createEmailMessage, createEmailMessageBatch, createEmailBroadcast]
+- status: 403
+  title: "Insufficient permissions"
+  operations: 275
+  source_operations: [getCurrentWorkspace, listRealtimeRegions, createRealtimeApp]
+- status: 404
+  title: "Resource not found"
+  operations: 173
+  source_operations: [getDocsPage, getCurrentWorkspace, getRealtimeApp]
+- status: 409
+  title: "Resource conflict"
+  operations: 41
+  source_operations: [revokeRealtimeAppKey, cancelEmailMessage, updateEmailBroadcast]
+- status: 410
+  title: "The resource existed but is no longer available."
+  operations: 15
+  source_operations: [getEmailMessageContent, getEmailMessageAttachment, getWhatsAppMessageMedia]
+- status: 412
+  title: "Precondition failed"
+  operations: 8
+  source_operations: [getEmailInboxInsightsPlacement, getEmailInboxInsightsAuthentication, getEmailInboxInsightsComplaints]
+- status: 413
+  title: "Request body or message size exceeds the allowed limit"
+  operations: 2
+  source_operations: [createEmailMessage, createEmailMessageBatch]
+- status: 422
+  title: "The request has invalid field values, violates a business rule, or carries a query parameter the endpoint does not declare. Field validation errors use `type: validation_error` and include the affecte"
+  operations: 277
+  source_operations: [getDocsSearch, getDocsPage, getCurrentWorkspace]
+- status: 425
+  title: "The resource is not available yet. Retry shortly."
+  operations: 2
+  source_operations: [getEmailMessageContent, getEmailMessageAttachment]
+- status: 429
+  title: "Rate limit exceeded"
+  operations: 277
+  source_operations: [getDocsSearch, getDocsPage, getCurrentWorkspace]
+- status: 500
+  title: "Internal server error"
+  operations: 277
+  source_operations: [getDocsSearch, getDocsPage, getCurrentWorkspace]
+- status: 503
+  title: "The service is temporarily unavailable. If `Retry-After` is present, wait for that delay before retrying; otherwise, retry with exponential backoff. Reuse the same idempotency key and request when ret"
+  operations: 176
+  source_operations: [getDocsSearch, getDocsPage, createRealtimeApp]

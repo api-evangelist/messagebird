@@ -1,0 +1,262 @@
+generated: '2026-09-17'
+method: derived
+source: openapi/messagebird-bird-api-openapi.yml (https://bird.com/openapi.json)
+note: >-
+  Derived from the Bird OpenAPI 3.1 description: 3,708 component schemas, 277 operations.
+  Entities are the resources that have their own path segment and lifecycle; id_prefix values
+  are read from the ULID-style example identifiers the spec publishes (em_01..., ws_01...),
+  not guessed. Relationships come from id-reference fields on those schemas. This describes
+  the CURRENT Bird platform API only; the legacy rest.messagebird.com model is a separate
+  graph in openapi/_original/.
+root:
+  entity: organization
+  id_prefix: org
+  note: An organization owns workspaces, billing, IP pools, members, trust posture and audit. Rate limits are keyed here.
+entities:
+- name: organization
+  id_prefix: org
+  domain: platform
+- name: workspace
+  id_prefix: ws
+  domain: platform
+  operations: [getCurrentWorkspace]
+- name: user
+  id_prefix: usr
+  domain: platform
+- name: api_key
+  id_prefix: key
+  domain: platform
+- name: webhook_endpoint
+  id_prefix: whk
+  domain: platform
+  operations: [createWebhook, listWebhooks, getWebhook, updateWebhook, deleteWebhook, rotateWebhookSecret, testWebhook, createWebhookReplay, listWebhookAttempts]
+- name: email_message
+  id_prefix: em
+  domain: email
+  operations: [createEmailMessage, listEmailMessages, getEmailMessage, cancelEmailMessage, listEmailMessageRecipients, listEmailMessageEvents, getEmailMessageContent, getEmailMessageAttachment]
+- name: email_broadcast
+  id_prefix: eb
+  domain: email
+  operations: [createEmailBroadcast, listEmailBroadcasts, getEmailBroadcast, updateEmailBroadcast, deleteEmailBroadcast, sendEmailBroadcast, cancelEmailBroadcast]
+- name: email_template
+  id_prefix: emt
+  domain: email
+  operations: [createEmailTemplate, listEmailTemplates, getEmailTemplate, updateEmailTemplate, deleteEmailTemplate, duplicateEmailTemplate, rollbackEmailTemplate]
+- name: email_template_version
+  id_prefix: emv
+  domain: email
+  operations: [listEmailTemplateVersions, getEmailTemplateVersion, deleteEmailTemplateVersion, submitEmailTemplateVersion]
+- name: sending_domain
+  id_prefix: dom
+  domain: email
+  operations: [createDomain, listDomains, getDomain, updateDomain, deleteDomain, verifyDomain, listDomainEvents, releaseTrackingDomain, shareDomainDnsRecords]
+- name: ip_pool
+  id_prefix: ipp
+  domain: email
+- name: mailbox
+  id_prefix: mbx
+  domain: email-inbound
+  operations: [listMailboxes, createMailbox, getMailbox, updateMailbox, deleteMailbox, restoreMailbox, resumeMailbox, getMailboxStats]
+- name: inbound_address
+  id_prefix: adn
+  domain: email-inbound
+  operations: [createInboundAddress, listInboundAddresses, deleteInboundAddress]
+- name: email_thread
+  id_prefix: null
+  id_prefix_note: no example identifier for this resource appears in the spec; prefix not recorded rather than guessed
+  domain: email-inbound
+  operations: [listEmailThreads, getEmailThread, deleteEmailThread, deleteEmailThreadMessage]
+- name: email_suppression
+  id_prefix: sup
+  domain: email
+  operations: [listSuppressions, createSuppression, deleteSuppression]
+- name: sms_message
+  id_prefix: smv
+  domain: sms
+  operations: [createSMSMessage, listSMSMessages, createSMSMessageBatch, getSMSMessage, listSMSMessageEvents]
+- name: sms_template
+  id_prefix: smt
+  domain: sms
+- name: sms_suppression
+  id_prefix: ssu
+  domain: sms
+  operations: [deleteSMSSuppression]
+- name: whatsapp_message
+  id_prefix: wam
+  domain: whatsapp
+  operations: [createWhatsAppMessage, listWhatsAppMessages, getWhatsAppMessage, sendWhatsAppReadReceipt, upsertWhatsAppMessageReaction, deleteWhatsAppMessageReaction]
+- name: whatsapp_template
+  id_prefix: wat
+  domain: whatsapp
+- name: whatsapp_number
+  id_prefix: wan
+  domain: whatsapp
+- name: whatsapp_business_account
+  id_prefix: amb
+  domain: whatsapp
+- name: contact
+  id_prefix: con
+  domain: contacts
+  operations: [createContact, listContacts, createContactBatch, getContact, updateContact, deleteContact]
+- name: audience
+  id_prefix: null
+  id_prefix_note: no example identifier for this resource appears in the spec; prefix not recorded rather than guessed
+  domain: contacts
+  operations: [createAudience, listAudiences, getAudience, updateAudience, deleteAudience, listAudienceContacts, assignAudienceContacts, unassignAudienceContacts]
+- name: contact_property
+  id_prefix: prt
+  domain: contacts
+  operations: [createContactProperty, listContactProperties, getContactProperty, updateContactProperty, archiveContactProperty, unarchiveContactProperty]
+- name: preference
+  id_prefix: prf
+  domain: preferences
+  operations: [listPreferences, createPreference, getPreference, deletePreference, listContactPreferences]
+- name: preference_transition
+  id_prefix: prt
+  domain: preferences
+- name: verification
+  id_prefix: null
+  id_prefix_note: no example identifier for this resource appears in the spec; prefix not recorded rather than guessed
+  domain: verify
+  operations: [createVerification, createVerificationCheck, createVerificationNextChannel]
+- name: phone_number_lookup
+  id_prefix: null
+  id_prefix_note: no example identifier for this resource appears in the spec; prefix not recorded rather than guessed
+  domain: lookup
+  operations: [createPhoneNumberLookup, getPhoneNumberLookup]
+- name: email_lookup
+  id_prefix: null
+  id_prefix_note: no example identifier for this resource appears in the spec; prefix not recorded rather than guessed
+  domain: lookup
+  operations: [createEmailLookup, getEmailLookup]
+- name: workspace_number
+  id_prefix: nda
+  domain: numbers
+  operations: [listWorkspaceNumbers, getWorkspaceNumber, releaseWorkspaceNumber, listAvailableNumbers, getAvailableNumber, createNumbersOrder, listNumbersOrders, getNumbersOrder]
+- name: voice_call
+  id_prefix: vcl
+  domain: voice
+  operations: [listVoiceCalls, getVoiceCall]
+- name: realtime_app
+  id_prefix: rea
+  domain: realtime
+  operations: [createRealtimeApp, listRealtimeApps, getRealtimeApp, updateRealtimeApp, deleteRealtimeApp]
+- name: realtime_app_key
+  id_prefix: null
+  id_prefix_note: no example identifier for this resource appears in the spec; prefix not recorded rather than guessed
+  domain: realtime
+  operations: [listRealtimeAppKeys, createRealtimeAppKey, revokeRealtimeAppKey]
+relationships:
+- from: workspace
+  to: organization
+  kind: belongs_to
+  via: organization_id
+- from: email_message
+  to: workspace
+  kind: belongs_to
+  via: workspace_id
+- from: email_message
+  to: email_broadcast
+  kind: belongs_to
+  via: broadcast_id
+  note: null when the send was not part of a broadcast
+- from: email_message
+  to: email_message_recipient
+  kind: has_many
+  via: recipient_id
+- from: email_message
+  to: email_message_event
+  kind: has_many
+  via: message_id
+- from: email_broadcast
+  to: email_template
+  kind: belongs_to
+  via: template_id
+- from: email_broadcast
+  to: audience
+  kind: belongs_to
+  via: audience_id
+- from: email_template
+  to: email_template_version
+  kind: has_many
+  via: version_id
+- from: email_template_version
+  to: email_template_language
+  kind: has_many
+  via: language
+- from: email_message
+  to: sending_domain
+  kind: belongs_to
+  via: from address domain
+- from: sending_domain
+  to: ip_pool
+  kind: belongs_to
+  via: ip_pool_id
+- from: mailbox
+  to: inbound_address
+  kind: belongs_to
+  via: address
+- from: mailbox
+  to: email_thread
+  kind: has_many
+  via: mailbox_id
+- from: email_thread
+  to: email_message
+  kind: has_many
+  via: thread_id
+- from: inbound_route
+  to: mailbox
+  kind: belongs_to
+  via: mailbox_id
+  note: An enabled route targeting a mailbox blocks deleteMailbox with 409 E01028
+- from: audience
+  to: contact
+  kind: has_many
+  via: contact_id
+- from: contact
+  to: contact_property
+  kind: has_many
+  via: property_id
+- from: preference
+  to: contact
+  kind: belongs_to
+  via: contact_id
+  note: nullable — the preference key is (channel, handle, sender_scope, topic_id), not the contact
+- from: preference
+  to: preference_transition
+  kind: has_many
+  via: transition_id
+- from: whatsapp_message
+  to: whatsapp_number
+  kind: belongs_to
+  via: number_id
+- from: whatsapp_number
+  to: whatsapp_business_account
+  kind: belongs_to
+  via: business_id
+- from: whatsapp_message
+  to: whatsapp_template
+  kind: belongs_to
+  via: template_id
+- from: sms_message
+  to: sms_template
+  kind: belongs_to
+  via: template_id
+- from: realtime_app
+  to: realtime_app_key
+  kind: has_many
+  via: realtime_app_key_id
+- from: webhook_endpoint
+  to: workspace
+  kind: belongs_to
+  via: workspace_id
+- from: voice_call
+  to: workspace_number
+  kind: belongs_to
+  via: number_id
+tenancy:
+  fields: [organization_id, workspace_id]
+  note: >-
+    workspace_id appears on 85 schemas and organization_id on 78 — the two are the tenancy
+    spine of the whole model. Idempotency keys, rate-limit policies and OAuth scopes are all
+    keyed on one or the other (org:* scopes act at the organization tier).

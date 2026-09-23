@@ -1,0 +1,48 @@
+generated: '2026-09-17'
+method: searched
+source: https://github.com/messagebird/bird-ai (plugins/bird/skills/), documented at https://bird.com/docs/ai/agent-skills
+note: >-
+  These are Bird's OWN agent skills, saved verbatim from the first-party bird-ai marketplace
+  plugin — not skills this pipeline authored. The plugin follows the Agent Plugins
+  specification (agent-plugins.org) and installs into Claude Code, Cursor, Codex and GitHub
+  Copilot; on Claude Code it also declares the hosted MCP server. Only the two SKILL.md
+  router files are captured here; each one loads a tree of per-command reference pages from
+  the repo at runtime, which are not mirrored.
+plugin:
+  marketplace: messagebird/bird-ai
+  repository: https://github.com/messagebird/bird-ai
+  version: 0.50.1
+  spec: https://agent-plugins.org/specification
+  install:
+    claude_code:
+      - claude plugin marketplace add messagebird/bird-ai
+      - claude plugin install bird@bird-ai
+    codex:
+      - codex plugin marketplace add messagebird/bird-ai
+      - codex plugin add bird@bird-ai
+    copilot:
+      - copilot plugin marketplace add messagebird/bird-ai
+      - copilot plugin install bird@bird-ai
+    cursor: Settings > Plugins, add the marketplace and install the bird plugin
+    factory_droid: Clone the repo and copy plugins/bird/skills/ into .factory/skills/ by hand
+skills:
+  - file: messagebird-bird-cli.md
+    name: bird-cli
+    description: Use when operating Bird through the bird CLI to preview or send messages, inspect or manage API resources, or onboard an account; excludes client development.
+    source: https://raw.githubusercontent.com/messagebird/bird-ai/main/plugins/bird/skills/bird-cli/SKILL.md
+    method: searched
+    surface: cli
+    api: openapi/messagebird-bird-api-openapi.yml
+    prerequisite: bird auth status must report valid:true before any account operation
+    routes: 25+ command groups across email, SMS, WhatsApp, voice, verify, lookup, contacts, audiences, preferences, realtime, webhooks, api-keys, trust, compliance, support and docs
+    key_habit: A send returns 202 with status accepted — read the message back for the final outcome rather than declaring success at accepted.
+  - file: messagebird-email-audit.md
+    name: email-audit
+    description: Use when auditing a live domain's email authentication or spam-delivery problems involving DMARC, SPF, DKIM, BIMI, or MX; single-record drafts use bird validators.
+    source: https://raw.githubusercontent.com/messagebird/bird-ai/main/plugins/bird/skills/email-audit/SKILL.md
+    method: searched
+    surface: cli + mcp
+    command: bird email tools audit <domain>
+    mcp_tool: email_tools_audit
+    auth_required: false
+    note: DNS-only. Sends no mail and needs no login.

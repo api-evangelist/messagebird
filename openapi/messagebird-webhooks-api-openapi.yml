@@ -189,6 +189,25 @@ components:
           type: string
           format: date-time
           description: The date and time when the webhook was last updated.
+    WebhookList:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: The offset of the result set.
+        limit:
+          type: integer
+          description: The limit applied to the result set.
+        count:
+          type: integer
+          description: The number of items returned.
+        totalCount:
+          type: integer
+          description: The total number of webhooks.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
     WebhookCreate:
       type: object
       required:
@@ -213,59 +232,6 @@ components:
             - message.updated
             - conversation.created
             - conversation.updated
-    WebhookList:
-      type: object
-      properties:
-        offset:
-          type: integer
-          description: The offset of the result set.
-        limit:
-          type: integer
-          description: The limit applied to the result set.
-        count:
-          type: integer
-          description: The number of items returned.
-        totalCount:
-          type: integer
-          description: The total number of webhooks.
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
-    VoiceWebhookResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoiceWebhook'
-    VoiceWebhookCreate:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The URL to receive webhook callbacks.
-        token:
-          type: string
-          description: A token for webhook signature validation.
-    Pagination:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of items available.
-        pageCount:
-          type: integer
-          description: The total number of pages.
-        currentPage:
-          type: integer
-          description: The current page number.
-        perPage:
-          type: integer
-          description: The number of items per page.
     VoiceWebhook:
       type: object
       properties:
@@ -287,6 +253,21 @@ components:
           type: string
           format: date-time
           description: The date and time when the webhook was last updated.
+    Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of items available.
+        pageCount:
+          type: integer
+          description: The total number of pages.
+        currentPage:
+          type: integer
+          description: The current page number.
+        perPage:
+          type: integer
+          description: The number of items per page.
     VoiceWebhookList:
       type: object
       properties:
@@ -296,6 +277,25 @@ components:
             $ref: '#/components/schemas/VoiceWebhook'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    VoiceWebhookResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceWebhook'
+    VoiceWebhookCreate:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The URL to receive webhook callbacks.
+        token:
+          type: string
+          description: A token for webhook signature validation.
   parameters:
     offsetParam:
       name: offset
@@ -305,6 +305,13 @@ components:
       schema:
         type: integer
         default: 0
+    webhookIdParam:
+      name: webhookId
+      in: path
+      required: true
+      description: The unique identifier of the webhook.
+      schema:
+        type: string
     limitParam:
       name: limit
       in: query
@@ -313,13 +320,6 @@ components:
       schema:
         type: integer
         default: 20
-    webhookIdParam:
-      name: webhookId
-      in: path
-      required: true
-      description: The unique identifier of the webhook.
-      schema:
-        type: string
   securitySchemes:
     accessKey:
       type: apiKey

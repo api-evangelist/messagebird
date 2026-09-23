@@ -1,0 +1,173 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/docs/guides/ (idempotency, errors, rate-limits, webhooks), https://bird.com/auth.md, and openapi/messagebird-bird-api-openapi.yml
+scope: >-
+  The Bird platform API (platform.bird.com). The legacy MessageBird REST API
+  (rest.messagebird.com) is a separate contract with its own AccessKey auth and none of the
+  mechanisms below; where the two differ this file describes Bird.
+authentication:
+  style: bearer token
+  header: 'Authorization: Bearer'
+  credentials:
+  - kind: api-key
+    format: bk_{region}_*
+    note: The prefix names the region and therefore the host to call.
+  - kind: oauth-access-token
+    format: bt_{region}_*
+    note: Issued by https://platform.bird.com; scopes are resource:level pairs.
+  - kind: session-cookie
+    name: bird_session
+    note: Dashboard session only.
+  - kind: realtime-key-pair
+    headers: [X-Realtime-Key, X-Realtime-Secret]
+  docs: https://bird.com/docs/guides/authentication
+  see_also: authentication/messagebird-authentication.yml
+idempotency:
+  supported: true
+  coverage: full
+  mechanism: Idempotency-Key request header
+  methods: [POST, PATCH, PUT, DELETE]
+  opt_in: true
+  key_format: any string up to 255 characters; recommended <event-type>/<entity-id>
+  key_scope: workspace, or organization on organization-level endpoints
+  retention: 3 hours
+  replay_header: 'Idempotency-Replay: true'
+  sdk_default: The official SDKs generate and reuse a UUID key on every mutating request automatically.
+  cli_flag: --idempotency-key
+  errors:
+  - code: E01005
+    name: IdempotencyKeyReuse
+    status: 409
+    when: Same key, different request body or endpoint.
+  - code: E01004
+    name: RequestInProgress
+    status: 409
+    when: Same key, original request still in flight. In-flight lock expires within 30s.
+  - code: E01033
+    name: IdempotencyUnavailable
+    status: 503
+    when: Idempotency protection unavailable before execution; the attempt did not run.
+  - code: E01001
+    name: ValidationError
+    status: 422
+    when: Key longer than 255 characters on an endpoint declaring the header.
+  not_cached: 5xx responses are never retained; retry them with the same key.
+  docs: https://bird.com/docs/guides/idempotency
+  coverage_basis: >-
+    full, not partial. Bird's guide states the mechanism applies to workspace- and
+    organization-scoped mutations across the customer API, not to a named list of
+    operations. The documented exclusions are structural (user-only and unauthenticated
+    operations, streams, and operations carrying their own replay contract), not a
+    per-endpoint allowlist.
+reversibility:
+  grade: verified
+  applies: true
+  summary: >-
+    Bird documents a named reversal for each of its consequential write surfaces and, for
+    the destructive ones, states the window in the operation description itself.
+  reversals:
+  - surface: scheduled email message
+    forward: createEmailMessage (with scheduled_at)
+    reversal: cancelEmailMessage
+    window: Any time before the message starts sending. A message that already started sending, delivered, or was previously canceled returns a conflict.
+    grade: verified
+    docs: https://bird.com/docs/api/reference/cancel-email-message
+    note: Canceling does not return consumed scheduled-send quota; an email.canceled event fires.
+  - surface: email broadcast
+    forward: sendEmailBroadcast
+    reversal: cancelEmailBroadcast
+    window: While scheduled, accepted, or sending. Deliveries already on their way to a recipient are NOT recalled. A sent or failed broadcast is terminal.
+    grade: verified
+    docs: https://bird.com/docs/api/reference/cancel-email-broadcast
+  - surface: email mailbox (destructive)
+    forward: deleteMailbox
+    reversal: restoreMailbox
+    window: 30 days. After 30 days the mailbox and its remaining messages are permanently deleted, and restore returns 404.
+    grade: verified
+    docs: https://bird.com/docs/api/reference/restore-mailbox
+  - surface: email template version
+    forward: submitEmailTemplateVersion
+    reversal: rollbackEmailTemplate
+    window: Any published version, indefinitely. Version history is unchanged and no new version is created.
+    grade: verified
+  - surface: realtime app key
+    forward: createRealtimeAppKey
+    reversal: revokeRealtimeAppKey
+    window: Immediate and one-way. An already-revoked key returns 409; an app's only key cannot be revoked (422).
+    grade: documented
+    note: Revocation is itself the reversal of issuance; there is no un-revoke.
+  - surface: webhook endpoint
+    forward: createWebhook
+    reversal: updateWebhook with status=paused
+    window: Indefinite while paused. deleteWebhook is explicitly stated to be irreversible — a recreated endpoint mints a new id and signing secret.
+    grade: verified
+  irreversible:
+  - deleteWebhook
+  - revokeRealtimeAppKey
+  - a message already handed to a carrier or receiving mail server
+dry_run_mode:
+  supported: true
+  surface: cli
+  flag: --dry-run
+  note: >-
+    `bird <command> --dry-run` prints the resolved request body that would be sent and exits
+    without sending. `--example` prints a complete valid request body generated from the API
+    schema, with no credentials needed. The REST API itself exposes no dry-run parameter;
+    the mail sandbox (see sandbox/) is the API-level rehearsal path.
+  docs: https://bird.com/docs/cli
+pagination:
+  style: cursor
+  request_params: [limit, after, before]
+  response_fields: [next_cursor]
+  envelope: '{"data": [...], "next_cursor": ...}'
+  note: The CLI surfaces the same envelope and applies a default --limit so output is bounded.
+versioning:
+  scheme: uri-path
+  current: v1
+  note: Every documented path is prefixed /v1/. Error codes are never renamed or reused; retired codes are permanently reserved. Event type names are never renamed.
+request_tracing:
+  header: X-Request-Id
+  body_field: error.request_id
+  format: req_01...
+  note: Always present on errors and returned as a response header on every request.
+error_envelope:
+  format: bird-error-envelope
+  rfc9457: false
+  shape: '{"error": {type, code, name, message, doc_url, request_id, param?, details?, remediation?, next?, vendor_code?}}'
+  branch_on: [type, code]
+  never_parse: message
+  agent_affordances:
+  - remediation — a human/agent-readable next step
+  - next — the API operations that resolve the error, in the order to try them
+  - doc_url — a stable per-code documentation page
+  see_also: errors/messagebird-error-codes.yml
+  docs: https://bird.com/docs/guides/errors
+rate_limit_signaling:
+  headers: [RateLimit, RateLimit-Policy, Retry-After]
+  format: IETF Structured Fields (RFC 9651), draft-ietf-httpapi-ratelimit-headers-11
+  example: 'RateLimit-Policy: "email_send";q=1000;w=60 / RateLimit: "email_send";r=842;t=35'
+  status_on_exhaustion: 429
+  fail_mode: fail-open — an unevaluable limit lets the request proceed rather than 429
+  see_also: rate-limits/messagebird-rate-limits.yml
+  docs: https://bird.com/docs/guides/rate-limits
+webhooks:
+  spec: Standard Webhooks
+  signing: HMAC-SHA256 over {webhook-id}.{webhook-timestamp}.{raw body}
+  headers: [webhook-id, webhook-timestamp, webhook-signature]
+  secret_prefix: whsec_
+  timestamp_tolerance: 300 seconds
+  delivery: at-least-once, unordered; deduplicate on webhook-id
+  timeout: 15 seconds
+  retries: 8 attempts over roughly 27.5 hours with +/-20% jitter
+  see_also: asyncapi/messagebird-bird-webhooks.yml
+  docs: https://bird.com/docs/guides/webhooks
+metadata:
+  supported: true
+  fields: [tags, metadata]
+  note: tags[] (name/value pairs) and a free-form metadata object set on a send are echoed on every event for that message.
+content_negotiation:
+  markdown_twin: true
+  note: >-
+    Any bird.com page is served as Markdown by appending .md to its URL or sending
+    Accept: text/markdown. Accept-Language "en-us, python" selects a named code example
+    in place. This is a first-class agent affordance, not a side effect.

@@ -1,0 +1,76 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/docs/guides/email/testing-sandbox + https://bird.com/docs/get-started/send-your-first-email
+summary: >-
+  Bird's sandbox is addressed, not moded. There is no test key, no test toggle and no test
+  mode: sending to a magic local-part at the messagebird.dev domain simulates an outcome
+  through the real acceptance, event and webhook paths. Every value below is published by
+  Bird verbatim; nothing here was invented.
+test_vs_live:
+  key_prefixes:
+  - prefix: bk_us1_
+    meaning: API key, US region — call https://us1.platform.bird.com
+  - prefix: bk_eu1_
+    meaning: API key, EU region — call https://eu1.platform.bird.com
+  - prefix: bt_{region}_
+    meaning: OAuth access token; the prefix carries the region
+  separate_test_key: false
+  note: There is no test-mode credential. The same live key drives sandbox sends.
+onboarding_sender:
+  address: onboarding@messagebird.dev
+  available: In every workspace with no setup, no domain verification and no DNS records
+  limits:
+  - Outside the messagebird.dev sandbox addresses it only delivers to verified members of your workspace; any other recipient is rejected with 422.
+  - Sends are capped (see https://bird.com/docs/get-started/send-your-first-email).
+magic_addresses:
+  domain: messagebird.dev
+  detection: local-part only, and only on messagebird.dev — bounce@yourdomain.com is a normal address
+  endpoints: [POST /v1/email/messages, POST /v1/email/batches, broadcasts]
+  addresses:
+  - address: delivered@messagebird.dev
+    outcome: The receiving mail server accepts the message
+    events: [email.accepted, email.processed, email.delivered]
+  - address: bounce@messagebird.dev
+    aliases: [hardbounce@messagebird.dev]
+    outcome: 'Hard bounce: SMTP 550, 5.1.1 Unknown User, bounce class 10'
+    events: [email.accepted, email.processed, 'email.bounced (bounce_type: hard)']
+    note: No suppression-list write, so the address stays reusable
+  - address: softbounce@messagebird.dev
+    outcome: 'Soft bounce: SMTP 451, 4.3.0 Temporary failure, please retry, class 20'
+    events: [email.accepted, email.processed, 'email.bounced (bounce_type: soft)']
+  - address: deferred@messagebird.dev
+    aliases: [delay@messagebird.dev]
+    outcome: 'Deferral: SMTP 451, 4.2.1 Mailbox temporarily unavailable, will retry, class 21'
+    events: [email.accepted, email.processed, email.deferred]
+    note: The simulated deferral is terminal — no retry follows
+  - address: complaint@messagebird.dev
+    aliases: [spam@messagebird.dev]
+    outcome: 'The recipient reports the message as spam (feedback_type: abuse)'
+    events: [email.accepted, email.processed, email.complained]
+  - address: suppressed@messagebird.dev
+    outcome: The recipient is treated as already on your suppression list
+    events: [email.accepted, 'email.rejected (rejection_reason: recipient_suppressed)']
+  - address: reject@messagebird.dev
+    outcome: The message is rejected before any delivery attempt
+    events: [email.accepted, 'email.rejected (rejection_reason: transmission_failed)']
+semantics:
+- A sandbox send returns the same 202 and produces the same per-recipient event payload shapes as a production send; the payload has no test flag.
+- Simulated bounces and complaints do not affect sending reputation and do not write to the suppression list, so the addresses are reusable.
+- A simulated recipient still counts against your send allowance.
+- A send can mix sandbox and real recipients; each recipient gets its own lifecycle.
+- On a broadcast, the leading email.accepted webhook is not sent; the sequence opens at email.processed (or email.rejected).
+- A broadcast audience containing a sandbox address rehearses a campaign without mailing anyone.
+test_clocks: false
+fixtures_and_triggers:
+  webhook_test_send:
+    operation: testWebhook
+    path: POST /v1/webhooks/{webhook_id}/test
+    behavior: Sends a signed synthetic event to your endpoint and returns the outcome synchronously — accepted or not, the HTTP status returned, and round-trip latency. 10-second response budget.
+    body: '{"event_type": "email.delivered"} to pick any catalog type, or omit to use the endpoint''s first subscribed type'
+    note: The test body is a minimal stub carrying only the event type; it does not mirror a real payload.
+  cli_dry_run:
+    flag: --dry-run
+    behavior: Prints the resolved request body and exits without sending.
+  cli_example:
+    flag: --example
+    behavior: Prints a complete valid request body generated from the API schema; no credentials needed.

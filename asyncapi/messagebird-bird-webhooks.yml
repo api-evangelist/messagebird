@@ -1,0 +1,89 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/docs/guides/webhooks
+spec_type: Webhooks
+asyncapi_published: false
+asyncapi_note: >-
+  Bird documents a full webhook event surface but publishes no AsyncAPI document. /asyncapi.yaml,
+  /asyncapi.json and the docs host were checked; the OpenAPI carries no `webhooks:` object
+  either (webhook endpoints are managed through 9 REST operations under the `webhooks` tag).
+  The catalog below is the captured webhook contract, not a generated AsyncAPI.
+standard: Standard Webhooks (https://www.standardwebhooks.com)
+envelope:
+  shape: '{"type": "...", "timestamp": "...", "data": {...}}'
+  note: Payloads are compact and recipient-scoped, not the full resource. Fetch by ID for more context.
+signing:
+  algorithm: HMAC-SHA256
+  signed_string: '{webhook-id}.{webhook-timestamp}.{raw request body}'
+  key_derivation: strip the whsec_ prefix and base64-decode the remainder
+  headers:
+  - name: webhook-id
+    meaning: Identifies the event delivery; retries and replays reuse the same value
+  - name: webhook-timestamp
+    meaning: Unix seconds of this delivery attempt
+  - name: webhook-signature
+    meaning: 'v1,<base64 HMAC-SHA256>; possibly several space-delimited signatures during rotation'
+  timestamp_tolerance_seconds: 300
+  secret_prefix: whsec_
+  secret_shown: once, at endpoint creation
+delivery:
+  content_type: application/json
+  batching: none — one event per POST
+  response_budget_seconds: 15
+  success: any 2xx
+  ordering: not ordered — sort by the payload `timestamp`, never arrival order
+  guarantee: at-least-once — deduplicate on webhook-id
+  retries:
+  - attempt: 1
+    delay: 5 seconds
+  - attempt: 2
+    delay: 5 minutes
+  - attempt: 3
+    delay: 30 minutes
+  - attempt: 4
+    delay: 2 hours
+  - attempt: 5
+    delay: 5 hours
+  - attempt: 6
+    delay: 10 hours
+  - attempt: 7
+    delay: 10 hours
+  total: 8 attempts over roughly 27.5 hours, +/-20% jitter
+  note: A 429 or connection timeout waits at least 60s; a Retry-After on your response is honored. There is no status code that stops delivery early.
+endpoint_rules:
+- URLs must be HTTPS, at most 2048 characters, and publicly reachable; private/loopback/link-local addresses are rejected with 422.
+- The events array lists up to 100 types from the catalog. Wildcards such as sms.* are refused with 422.
+- Existing subscriptions do not expand when new types become available.
+- status can be set to paused to stop deliveries temporarily; delete is permanent and cannot be undone.
+scopes: [webhooks:read, webhooks:write]
+event_catalog:
+- group: email
+  docs: https://bird.com/docs/guides/email/events
+  types: [email.accepted, email.processed, email.delivered, email.deferred, email.bounced, email.complained, email.rejected, email.opened, email.clicked, email.unsubscribed, email.list_unsubscribed, email.canceled]
+  base_data_fields: [email_id, recipient_id, workspace_id, recipient, recipient_role, tags, metadata, broadcast_id]
+- group: sms
+  docs: https://bird.com/docs/guides/sms/events
+  types: [sms.accepted]
+  note: 'Bird documents "the message lifecycle from sms.accepted to a terminal status"; the per-type list lives on the SMS events page and was not enumerated here.'
+- group: whatsapp
+  docs: https://bird.com/docs/guides/whatsapp/events
+  types: [whatsapp.accepted, whatsapp.delivered, whatsapp.read, whatsapp.failed, whatsapp.rejected, whatsapp.received, whatsapp.reacted]
+- group: verify
+  docs: https://bird.com/docs/guides/verify/events
+  types: [verify.verification.created, verify.verification.verified, verify.attempt.sent, verify.attempt.delivered, verify.attempt.undelivered]
+- group: preference
+  docs: https://bird.com/docs/guides/webhooks#preference-events
+  types: [preference.granted, preference.revoked, preference.deleted]
+  data_fields: [preference_id, transition_id, channel, handle, sender_scope, topic_id, coverage, contact_id]
+operations:
+  create: createWebhook
+  list: listWebhooks
+  get: getWebhook
+  update: updateWebhook
+  delete: deleteWebhook
+  rotate_secret: rotateWebhookSecret
+  test: testWebhook
+  replay: createWebhookReplay
+  attempts: listWebhookAttempts
+  spec: openapi/messagebird-bird-api-openapi.yml
+stability: Event names are never renamed; new types are added as products ship. Write handlers to ignore unrecognized types.

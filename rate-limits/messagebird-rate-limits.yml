@@ -1,36 +1,130 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: Bird (MessageBird)
+provider: Bird (formerly MessageBird)
 providerId: messagebird
+generated: '2026-09-17'
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
+modified: '2026-09-17'
+method: searched
+source: https://bird.com/docs/guides/rate-limits
+sources:
+  - https://bird.com/docs/guides/rate-limits
+  - https://bird.com/openapi.json
+note: >-
+  Replaces the 2026-05-04 generated sweep, which asserted "50 req/sec/workspace" from a
+  pricing page and cited a docs.bird.com URL that no longer resolves. Bird's real model is
+  per-ORGANIZATION, per-POLICY, and the numeric quota is not published — it is advertised at
+  runtime in the RateLimit-Policy header. That is the finding: the headers are the contract,
+  not a number in the docs.
+description: >-
+  Rate limits are keyed per organization, per policy, per region. An organization shares one
+  limit for each policy across all its API keys and workspaces; creating another key adds no
+  capacity. Product policies have capacity independent of the ordinary API policies.
 tags:
   - Rate Limiting
   - Communications
-description: Bird API rate limits per workspace.
-sources:
-  - https://bird.com/en/pricing
-  - https://docs.bird.com/api/rate-limits
 headers:
+  policy: RateLimit-Policy
+  state: RateLimit
   retryAfter: Retry-After
+  format: IETF Structured Fields (RFC 9651), draft-ietf-httpapi-ratelimit-headers-11
+  policy_params:
+    q: quota — maximum units in the window
+    w: window in seconds
+  state_params:
+    r: units remaining
+    t: seconds until the window resets
+  example_policy: 'RateLimit-Policy: "email_send";q=1000;w=60'
+  example_state: 'RateLimit: "email_send";r=842;t=35'
+  note: t is a relative delay in seconds, not a Unix timestamp. Pace against r and t rather than reacting to 429s.
 responseCodes:
   throttled: 429
+  smtp_throttled: 452 4.3.1
+error_envelope:
+  type: rate_limit_error
+  code: E01003
+  name: RateLimited
+  doc_url: https://bird.com/docs/api/errors/E01003
+fail_mode: fail-open — if Bird cannot evaluate a limit the request proceeds rather than receiving a spurious 429
+limit_count: 12
 limits:
-  - name: Default REST API
-    scope: workspace
-    metric: requests_per_second
-    limit: 50
-    timeFrame: second
-  - name: Messaging API
-    scope: channel
-    metric: messages_per_second
-    limit: varies by channel
-  - name: Webhook deliveries
-    scope: endpoint
-    metric: concurrent
-    limit: high
+  - name: api_get
+    scope: organization
+    policy: api_get
+    metric: requests
+    limit: not published — read q and w from RateLimit-Policy at runtime
+    applies_to: Retrieve one resource
+  - name: api_list
+    scope: organization
+    policy: api_list
+    metric: requests
+    limit: not published — read q and w from RateLimit-Policy at runtime
+    applies_to: List or search a collection
+  - name: api_create
+    scope: organization
+    policy: api_create
+    metric: requests
+    limit: not published — read q and w from RateLimit-Policy at runtime
+    applies_to: Create a resource. Creating a broadcast uses this policy.
+  - name: api_update
+    scope: organization
+    policy: api_update
+    metric: requests
+    limit: not published — read q and w from RateLimit-Policy at runtime
+    applies_to: Update or upsert a resource. Starting an existing broadcast uses this policy.
+  - name: api_delete
+    scope: organization
+    policy: api_delete
+    metric: requests
+    limit: not published — read q and w from RateLimit-Policy at runtime
+    applies_to: Delete a resource
+  - name: email_send
+    scope: organization
+    policy: email_send
+    metric: submissions
+    limit: not published; Bird's own worked example is q=1000, w=60
+    applies_to: REST email sends and SMTP submissions share this capacity. One SMTP DATA submission consumes one unit; SMTP AUTH does not. Background broadcast delivery does not consume it.
+  - name: email_batch
+    scope: organization
+    policy: email_batch
+    metric: submissions
+    limit: not published
+    applies_to: Batch submission requests. The batch's recipient count does not consume extra units.
+  - name: sms_send
+    scope: organization
+    policy: sms_send
+    metric: submissions
+    limit: not published
+  - name: whatsapp_send
+    scope: organization
+    policy: whatsapp_send
+    metric: submissions
+    limit: not published
+  - name: lookup
+    scope: organization
+    policy: lookup
+    metric: requests
+    limit: not published
+  - name: message_status_read
+    scope: organization
+    policy: message_status_read
+    metric: requests
+    limit: not published
+    applies_to: Retrieving message status; does not consume the general resource-retrieval limit.
+  - name: voice_call
+    scope: organization
+    policy: voice_call
+    metric: calls
+    limit: not published
+    applies_to: Inbound and outbound call admission. An exhausted policy refuses the call and records calls_per_second_exceeded — no HTTP response is involved.
+resolution:
+  order:
+    - An active organization override sets the effective rate.
+    - Otherwise the active plan's value applies.
+    - Otherwise the default applies.
+  note: A plan or override can raise or lower the rate; the policy's time window stays fixed. Read the effective quota from RateLimit-Policy and contact support with the policy key for more capacity.
+independent_protections:
+  - Login, password reset and other security-sensitive operations carry additional abuse protections.
+  - Supplier checks and connection limits can reject requests independently of plan rate limits.
+  - An abuse or supplier protection can return 429 even when the customer policy has remaining capacity; follow Retry-After, which can differ from the policy's t.

@@ -1,0 +1,42 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/changelog
+scheme: dated-entries
+current_version: v1 (URI path); CLI 0.83.0; MCP server card version 0.83.0
+labels: [feature, improvement, fix]
+note: Recent window only, read from the live changelog on 2026-09-17. Entries are labelled by Bird; none of the five below is marked breaking.
+entries:
+- date: '2026-09-17'
+  label: improvement
+  title: Bird is now an approved Attio app
+  breaking: false
+  highlights:
+  - Send SMS, WhatsApp and email from an Attio person, company or deal record
+  - Bird steps and messaging-event triggers inside Attio Workflows
+- date: '2026-09-10'
+  label: improvement
+  title: Bird is now a verified n8n node
+  breaking: false
+  highlights:
+  - Official Bird node verified by n8n for email, SMS, WhatsApp, contacts and verification
+  - Authenticates with a scoped Bird API key created in the dashboard
+- date: '2026-09-04'
+  label: feature
+  title: 'Zapier: the Bird app is in the directory'
+  breaking: false
+  highlights:
+  - OAuth connection owned by the workspace rather than the person who authorized it
+  - The access token carries the region, so no region is configured
+- date: '2026-08-26'
+  label: feature
+  title: Record messaging preferences over the API
+  breaking: false
+  highlights:
+  - The messaging preference store became a public API surface (tag `preferences`, 5 operations)
+  - preference.granted / preference.revoked / preference.deleted webhook events
+- date: '2026-08-21'
+  label: feature
+  title: 'Lookup: check a phone number or an email address before you send'
+  breaking: false
+  highlights:
+  - Phone-number and email lookup operations (createPhoneNumberLookup, createEmailLookup)

@@ -96,6 +96,30 @@ paths:
         '404':
           description: Voice message not found
 components:
+  parameters:
+    voiceMessageIdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the voice message.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip before starting to collect the result set.
+      schema:
+        type: integer
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
   schemas:
     VoiceMessageCreate:
       type: object
@@ -298,30 +322,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VoiceMessage'
-  parameters:
-    offsetParam:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip before starting to collect the result set.
-      schema:
-        type: integer
-        default: 0
-    limitParam:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return.
-      schema:
-        type: integer
-        default: 20
-    voiceMessageIdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the voice message.
-      schema:
-        type: string
   securitySchemes:
     accessKey:
       type: apiKey

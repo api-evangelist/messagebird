@@ -64,13 +64,52 @@ paths:
         '404':
           description: Recording not found
 components:
+  parameters:
+    recordingIdParam:
+      name: recordingId
+      in: path
+      required: true
+      description: The unique identifier of the recording.
+      schema:
+        type: string
   schemas:
+    TranscriptionResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transcription'
     TranscriptionCreate:
       type: object
       properties:
         language:
           type: string
           description: The language of the recording for transcription.
+    Pagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of items available.
+        pageCount:
+          type: integer
+          description: The total number of pages.
+        currentPage:
+          type: integer
+          description: The current page number.
+        perPage:
+          type: integer
+          description: The number of items per page.
+    TranscriptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transcription'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Transcription:
       type: object
       properties:
@@ -96,45 +135,6 @@ components:
           type: string
           format: date-time
           description: The date and time when the transcription was last updated.
-    Pagination:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of items available.
-        pageCount:
-          type: integer
-          description: The total number of pages.
-        currentPage:
-          type: integer
-          description: The current page number.
-        perPage:
-          type: integer
-          description: The number of items per page.
-    TranscriptionResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transcription'
-    TranscriptionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transcription'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-  parameters:
-    recordingIdParam:
-      name: recordingId
-      in: path
-      required: true
-      description: The unique identifier of the recording.
-      schema:
-        type: string
   securitySchemes:
     accessKey:
       type: apiKey

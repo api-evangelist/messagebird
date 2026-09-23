@@ -1,0 +1,91 @@
+generated: '2026-09-17'
+method: searched
+status: published
+source: https://bird.com/docs/ai/mcp-server
+evidence:
+- url: https://bird.com/.well-known/mcp/server-card.json
+  http_status: 200
+  note: First-party MCP server card, $schema static.modelcontextprotocol.io/schemas/v1/server-card.schema.json
+- url: https://mcp.bird.com
+  http_status: 401
+  note: >-
+    POST {"jsonrpc":"2.0","id":1,"method":"tools/list"} returned 401 with
+    WWW-Authenticate: Bearer resource_metadata="https://mcp.bird.com/.well-known/oauth-protected-resource".
+    The endpoint is live; the tool list is OAuth-gated, so no inputSchema could be read anonymously.
+- url: https://mcp.bird.com/.well-known/oauth-protected-resource
+  http_status: 200
+  note: RFC 9728 — resource https://mcp.bird.com, authorization_servers [https://platform.bird.com]
+deployment:
+  mode: both
+  endpoint: https://mcp.bird.com
+  install: bird mcp
+  package: https://github.com/messagebird/bird-ai
+  auth: oauth
+  verified: probed
+server:
+  name: bird.com/bird
+  title: Bird
+  version: 0.83.0
+  description: Send and receive across email, SMS, WhatsApp, and voice. One API, one contract.
+  transport: streamable-http
+  url: https://mcp.bird.com
+  protocol_versions:
+  - '2025-11-25'
+  - '2026-07-28'
+  repository: https://github.com/messagebird/bird-ai
+  card: well-known/messagebird-mcp-server-card.json
+endpoints:
+- url: https://mcp.bird.com
+  tools_exposed: full hosted catalog
+  when: Recommended. Clients that search and select tools internally. Also serves MCP Apps widgets.
+- url: https://mcp.bird.com/dynamic
+  tools_exposed: search + execute only
+  when: Clients without internal tool search, or with a hard cap on tool count.
+local_stdio:
+  command: bird mcp
+  install: curl -fsSL https://cli.bird.com/install.sh | sh
+  note: >-
+    The same tool surface runs locally inside the bird CLI over stdio. Three tools are
+    stdio-only and omitted from the hosted server (auth_signup, auth_verify_email,
+    auth_create_org — they mint the first credential) plus compliance_attachments_upload,
+    which reads a local file path.
+authentication:
+  scheme: OAuth 2.0 (RFC 8414 discovery, RFC 7591 dynamic client registration, PKCE S256)
+  authorization_server: https://platform.bird.com
+  metadata: https://platform.bird.com/.well-known/oauth-authorization-server
+  credential_less: true
+  note: No API key is copied; the MCP client runs discovery + registration and a browser consent.
+tools:
+- name: search
+  description: Find hosted tools by name or description keyword; returns each match's input schema and read/write annotations. Only on /dynamic.
+  source: https://bird.com/docs/ai/mcp-server
+- name: execute
+  description: Call one selected hosted tool with its arguments. Only on /dynamic.
+  source: https://bird.com/docs/ai/mcp-server
+- name: workspace_get
+  description: Return the current workspace.
+  source: https://bird.com/docs/ai/mcp-server
+- name: whoami
+  description: Return the signed-in user (id, email, name) the agent is acting as.
+  source: https://bird.com/docs/ai/cli-for-agents
+- name: email_tools_audit
+  description: Resolve and grade a domain's live DMARC, SPF, DKIM, BIMI and MX records. DNS-only, no auth.
+  source: https://github.com/messagebird/bird-ai plugins/bird/skills/email-audit/SKILL.md
+- name: auth_signup
+  description: Create a Bird account. stdio only — omitted from the hosted server.
+  source: https://bird.com/docs/ai/mcp-server
+- name: auth_verify_email
+  description: Verify the signup email address. stdio only.
+  source: https://bird.com/docs/ai/mcp-server
+- name: auth_create_org
+  description: Create the first organization. stdio only.
+  source: https://bird.com/docs/ai/mcp-server
+- name: compliance_attachments_upload
+  description: Upload a compliance attachment from a local file path. stdio only.
+  source: https://bird.com/docs/ai/mcp-server
+tools_note: >-
+  This is NOT the full catalog. tools/list is OAuth-gated, so only the tool names Bird
+  publishes in prose are recorded here. Bird's own docs say the hosted catalog is large
+  enough that some clients need the /dynamic endpoint, so the real inventory is materially
+  bigger than this list. Authenticated introspection is required to capture names,
+  descriptions and inputSchemas in full.

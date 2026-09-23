@@ -211,6 +211,37 @@ paths:
         '404':
           description: Resource not found
 components:
+  parameters:
+    contactIdParam:
+      name: contactId
+      in: path
+      required: true
+      description: The unique identifier of the contact.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip.
+      schema:
+        type: integer
+        default: 0
+    groupIdParam:
+      name: groupId
+      in: path
+      required: true
+      description: The unique identifier of the group.
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return.
+      schema:
+        type: integer
+        default: 20
   schemas:
     Contact:
       type: object
@@ -269,6 +300,14 @@ components:
           type: string
           format: date-time
           description: The date and time when the contact was last updated.
+    GroupCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the group.
     GroupList:
       type: object
       properties:
@@ -337,45 +376,6 @@ components:
           type: string
           format: date-time
           description: The date and time when the group was last updated.
-    GroupCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The name of the group.
-  parameters:
-    offsetParam:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip.
-      schema:
-        type: integer
-        default: 0
-    limitParam:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return.
-      schema:
-        type: integer
-        default: 20
-    contactIdParam:
-      name: contactId
-      in: path
-      required: true
-      description: The unique identifier of the contact.
-      schema:
-        type: string
-    groupIdParam:
-      name: groupId
-      in: path
-      required: true
-      description: The unique identifier of the group.
-      schema:
-        type: string
   securitySchemes:
     accessKey:
       type: apiKey

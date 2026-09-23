@@ -121,31 +121,29 @@ paths:
         '404':
           description: Call flow not found
 components:
-  parameters:
-    perPageParam:
-      name: perPage
-      in: query
-      required: false
-      description: The number of items per page.
-      schema:
-        type: integer
-        default: 10
-    callFlowIdParam:
-      name: callFlowId
-      in: path
-      required: true
-      description: The unique identifier of the call flow.
-      schema:
-        type: string
-    pageParam:
-      name: page
-      in: query
-      required: false
-      description: The page number for pagination.
-      schema:
-        type: integer
-        default: 1
   schemas:
+    CallFlowStep:
+      type: object
+      required:
+      - action
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the step.
+        action:
+          type: string
+          description: The action to perform in this step.
+          enum:
+          - say
+          - play
+          - pause
+          - record
+          - fetchCallFlow
+          - hangup
+          - transfer
+        options:
+          type: object
+          description: Action-specific options for the step.
     CallFlow:
       type: object
       properties:
@@ -171,44 +169,6 @@ components:
           type: string
           format: date-time
           description: The date and time when the call flow was last updated.
-    CallFlowResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CallFlow'
-    CallFlowList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CallFlow'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    CallFlowStep:
-      type: object
-      required:
-      - action
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the step.
-        action:
-          type: string
-          description: The action to perform in this step.
-          enum:
-          - say
-          - play
-          - pause
-          - record
-          - fetchCallFlow
-          - hangup
-          - transfer
-        options:
-          type: object
-          description: Action-specific options for the step.
     CallFlowCreate:
       type: object
       required:
@@ -225,6 +185,22 @@ components:
           description: A sequence of steps that define the call flow behavior.
           items:
             $ref: '#/components/schemas/CallFlowStep'
+    CallFlowList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallFlow'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CallFlowResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallFlow'
     Pagination:
       type: object
       properties:
@@ -240,6 +216,30 @@ components:
         perPage:
           type: integer
           description: The number of items per page.
+  parameters:
+    perPageParam:
+      name: perPage
+      in: query
+      required: false
+      description: The number of items per page.
+      schema:
+        type: integer
+        default: 10
+    pageParam:
+      name: page
+      in: query
+      required: false
+      description: The page number for pagination.
+      schema:
+        type: integer
+        default: 1
+    callFlowIdParam:
+      name: callFlowId
+      in: path
+      required: true
+      description: The unique identifier of the call flow.
+      schema:
+        type: string
   securitySchemes:
     accessKey:
       type: apiKey

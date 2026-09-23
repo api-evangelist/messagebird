@@ -1,0 +1,107 @@
+generated: '2026-09-17'
+method: derived
+source: mcp/messagebird-mcp.yml + openapi/messagebird-bird-api-openapi.yml + https://bird.com/docs/ai/mcp-server
+note: >-
+  Bird ships an MCP server AND an OpenAPI, so the crosswalk is owed. It is deliberately
+  SHORT: mcp.bird.com/tools/list is OAuth-gated (401), so the only tool names that can be
+  bound are the ones Bird publishes in prose. Every row below is a named tool matched to a
+  real operationId grepped out of the spec; nothing is inferred from a tool name that was
+  never published. The rest_only[] block is therefore not a list of gaps in the MCP server
+  — it is a list of operations whose tool names we could not read.
+surfaces:
+  openapi:
+    file: openapi/messagebird-bird-api-openapi.yml
+    source: https://bird.com/openapi.json
+    operations: 277
+    gated: false
+  mcp:
+    url: https://mcp.bird.com
+    dynamic_url: https://mcp.bird.com/dynamic
+    gated: true
+    gate: OAuth 2.0 bearer; tools/list returns 401 with RFC 9728 resource_metadata
+  graphql:
+    endpoint: null
+    note: Bird publishes no GraphQL endpoint.
+crosswalk:
+- tool: workspace_get
+  category: workspace
+  rest:
+  - getCurrentWorkspace
+  binding: rest
+  confidence: medium
+  note: Matched by name and semantics; the tool's live inputSchema could not be read.
+- tool: email_tools_audit
+  category: email-deliverability
+  rest: []
+  binding: none
+  confidence: high
+  note: >-
+    Published verbatim in the email-audit skill as `email_tools_audit` with
+    { domain, selector }. It resolves DNS rather than calling the REST API, so it has no
+    backing operationId — see mcp_only[].
+- tool: search
+  category: meta
+  rest: []
+  binding: none
+  confidence: high
+  note: Tool-discovery primitive on the /dynamic endpoint only. No REST equivalent.
+- tool: execute
+  category: meta
+  rest: []
+  binding: none
+  confidence: high
+  note: Tool-dispatch primitive on the /dynamic endpoint only. No REST equivalent.
+mcp_only:
+- tool: email_tools_audit
+  reason: DNS resolution and grading performed server-side; no public REST operation exposes it.
+- tool: search
+  reason: MCP tool-discovery primitive, /dynamic endpoint. Not an API capability.
+- tool: execute
+  reason: MCP tool-dispatch primitive, /dynamic endpoint. Not an API capability.
+- tool: whoami
+  reason: Returns the signed-in OAuth identity; the REST surface has no equivalent public operation.
+- tool: auth_signup
+  reason: stdio-only. Creates the first credential, which precedes any hosted-server session.
+- tool: auth_verify_email
+  reason: stdio-only, part of the pre-credential onboarding flow.
+- tool: auth_create_org
+  reason: stdio-only, part of the pre-credential onboarding flow.
+- tool: compliance_attachments_upload
+  reason: stdio-only. Reads a local filesystem path, which is meaningless on a hosted server.
+rest_only:
+- capability: email messages, batches and broadcasts
+  operations: 23
+  example_operations: [createEmailMessage, getEmailMessage, cancelEmailMessage, createEmailBroadcast, cancelEmailBroadcast]
+- capability: email templates and versions
+  operations: 18
+  example_operations: [createEmailTemplate, submitEmailTemplateVersion, rollbackEmailTemplate]
+- capability: email stats, inbox insights and competitive intelligence
+  operations: 36
+- capability: email inbound (addresses, messages, mailboxes, routes, threads, SMTP)
+  operations: 46
+  example_operations: [deleteMailbox, restoreMailbox, createInboundRoute]
+- capability: SMS messages, templates, suppressions, keyword rules and stats
+  operations: 36
+- capability: WhatsApp messages, templates, numbers, business accounts and stats
+  operations: 34
+- capability: contacts, audiences and preferences
+  operations: 26
+- capability: verify, lookup and numbers
+  operations: 15
+- capability: webhooks
+  operations: 9
+- capability: realtime apps and events
+  operations: 16
+- capability: domains, workspaces, docs and voice calls
+  operations: 22
+coverage:
+  tools_named: 9
+  tools_bound_to_rest: 1
+  mcp_only: 8
+  rest_operations_total: 277
+  rest_operations_with_a_named_tool: 1
+  unmeasurable: true
+  unmeasurable_reason: >-
+    tools/list is OAuth-gated, so the denominator of the real MCP catalog is unknown. Do not
+    read rest_operations_with_a_named_tool as MCP coverage; it is the coverage of the
+    PUBLISHED tool names only.

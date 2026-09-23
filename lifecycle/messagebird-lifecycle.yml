@@ -1,0 +1,43 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/docs/guides/ + https://bird.com/status + https://bird.com/changelog + openapi/messagebird-bird-api-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://bird.com/docs/api
+  stability_commitments:
+  - Error codes are opaque, stable, never renamed and never reused; a retired code stays permanently reserved.
+  - Webhook event type names are never renamed; new types are added as products ship.
+  - The error `type` enum is closed and grows rarely; clients are told to write a default branch.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No published deprecation policy and no RFC 8594 Sunset/Deprecation header support found.
+    No operation in the Bird OpenAPI carries `deprecated: true` (0 of 277). What Bird does
+    publish instead is a set of non-rename guarantees on error codes and event names, plus a
+    410 Gone response on 15 operations for resources that existed and are no longer available.
+    The legacy MessageBird REST API (rest.messagebird.com, developers.messagebird.com) is
+    still served and is not marked deprecated anywhere, although the SDK generation that
+    wraps it has not shipped since 2022-2025 while the Bird generation ships weekly.
+status_page: https://bird.com/status
+status_page_alt: https://status.bird.com/
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA document found on bird.com; enterprise terms are sales-gated.
+changelog: https://bird.com/changelog
+see_also: changelog/messagebird-changelog.yml
+deprecated_operations: []
+generations:
+- name: Bird platform API
+  host: platform.bird.com
+  spec: openapi/messagebird-bird-api-openapi.yml
+  status: current
+  auth: bearer API key (bk_{region}_) or OAuth access token (bt_{region}_)
+- name: MessageBird REST API
+  host: rest.messagebird.com
+  docs: https://developers.messagebird.com/
+  status: legacy-but-served
+  auth: 'Authorization: AccessKey {accessKey}'
+  evidence: developers.messagebird.com/api/sms-messaging/ returned HTTP 200 on 2026-09-17

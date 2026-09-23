@@ -1,0 +1,295 @@
+generated: '2026-09-17'
+method: searched
+source: https://platform.bird.com/.well-known/oauth-authorization-server
+docs: https://bird.com/auth.md
+note: >-
+  Bird's OpenAPI declares no oauth2 securityScheme (the spec documents bearer API keys), so
+  derive-oauth-scopes.py found nothing. The scope surface is real and machine-readable — it
+  is published in the RFC 8414 authorization server metadata at platform.bird.com and
+  mirrored in the RFC 9728 protected-resource document. Every scope below is verbatim from
+  that document. Scopes are resource:level pairs; :write implies the write level on the
+  named resource and org:* scopes act at the organization rather than the workspace.
+issuer: https://platform.bird.com
+schemes:
+- name: BirdOAuth2
+  source: https://platform.bird.com/.well-known/oauth-authorization-server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://platform.bird.com/v1/oauth/authorize
+    tokenUrl: https://platform.bird.com/v1/oauth/token
+    pkce: S256 (required for public clients; plain not supported)
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://platform.bird.com/v1/oauth/device
+    tokenUrl: https://platform.bird.com/v1/oauth/token
+  - flow: refreshToken
+    note: Refresh tokens rotate on every use; reuse of a rotated token revokes the grant family.
+  revocationUrl: https://platform.bird.com/v1/oauth/revoke
+  registrationUrl: https://platform.bird.com/v1/oauth/register
+  registration: RFC 7591 dynamic client registration, open to agents with no pre-issued client
+  not_supported: [client_credentials, assertion grants]
+scope_count: 44
+scopes:
+- scope: amb:write
+  resource: amb
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: amb_management:write
+  resource: amb_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: analytics:write
+  resource: analytics
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: api_keys:write
+  resource: api_keys
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: assets:write
+  resource: assets
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: audit:write
+  resource: audit
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: competitive:write
+  resource: competitive
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: compliance:write
+  resource: compliance
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: domains:write
+  resource: domains
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: email_management:write
+  resource: email_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: email_marketing:write
+  resource: email_marketing
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: emails:write
+  resource: emails
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: esim:write
+  resource: esim
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: esim_credentials:write
+  resource: esim_credentials
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: inbox_insights:write
+  resource: inbox_insights
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: ip_pools:write
+  resource: ip_pools
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: lookup:write
+  resource: lookup
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: mailbox:write
+  resource: mailbox
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: mailbox_management:write
+  resource: mailbox_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: members:write
+  resource: members
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: numbers:write
+  resource: numbers
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: preferences:write
+  resource: preferences
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: realtime:write
+  resource: realtime
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: request_logs:write
+  resource: request_logs
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: service_accounts:write
+  resource: service_accounts
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: sms:write
+  resource: sms
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: sms_management:write
+  resource: sms_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: trust:write
+  resource: trust
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: verify:write
+  resource: verify
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: verify_management:write
+  resource: verify_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: voice:write
+  resource: voice
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: voice_management:write
+  resource: voice_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: webhooks:write
+  resource: webhooks
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: whatsapp:write
+  resource: whatsapp
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: whatsapp_management:write
+  resource: whatsapp_management
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: workspace:write
+  resource: workspace
+  level: write
+  tier: workspace
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:access_restrictions:write
+  resource: org:access_restrictions
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:audit:write
+  resource: org:audit
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:billing:write
+  resource: org:billing
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:ip_pools:write
+  resource: org:ip_pools
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:members:write
+  resource: org:members
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:settings:write
+  resource: org:settings
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:trust:write
+  resource: org:trust
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]
+- scope: org:workspaces:write
+  resource: org:workspaces
+  level: write
+  tier: organization
+  flows: [authorizationCode, deviceCode]
+  sources: [https://platform.bird.com/.well-known/oauth-authorization-server]

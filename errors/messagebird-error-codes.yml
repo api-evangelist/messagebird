@@ -1,0 +1,96 @@
+generated: '2026-09-17'
+method: searched
+source: https://bird.com/docs/guides/errors + https://bird.com/docs/guides/idempotency + https://bird.com/docs/guides/rate-limits
+format: bird-error-envelope
+rfc9457: false
+catalog_url: https://bird.com/docs/api/errors
+per_code_doc_url_pattern: https://bird.com/docs/api/errors/{code}
+envelope:
+  root: error
+  fields:
+  - name: type
+    role: Broad category for coarse branching. Closed enum that grows rarely.
+  - name: code
+    role: Opaque, stable identifier (E01001). Canonical reference — unique, never renamed, never reused; retired codes stay reserved.
+  - name: name
+    role: Human-readable slug (ValidationError). Always paired with code.
+  - name: message
+    role: Human-readable description. NOT stable — display and log, never parse.
+  - name: param
+    role: The offending field, on input-related errors.
+  - name: doc_url
+    role: Stable link to the docs page for this code.
+  - name: request_id
+    role: Always present; also the X-Request-Id response header.
+  - name: details
+    role: Per-field validation problems as {param, message}. Only on validation_error.
+  - name: remediation
+    role: Human/agent-readable next step. Present when a recovery is known.
+  - name: next
+    role: The API operations that resolve the error, in the order to try them.
+  - name: vendor_code
+    role: Verbatim code from a downstream system (SMTP response code, decline code).
+types:
+- id: validation_error
+  http: 422
+- id: auth_error
+  http: 401
+- id: permission_error
+  http: 403
+- id: not_found_error
+  http: 404
+- id: conflict_error
+  http: 409
+- id: rate_limit_error
+  http: 429
+- id: billing_error
+  http: 402
+- id: internal_error
+  http: 5xx
+codes:
+- code: E01001
+  name: ValidationError
+  type: validation_error
+  status: 422
+  meaning: One or more request fields failed validation. Every field-level problem is listed in details[] as {param, message} rather than getting its own code.
+  action: Fix the named params and resend. Do not retry unchanged.
+- code: E01003
+  name: RateLimited
+  type: rate_limit_error
+  status: 429
+  meaning: A customer rate-limit policy is exhausted, or an independent abuse/supplier protection refused the request.
+  action: Honor Retry-After, back off, reuse the same idempotency key.
+- code: E01004
+  name: RequestInProgress
+  type: conflict_error
+  status: 409
+  meaning: A concurrent request with the same Idempotency-Key has not finished.
+  action: Wait briefly (the in-flight lock expires within 30s) and retry with the same key.
+- code: E01005
+  name: IdempotencyKeyReuse
+  type: conflict_error
+  status: 409
+  meaning: The same Idempotency-Key was sent with a different method, endpoint, path/query parameters or raw body.
+  action: Treat as a client bug in key generation. Generate a new key; do not retry.
+- code: E01028
+  name: MailboxInUseByRoute
+  type: conflict_error
+  status: 409
+  meaning: A mailbox delete was refused because an enabled inbound route targets it.
+  action: Disable, delete or redirect the route, then retry deleteMailbox.
+- code: E01033
+  name: IdempotencyUnavailable
+  type: internal_error
+  status: 503
+  meaning: Idempotency protection was unavailable before execution; this attempt was NOT executed.
+  action: Retry with the same key. The code says nothing about an earlier attempt's outcome.
+- code: E02035
+  name: InsufficientScope
+  type: permission_error
+  status: 403
+  meaning: The credential is valid but lacks the scope named in param (for example webhooks:read).
+  action: Re-authenticate with a credential granted the missing scope, then retry. The envelope carries the remediation sentence.
+note: >-
+  These are the codes Bird publishes verbatim in its guides with a full worked envelope.
+  The complete per-code catalog lives at https://bird.com/docs/api/errors (one page per
+  code) and is larger; it was not scraped page by page. Nothing here is inferred.
